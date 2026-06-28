@@ -4,27 +4,57 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/demo-live-0ea5e9)](https://d28e99c7v2289t.cloudfront.net)
 
-Browse Indonesian physics olympiad problems (OSK / OSP / OSN), build custom exam sets in the browser, and export PDFs via print — no backend, no login.
+A web app for browsing Indonesian physics olympiad problems and assembling custom exam papers — no account, no backend.
 
-**[Live site](https://d28e99c7v2289t.cloudfront.net)** · **[Demo video](#demo)**
+**[Try it live](https://d28e99c7v2289t.cloudfront.net)** · **[Watch demo](#demo)**
+
+## What it does
+
+Teachers and students can search a library of **~439 problems** from OSK, OSP, and OSN exams (2004–2026), pick questions into a set, preview the paper, and save it as a PDF from the browser.
+
+Problems include **LaTeX math**, **figures**, and optional **English translations** (~99% coverage). Everything runs in the browser; your sets are saved locally on your device.
 
 ## Demo
 
-Automated product walkthrough (Playwright + spotlight overlays). Full flow: library search → set builder → preview → print.
-
 https://github.com/user-attachments/assets/581c7954-b054-4d22-a443-abfefe9fcba2
 
-Regenerate locally: `npm run demo:record` · optional 4K upscale: `npm run demo:enhance` · [recorder docs](scripts/demo/README.md)
+## How it works
 
-## Features
+### 1. Browse the library
 
-- **~439 problems** — curated corpus with LaTeX math (KaTeX) and diagram assets
-- **Set builder** — search, add, reorder; saved sets in localStorage; starter templates
-- **PDF export** — print preview → “Save as PDF” in the browser (no server-side PDF)
-- **Static deploy** — Next.js export to S3 + CloudFront (~$0.50–$2/mo)
-- **Ingestion pipeline** — Python tooling: PDF → structured JSON, LLM repair & English translation
+Filter by competition level, year, and topic (mechanics, electromagnetism, thermodynamics, waves, modern physics). Search by title or keyword, open a problem to read the full statement with rendered math and diagrams, then add it to your current set.
 
-## Quick start
+### 2. Build an exam set
+
+The set builder is where you compose a paper:
+
+- Add or remove problems from the library
+- Reorder questions (move up/down or drag)
+- Generate a **random set** with filters (level, year, topic, count)
+- Work on **multiple saved sets** — switch between them anytime
+- Start from a **starter template** (e.g. OSK Mechanics Sample) on first visit
+
+Sets auto-save to **localStorage**, so they persist on the same browser without logging in.
+
+### 3. Preview and export
+
+Open **Preview** to see the formatted exam layout, then **Print / Save PDF** and choose “Save as PDF” in the print dialog. No server-side PDF generation — the preview is what you print.
+
+### 4. Language toggle
+
+Switch between **Indonesian** (original) and **English** where a translation exists. Stats on the dashboard show translation coverage across the corpus.
+
+## Corpus
+
+Problems were extracted from official exam PDFs and structured into a searchable catalog with metadata (level, year, topic, subparts, figures). The repo includes the parsed corpus and a Python pipeline for ingest, validation, and translation — not the original PDF files.
+
+| | |
+|---|---|
+| Levels | OSK (school), OSP (provincial), OSN (national) |
+| Topics | Mechanics, E&M, thermodynamics, waves/optics, modern physics |
+| Format | Markdown + KaTeX, with extracted diagram assets |
+
+## Run locally
 
 ```bash
 git clone https://github.com/althaafsn/physics-database.git
@@ -34,70 +64,13 @@ npm run build:static
 npm run preview:static   # http://localhost:3000
 ```
 
-## Tech stack
+For development with hot reload: `npm run dev` (run `npm run export:data` first if catalog data is missing).
 
-| Layer | Stack |
-|-------|-------|
-| Frontend | Next.js 16, React 19, Tailwind CSS, KaTeX |
-| Data | Static JSON + assets (no API server) |
-| Deploy | S3 + CloudFront, Terraform |
-| Pipeline | Python — ingest, validate, LLM repair/translate, catalog sync |
+## Tech
 
-## Architecture
+Next.js · React · Tailwind · KaTeX · static JSON corpus · Python ingestion pipeline
 
-```mermaid
-flowchart LR
-  PDF[Source PDFs] --> Pipeline[Python pipeline]
-  Pipeline --> Corpus[parsed/catalog + assets]
-  Corpus --> Export[npm run export:data]
-  Export --> Build[Next.js static export]
-  Build --> S3[S3 + CloudFront]
-  Browser[Browser] --> S3
-  Browser --> LocalStorage[localStorage sets]
-```
-
-## Deploy
-
-```bash
-chmod +x deploy/aws/deploy.sh
-./deploy/aws/deploy.sh
-```
-
-Details: [deploy/aws/README.md](deploy/aws/README.md) (IAM, Terraform, teardown).
-
-## Data in the build
-
-| Output | Source |
-|--------|--------|
-| Problem library | `parsed/catalog/problems.jsonl` → `public/data/catalog.*.json` |
-| Figures | `parsed/assets/` → `public/assets/` |
-| Starter set | `data/starter-sets.json` |
-
-Source PDFs (`all_pdf/`) are not in this repo — only the parsed corpus is committed.
-
-## Development
-
-```bash
-npm run export:data   # refresh public/data from corpus
-npm run dev           # dev server
-python scripts/sync_catalog.py   # after pipeline edits
-```
-
-Pipeline tests: `pytest` (see `tests/`).
-
-## Project layout
-
-```
-app/              Next.js pages (static export)
-components/       UI
-lib/              Corpus mapping, localStorage sets, print helpers
-parsed/           Gold/catalog corpus + assets
-scripts/          Export, build, demo recorder
-deploy/aws/       S3 + CloudFront (Terraform)
-src/              Python ingestion / LLM pipeline
-tests/            Pipeline unit tests
-docs/demo/        Committed demo video for README
-```
+Deploy notes (optional): [deploy/aws/README.md](deploy/aws/README.md)
 
 ## License
 
