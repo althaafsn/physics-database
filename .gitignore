@@ -1,0 +1,51 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment & secrets
+.env
+.env.*
+.env*.local
+local.env
+
+# Dependencies & build
+node_modules/
+.next/
+out/
+tsconfig.tsbuildinfo
+
+# Generated static site data (produced by npm run export:data)
+public/data/
+public/assets/
+
+# Demo recordings (regenerate with npm run demo:record)
+demo/output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python pipeline & corpus artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+/output/
+all_pdf/
+models/
+parsed/jobs/
+parsed/llm_cache/
+parsed/sets/.exports/
+parsed/sets/_history/
+parsed/sets/test-*/
+parsed/sets/repro-*/
+*.log
+*.aux
+*.tex
+
+# Terraform (never commit state)
+deploy/aws/terraform/.terraform/
+deploy/aws/terraform/*.tfstate*

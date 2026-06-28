@@ -1,0 +1,223 @@
+{
+  "name": "osk-mechanics-sample",
+  "created_at": "2026-06-28T15:39:53.522988+00:00",
+  "source": "gold",
+  "filters": {
+    "clean_only": true,
+    "levels": [
+      "OSK"
+    ],
+    "years": [],
+    "topics": [
+      "mechanics"
+    ],
+    "document_slugs": []
+  },
+  "selection": {
+    "ids": null,
+    "count": 5,
+    "seed": 42
+  },
+  "problem_ids": [
+    "OSK-2005-04",
+    "OSK-2011-v2-05",
+    "OSK-2017-05",
+    "OSK-2019-03",
+    "OSK-2022-06"
+  ],
+  "problems": [
+    {
+      "id": "OSK-2005-04",
+      "document_slug": "Soal OSK Fisika SMA 2005",
+      "level": "OSK",
+      "year": 2005,
+      "round": null,
+      "variant": null,
+      "problem_number": 4,
+      "title": "Perbandingan Kecepatan Silinder Menggelinding dan Tidak Menggelinding",
+      "topic": "mechanics",
+      "topic_confidence": 1.0,
+      "topic_scores": {
+        "mechanics": 6.0,
+        "electromagnetism": 0.0,
+        "thermodynamics": 0.0,
+        "waves_optics": 0.0,
+        "modern_physics": 0.0
+      },
+      "subparts": [],
+      "body_md": "Sebuah silinder massa dan jari-jari di atas bidang miring pada ketinggian ℎ dari dasar bidang miring. Kemudian silinder menggelinding. Jika momen inersia silinder ( = 2 /2). Tentukan perbandingan kecepatan saat silinder menggelinding dengan saat silinder tidak menggelinding di dasar bidang miring.",
+      "body_md_raw": "Sebuah silinder massa dan jari-jari di atas bidang miring pada ketinggian ℎ dari dasar bidang miring. Kemudian silinder menggelinding. Jika momen inersia silinder ( = 2 /2). Tentukan perbandingan kecepatan saat silinder menggelinding dengan saat silinder tidak menggelinding di dasar bidang miring.",
+      "images": [],
+      "source": {
+        "pdf": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSK Fisika SMA 2005.pdf",
+        "md": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2005/Soal OSK Fisika SMA 2005.md",
+        "meta_json": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2005/Soal OSK Fisika SMA 2005_meta.json"
+      },
+      "flags": [],
+      "errors": [],
+      "llm_repaired": false,
+      "llm_model": null
+    },
+    {
+      "id": "OSK-2011-v2-05",
+      "document_slug": "Soal OSK Fisika SMA 2011",
+      "level": "OSK",
+      "year": 2011,
+      "round": null,
+      "variant": 2,
+      "problem_number": 5,
+      "title": "Sistem Tiga Balok dan Katrol dengan Gesekan Statis",
+      "topic": "mechanics",
+      "topic_confidence": 1.0,
+      "topic_scores": {
+        "mechanics": 14.0,
+        "electromagnetism": 0.0,
+        "thermodynamics": 0.0,
+        "waves_optics": 0.0,
+        "modern_physics": 0.0
+      },
+      "subparts": [],
+      "body_md": "Tinjau sistem empat benda seperti pada gambar. Sistem terdiri atas tiga balok homogen yang masing-masing bermassa $m_1$, $m_2$, dan $m_3$, serta sebuah katrol yang bermomen inersia $I$ dan berjari-jari $R$. Susunan sistem ditunjukkan pada gambar. Balok bermassa $m_1$ dan bertumpu pada lantai yang licin, dan koefisien gesek statis antara permukaan $m_1$ dan $m_3$ adalah $μ_s$, dengan $0 < μ_s < 1$. Balok bermassa $m_3$ dihubungkan oleh tali dengan sebuah benda bermassa $m_2$ melalui katrol. Jika diasumsikan katrol berputar tanpa slip, tentukan syarat massa $m_2$ agar kedua balok $m_1$ dan $m_3$ bergerak bersama-sama. Nyatakan hubungan antara $m_2$ dengan semua besaran yang terlibat, yaitu $m_1$, $m_3$, $I$, $R$, dan $μ_s$.\n\n![](_page_5_Picture_0.jpeg)\n\n![](_page_5_Picture_1.jpeg)\n\n![](_page_5_Picture_4.jpeg)",
+      "body_md_raw": "Tinjau sistem empat benda seperti pada gambar. Sistem terdiri atas tiga balok homogen yang masing-masing bermassa 1, 2, dan , serta sebuah katrol yang bermomen inersia dan berjari-jari . Susunan sistem ditunjukkan pada gambar. Balok bermassa <sup>1</sup> dan bertumpu pada lantai yang licin, dan koefisien gesek statis antara permukaan <sup>1</sup> dan adalah , dengan 0 < < 1. Balok bermassa dihubungkan oleh tali dengan sebuah benda bermassa <sup>2</sup> melalui katrol. Jika diasumsikan katrol berputar tanpa slip, tentukan syarat massa <sup>2</sup> agar kedua balok <sup>1</sup> dan bergerak bersama-sama. Nyatakan hubungan antara <sup>2</sup> dengan semua besaran yang terlibat, yaitu 1, , , , dan .\n\n![](_page_5_Picture_0.jpeg)\n\n![](_page_5_Picture_1.jpeg)\n\nInstagram: dimensisains.official | WA: 089659856821/085217499402\n\n![](_page_5_Picture_4.jpeg)",
+      "images": [],
+      "source": {
+        "pdf": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSK Fisika SMA 2011.pdf",
+        "md": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2011/Soal OSK Fisika SMA 2011.md",
+        "meta_json": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2011/Soal OSK Fisika SMA 2011_meta.json"
+      },
+      "flags": [],
+      "errors": [],
+      "llm_repaired": true,
+      "llm_model": "qwen3.6-35b"
+    },
+    {
+      "id": "OSK-2017-05",
+      "document_slug": "Soal OSK Fisika SMA 2017",
+      "level": "OSK",
+      "year": 2017,
+      "round": null,
+      "variant": null,
+      "problem_number": 5,
+      "title": "Balok dan Bidang Miring di Atas Timbangan",
+      "topic": "mechanics",
+      "topic_confidence": 1.0,
+      "topic_scores": {
+        "mechanics": 11.0,
+        "electromagnetism": 0.0,
+        "thermodynamics": 0.0,
+        "waves_optics": 0.0,
+        "modern_physics": 0.0
+      },
+      "subparts": [
+        {
+          "label": "a",
+          "text": "letak posisi vertikal pusat massa sistem balok- bidang miring tersebut."
+        },
+        {
+          "label": "b",
+          "text": "komponen vertikal kecepatan pusat massa sistem tersebut dinyatakan sebagai fungsi waktu , saat balok kecil tergeser/bergerak ke bawah di atas permukaan bidang miring."
+        },
+        {
+          "label": "c",
+          "text": "posisi vertikal pusat massa sistem tersebut sebagai fungsi waktu."
+        },
+        {
+          "label": "d",
+          "text": "nilai pembacaan pada alat timbangan berat saat balok kecil mulai bergeser.\n\n![](_page_2_Picture_9.jpeg)"
+        }
+      ],
+      "body_md": "Sebuah balok kecil (massa 1) berada di atas suatu bidang miring (massa 2, sudut kemiringan ) yang diletakkan di atas alat timbangan berat (lihat gambar). Diketahui bidang miring memiliki keringgian ℎ dan titik pusatnya berada pada ketinggian ℎ/3 dari alas bidang miring. Sementara itu pada saat awal, titik pusat massa balok $m_{1}$ berada di ketinggian ℎ dari alas bidang miring. Asumsikan bidang miring licin dan terikat pada timbangan. Tentukan:\n\n- (a) letak posisi vertikal pusat massa sistem balok- bidang miring tersebut.\n- (b) komponen vertikal kecepatan pusat massa sistem tersebut dinyatakan sebagai fungsi waktu , saat balok kecil tergeser/bergerak ke bawah di atas permukaan bidang miring.\n- (c) posisi vertikal pusat massa sistem tersebut sebagai fungsi waktu.\n- (d) nilai pembacaan pada alat timbangan berat saat balok kecil mulai bergeser.\n\n![](_page_2_Picture_9.jpeg)",
+      "body_md_raw": "Sebuah balok kecil (massa 1) berada di atas suatu bidang miring (massa 2, sudut kemiringan ) yang diletakkan di atas alat timbangan berat (lihat gambar). Diketahui bidang miring memiliki keringgian ℎ dan titik pusatnya berada pada ketinggian ℎ/3 dari alas bidang miring. Sementara itu pada saat awal, titik pusat massa balok <sup>1</sup> berada di ketinggian ℎ dari alas bidang miring. Asumsikan bidang miring licin dan terikat pada timbangan. Tentukan:\n\n- (a) letak posisi vertikal pusat massa sistem balok- bidang miring tersebut.\n- (b) komponen vertikal kecepatan pusat massa sistem tersebut dinyatakan sebagai fungsi waktu , saat balok kecil tergeser/bergerak ke bawah di atas permukaan bidang miring.\n- (c) posisi vertikal pusat massa sistem tersebut sebagai fungsi waktu.\n- (d) nilai pembacaan pada alat timbangan berat saat balok kecil mulai bergeser.\n\n![](_page_2_Picture_9.jpeg)",
+      "images": [
+        {
+          "filename": "_page_2_Picture_9.jpeg",
+          "path": "assets/OSK/2017/05/_page_2_Picture_9.jpeg",
+          "page": 2,
+          "kind": "Picture"
+        }
+      ],
+      "source": {
+        "pdf": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSK Fisika SMA 2017.pdf",
+        "md": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2017/Soal OSK Fisika SMA 2017.md",
+        "meta_json": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2017/Soal OSK Fisika SMA 2017_meta.json"
+      },
+      "flags": [],
+      "errors": [],
+      "llm_repaired": false,
+      "llm_model": null
+    },
+    {
+      "id": "OSK-2019-03",
+      "document_slug": "Soal OSK Fisika SMA 2019",
+      "level": "OSK",
+      "year": 2019,
+      "round": null,
+      "variant": null,
+      "problem_number": 3,
+      "title": "Balapan Empat Mobil",
+      "topic": "mechanics",
+      "topic_confidence": 1.0,
+      "topic_scores": {
+        "mechanics": 2.0,
+        "electromagnetism": 0.0,
+        "thermodynamics": 0.0,
+        "waves_optics": 0.0,
+        "modern_physics": 0.0
+      },
+      "subparts": [
+        {
+          "label": "a",
+          "text": "Tentukan kapan mobil B menyalip mobil C!"
+        },
+        {
+          "label": "b",
+          "text": "Ketika suatu rentang waktu tertentu di tinjau dari timur ke barat, urutan mobil berturut-turut adalah A–D–B– C, tentukan kapan ketika mobil B berada tepat ditengah- tengah antara mobil D dan C."
+        }
+      ],
+      "body_md": "Empat buah mobil masing-masing A, B, C, dan D melaju di jalan tol dua arah (timur-barat) dengan kecepatan konstan. Mobil A, mobil B, dan mobil C bergerak ke timur, sedangkan mobil D bergerak ke barat. Diketahui :\n\n- Mobil A menyalip mobil B pada pukul 10.00.\n- Mobil A menyalip mobil C pada pukul 11.00.\n- Mobil A berada pada posisi yang sama dengan mobil D pada pukul 12.00.\n- Mobil B berada pada posisi yang sama dengan mobil D pada pukul 14.00.\n- Mobil C berada pada posisi yang sama dengan mobil D pada pukul 16.00.\n- (a) Tentukan kapan mobil B menyalip mobil C!\n- (b) Ketika suatu rentang waktu tertentu di tinjau dari timur ke barat, urutan mobil berturut-turut adalah A–D–B– C, tentukan kapan ketika mobil B berada tepat ditengah- tengah antara mobil D dan C.",
+      "body_md_raw": "Empat buah mobil masing-masing A, B, C, dan D melaju di jalan tol dua arah (timur-barat) dengan kecepatan konstan. Mobil A, mobil B, dan mobil C bergerak ke timur, sedangkan mobil D bergerak ke barat. Diketahui :\n\n- Mobil A menyalip mobil B pada pukul 10.00.\n- Mobil A menyalip mobil C pada pukul 11.00.\n- Mobil A berada pada posisi yang sama dengan mobil D pada pukul 12.00.\n- Mobil B berada pada posisi yang sama dengan mobil D pada pukul 14.00.\n- Mobil C berada pada posisi yang sama dengan mobil D pada pukul 16.00.\n- (a) Tentukan kapan mobil B menyalip mobil C!\n- (b) Ketika suatu rentang waktu tertentu di tinjau dari timur ke barat, urutan mobil berturut-turut adalah A–D–B– C, tentukan kapan ketika mobil B berada tepat ditengah- tengah antara mobil D dan C.",
+      "images": [],
+      "source": {
+        "pdf": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSK Fisika SMA 2019.pdf",
+        "md": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2019/Soal OSK Fisika SMA 2019.md",
+        "meta_json": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2019/Soal OSK Fisika SMA 2019_meta.json"
+      },
+      "flags": [],
+      "errors": [],
+      "llm_repaired": false,
+      "llm_model": null
+    },
+    {
+      "id": "OSK-2022-06",
+      "document_slug": "Soal OSK Fisika SMA 2022",
+      "level": "OSK",
+      "year": 2022,
+      "round": null,
+      "variant": null,
+      "problem_number": 6,
+      "title": "6) Sebuah peluru ditembakkan vertikal ke atas dengan kecepatan awal tertentu dari titik A yang be...",
+      "topic": "mechanics",
+      "topic_confidence": 1.0,
+      "topic_scores": {
+        "mechanics": 11.0,
+        "electromagnetism": 0.0,
+        "thermodynamics": 0.0,
+        "waves_optics": 0.0,
+        "modern_physics": 0.0
+      },
+      "subparts": [],
+      "body_md": "6) Sebuah peluru ditembakkan vertikal ke atas dengan kecepatan awal tertentu dari titik A yang berada pada ketinggian 68 meter di atas permukaan tanah. Diketahui kecepatan peluru pada ketinggian 35 meter di bawah A sama dengan dua kali kecepatan peluru pada ketinggian 35 meter di atas A. Abaikan hambatan udara. Percepatan gravitasi sama dengan . Tinggi maksimum yang dicapai peluru diukur dari permukaan tanah adalah ... meter.\n\n#### **Hukum Newton**",
+      "body_md_raw": "6) Sebuah peluru ditembakkan vertikal ke atas dengan kecepatan awal tertentu dari titik A yang berada pada ketinggian 68 meter di atas permukaan tanah. Diketahui kecepatan peluru pada ketinggian 35 meter di bawah A sama dengan dua kali kecepatan peluru pada ketinggian 35 meter di atas A. Abaikan hambatan udara. Percepatan gravitasi sama dengan . Tinggi maksimum yang dicapai peluru diukur dari permukaan tanah adalah ... meter.\n\n#### **Hukum Newton**",
+      "images": [],
+      "source": {
+        "pdf": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSK Fisika SMA 2022.pdf",
+        "md": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2022/Soal OSK Fisika SMA 2022.md",
+        "meta_json": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2022/Soal OSK Fisika SMA 2022_meta.json"
+      },
+      "flags": [],
+      "errors": [],
+      "llm_repaired": false,
+      "llm_model": null
+    }
+  ]
+}

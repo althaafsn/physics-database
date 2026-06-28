@@ -1,0 +1,16 @@
+{
+  "sets": [
+    {
+      "id": "starter-osk-mechanics",
+      "name": "OSK Mechanics Sample",
+      "mode": "manual",
+      "problemIds": [
+        "OSK-2005-04",
+        "OSK-2011-v2-05",
+        "OSK-2017-05",
+        "OSK-2019-03",
+        "OSK-2022-06"
+      ]
+    }
+  ]
+}

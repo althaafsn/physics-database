@@ -1,0 +1,43 @@
+{
+  "name": "physics-database",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "node scripts/build-static.mjs",
+    "build:static": "node scripts/build-static.mjs",
+    "export:data": "node scripts/export-static-data.mjs",
+    "preview:static": "npx serve out",
+    "demo:record": "node scripts/demo/record.mjs",
+    "demo:enhance": "ffmpeg -y -i demo/output/physics-db-demo.mp4 -vf \"scale=3840:2160:flags=lanczos,unsharp=5:5:0.65:5:5:0.0\" -c:v libx264 -preset slow -crf 17 -pix_fmt yuv420p -movflags +faststart demo/output/physics-db-demo-4k.mp4",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "@vercel/analytics": "1.6.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "katex": "^0.17.0",
+    "lucide-react": "^1.16.0",
+    "next": "16.2.6",
+    "next-themes": "^0.4.6",
+    "react": "^19",
+    "react-dom": "^19",
+    "shadcn": "^4.8.0",
+    "sonner": "^2.0.7",
+    "swr": "^2.4.2",
+    "tailwind-merge": "^3.3.1",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.0",
+    "@types/katex": "^0.16.8",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "playwright": "^1.61.1",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.2.0",
+    "typescript": "5.7.3"
+  }
+}
