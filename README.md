@@ -12,9 +12,7 @@ Browse Indonesian physics olympiad problems (OSK / OSP / OSN), build custom exam
 
 Automated product walkthrough (Playwright + spotlight overlays). Full flow: library search → set builder → preview → print.
 
-<video src="https://github.com/althaafsn/physics-database/raw/main/docs/demo/physics-db-demo.mp4" width="100%" controls>
-  <a href="docs/demo/physics-db-demo.mp4">Download demo video</a>
-</video>
+https://github.com/user-attachments/assets/581c7954-b054-4d22-a443-abfefe9fcba2
 
 Regenerate locally: `npm run demo:record` · optional 4K upscale: `npm run demo:enhance` · [recorder docs](scripts/demo/README.md)
 
