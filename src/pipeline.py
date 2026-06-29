@@ -7,6 +7,7 @@ from src.attach_images import attach_images
 from src.catalog import sync_catalog
 from src.classify_topic import classify_topic, llm_classify_topic
 from src.clean import clean_record
+from src.repair_images import repair_record_images
 from src.ingest_registry import IngestRegistryStore
 from src.llm_client import DEFAULT_MAX_TOKENS, DEFAULT_TIMEOUT_S, format_metrics_line
 from src.llm_progress import RepairProgressStore, format_usage_summary
@@ -142,6 +143,7 @@ def process_output_folder(
             flags=flags,
         )
         clean_record(record)
+        repair_record_images(record, output_folder, paths.assets_dir)
         if not record.body_md.strip():
             continue
         apply_validation(record)
@@ -215,6 +217,7 @@ def run_pipeline(
     llm_max_tokens: int = DEFAULT_MAX_TOKENS,
     llm_verbose: bool = True,
     repair_only_processed: bool = True,
+    repair_all: bool = False,
 ) -> Manifest:
     if paths is None:
         paths = PipelinePaths.resolve()
@@ -299,20 +302,27 @@ def run_pipeline(
             run_id=run_id,
         )
 
-    replace_pdfs = {source_pdf_key(r) for r in batch_records}
-    replace_slugs = set(processed_slugs)
-    all_records = merge_records(
-        existing_silver,
-        batch_records,
-        replace_source_pdfs=replace_pdfs,
-        replace_slugs=replace_slugs,
-    )
+    if repair_all and not target_slugs and llm_repair:
+        all_records = list(existing_silver)
+    else:
+        replace_pdfs = {source_pdf_key(r) for r in batch_records}
+        replace_slugs = set(processed_slugs)
+        all_records = merge_records(
+            existing_silver,
+            batch_records,
+            replace_source_pdfs=replace_pdfs,
+            replace_slugs=replace_slugs,
+        )
 
     for rec in all_records:
         if rec.errors:
             records_with_errors += 1
 
-    repair_scope = batch_records if repair_only_processed and processed_slugs else all_records
+    repair_scope = (
+        all_records
+        if repair_all or not (repair_only_processed and processed_slugs)
+        else batch_records
+    )
     if llm_repair:
         repair_targets = [rec for rec in repair_scope if rec.errors]
         repair_total = len(repair_targets)
@@ -400,8 +410,7 @@ def run_pipeline(
 
     save_jsonl(paths.silver_problems_path, all_records)
     save_jsonl(paths.legacy_problems_path, all_records)
-    if llm_repair:
-        save_jsonl(paths.gold_problems_path, all_records)
+    save_jsonl(paths.gold_problems_path, all_records)
 
     review_dir = paths.review_dir
     with (review_dir / "low_confidence.jsonl").open("w", encoding="utf-8") as f:

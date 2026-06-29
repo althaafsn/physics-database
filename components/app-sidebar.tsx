@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   Library,
   FlaskConical,
+  PenLine,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ProblemLanguageSwitch } from '@/components/problem-language-switch'
@@ -25,6 +26,7 @@ const NAV: NavItem[] = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/library', label: 'Problem Library', icon: Library },
   { href: '/sets', label: 'Set Builder', icon: FlaskConical },
+  { href: '/admin/problems', label: 'Editor', icon: PenLine },
 ]
 
 function NavLink({ item, active }: { item: NavItem; active: boolean }) {
@@ -59,8 +61,11 @@ export function AppSidebar() {
     statsFetcher,
   )
 
-  const isActive = (href: string) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href)
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    if (href.startsWith('/admin')) return pathname.startsWith('/admin')
+    return pathname.startsWith(href)
+  }
 
   return (
     <aside className="flex w-64 shrink-0 flex-col border-r border-sidebar-border/80 bg-sidebar shadow-[1px_0_0_0_oklch(1_0_0_/_0.4)_inset] print:hidden">

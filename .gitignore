@@ -46,6 +46,7 @@ parsed/sets/repro-*/
 *.aux
 *.tex
 
-# Terraform (never commit state)
-deploy/aws/terraform/.terraform/
-deploy/aws/terraform/*.tfstate*
+# Admin app local artifacts
+admin/server/.venv/
+admin/server/admin.db
+

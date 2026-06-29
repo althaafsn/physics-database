@@ -467,6 +467,14 @@ def apply_repair_to_record(
         record.subparts = [SubPart(**sp) for sp in extract_subparts(attempt.result.body_md)]
     record.llm_repaired = True
     record.llm_model = model
+
+    from src.clean import finalize_record_after_repair
+    from src.paths import PipelinePaths
+
+    paths = PipelinePaths.resolve()
+    output_folder = Path(record.source.md).parent
+    finalize_record_after_repair(record, output_folder, paths.assets_dir)
+
     record.errors = validate_record(record)
     from src.validate import sync_flags_from_errors
 

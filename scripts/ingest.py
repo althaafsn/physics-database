@@ -199,15 +199,16 @@ def cmd_process(args: argparse.Namespace, paths: PipelinePaths) -> int:
             title=args.title,
         )
 
-    incremental = not args.full and not args.pdf and not args.slug
+    incremental = not args.full and not args.pdf and not args.slug and not args.repair_all
     manifest = run_pipeline(
         paths,
         only_slugs=only_slugs,
         incremental=incremental,
         full_rebuild=args.full,
         metadata_overrides=overrides,
-        llm_repair=args.llm_repair,
+        llm_repair=args.llm_repair or args.repair_all,
         llm_reset_progress=args.llm_reset_progress,
+        repair_all=args.repair_all,
     )
     extra = manifest.extra
     print(
@@ -300,6 +301,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--llm-repair",
         action="store_true",
         help="Run LLM repair on processed records with errors",
+    )
+    process.add_argument(
+        "--repair-all",
+        action="store_true",
+        help="LLM-repair every record with errors in the corpus (no bronze re-extract)",
     )
     process.add_argument("--llm-reset-progress", action="store_true")
     process.add_argument("--level", help="Override olympiad level (OSK/OSP/OSN)")

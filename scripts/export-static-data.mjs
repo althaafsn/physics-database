@@ -25,7 +25,14 @@ function assetUrl(relativePath) {
   return `${assetPrefix}/${normalized}`
 }
 
-function rewriteMarkdownImages(text, images) {
+function defaultAssetUrl(rec, filename) {
+  const level = rec.level ?? 'UNKNOWN'
+  const year = rec.year ?? 0
+  const num = String(rec.problem_number ?? 0).padStart(2, '0')
+  return assetUrl(`assets/${level}/${year}/${num}/${filename}`)
+}
+
+function rewriteMarkdownImages(text, images, rec) {
   const byFilename = new Map()
   for (const img of images) {
     byFilename.set(img.filename, assetUrl(img.path))
@@ -33,10 +40,12 @@ function rewriteMarkdownImages(text, images) {
   }
   return text.replace(/!\[\]\(([^)]+)\)/g, (_match, ref) => {
     const clean = ref.trim().replace(/\\/g, '/')
+    const basename = clean.split('/').pop() ?? ''
     const mapped =
       byFilename.get(clean) ||
-      byFilename.get(clean.split('/').pop() ?? '') ||
-      (clean.startsWith('assets/') ? assetUrl(clean) : null)
+      byFilename.get(basename) ||
+      (clean.startsWith('assets/') ? assetUrl(clean) : null) ||
+      (rec && basename ? defaultAssetUrl(rec, basename) : null)
     return mapped ? `![](${mapped})` : `![](${ref})`
   })
 }
@@ -51,7 +60,7 @@ function mapProblem(rec, locale = 'id') {
   const bodySource = usingEnglish ? rec.body_md_en : rec.body_md
   const titleSource = usingEnglish && rec.title_en?.trim() ? rec.title_en : rec.title
   const subpartsSource = usingEnglish && rec.subparts_en?.length ? rec.subparts_en : rec.subparts
-  const body = rewriteMarkdownImages(bodySource, rec.images ?? [])
+  const body = rewriteMarkdownImages(bodySource, rec.images ?? [], rec)
   const firstImage = rec.images?.[0]
 
   return {
@@ -63,7 +72,7 @@ function mapProblem(rec, locale = 'id') {
     body,
     parts: (subpartsSource ?? []).map((sp) => ({
       label: sp.label,
-      prompt: rewriteMarkdownImages(sp.text, rec.images ?? []),
+      prompt: rewriteMarkdownImages(sp.text, rec.images ?? [], rec),
     })),
     figure: firstImage ? assetUrl(firstImage.path) : undefined,
     quality: rec.llm_repaired ? 'repaired' : 'clean',
@@ -71,12 +80,12 @@ function mapProblem(rec, locale = 'id') {
     topicConfidence: rec.topic_confidence ?? 0,
     titleEn: rec.title_en?.trim() || undefined,
     bodyEn: rec.body_md_en?.trim()
-      ? rewriteMarkdownImages(rec.body_md_en, rec.images ?? [])
+      ? rewriteMarkdownImages(rec.body_md_en, rec.images ?? [], rec)
       : undefined,
     partsEn: rec.subparts_en?.length
       ? rec.subparts_en.map((sp) => ({
           label: sp.label,
-          prompt: rewriteMarkdownImages(sp.text, rec.images ?? []),
+          prompt: rewriteMarkdownImages(sp.text, rec.images ?? [], rec),
         }))
       : undefined,
     hasTranslation: Boolean(rec.llm_translated && rec.body_md_en?.trim()),

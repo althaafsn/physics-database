@@ -1,10 +1,19 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { AppSidebar } from '@/components/app-sidebar'
+import { AdminChrome } from '@/components/admin/admin-chrome'
 import { LocaleProvider } from '@/components/locale-provider'
 import { SetBuilderProvider } from '@/components/set-builder-provider'
 
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const isAdmin = pathname.startsWith('/admin')
+
+  if (isAdmin) {
+    return <AdminChrome>{children}</AdminChrome>
+  }
+
   return (
     <SetBuilderProvider>
       <LocaleProvider>

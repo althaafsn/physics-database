@@ -71,6 +71,16 @@ def resolve_marker_single() -> list[str]:
     return [sys.executable, "-m", "marker.scripts.convert_single"]
 
 
+def marker_env() -> dict[str, str]:
+    """Environment for Marker subprocess (CPU fallback avoids GPU OOM on small laptops)."""
+    import os
+
+    env = os.environ.copy()
+    if env.get("PHYSICS_MARKER_CPU", "").lower() in {"1", "true", "yes"}:
+        env["CUDA_VISIBLE_DEVICES"] = ""
+    return env
+
+
 def convert_pdf_to_bronze(
     pdf_path: Path,
     *,
@@ -85,6 +95,7 @@ def convert_pdf_to_bronze(
         str(pdf_path.resolve()),
         "--output_dir",
         str(bronze_dir.resolve()),
+        "--disable_tqdm",
     ]
     try:
         proc = subprocess.run(
@@ -93,6 +104,7 @@ def convert_pdf_to_bronze(
             text=True,
             timeout=timeout_s,
             check=False,
+            env=marker_env(),
         )
     except subprocess.TimeoutExpired as exc:
         return BronzeConvertResult(
@@ -107,7 +119,9 @@ def convert_pdf_to_bronze(
         return BronzeConvertResult(slug=slug, pdf_path=pdf_path, ok=True)
 
     err = (proc.stderr or proc.stdout or "").strip()
-    if len(err) > 400:
+    if "OutOfMemoryError" in err or "CUDA out of memory" in err:
+        err = "CUDA out of memory — re-run with PHYSICS_MARKER_CPU=1"
+    elif len(err) > 400:
         err = err[:400] + "..."
     detail = err or f"exit code {proc.returncode}"
     return BronzeConvertResult(slug=slug, pdf_path=pdf_path, ok=False, detail=detail)

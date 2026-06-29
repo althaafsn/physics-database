@@ -278,3 +278,17 @@ def clean_record(record: ProblemRecord) -> ProblemRecord:
     record.subparts = [SubPart(**sp) for sp in extract_subparts(record.body_md)]
     sync_images_with_body(record)
     return record
+
+
+def finalize_record_after_repair(
+    record: ProblemRecord,
+    output_folder: Path,
+    assets_dir: Path,
+) -> ProblemRecord:
+    """Re-clean and repair images after LLM repair may have restored watermark refs."""
+    from src.repair_images import repair_record_images
+
+    record.body_md = clean_text(record.body_md)
+    record.subparts = [SubPart(**sp) for sp in extract_subparts(record.body_md)]
+    repair_record_images(record, output_folder, assets_dir)
+    return record
