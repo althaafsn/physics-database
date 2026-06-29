@@ -150,7 +150,22 @@ async function main() {
     throw new Error(`Missing catalog. Run scripts/sync_catalog.py first.`)
   }
 
-  const raw = await loadRawProblems(source)
+  const rawAll = await loadRawProblems(source)
+
+  // Deduplicate by problem id (keep first occurrence) so the catalog has
+  // stable, unique React keys and accurate counts.
+  const seen = new Set()
+  const raw = []
+  let duplicates = 0
+  for (const rec of rawAll) {
+    if (rec.id && seen.has(rec.id)) {
+      duplicates += 1
+      continue
+    }
+    if (rec.id) seen.add(rec.id)
+    raw.push(rec)
+  }
+
   const stats = computeCorpusStats(raw)
   const idProblems = raw.map((rec) => mapProblem(rec, 'id'))
   const enProblems = raw.map((rec) => mapProblem(rec, 'en'))
@@ -179,6 +194,7 @@ async function main() {
     JSON.stringify(
       {
         catalog: idProblems.length,
+        duplicatesRemoved: duplicates,
         englishAvailable: stats.englishAvailable,
         assetsCopied: fs.existsSync(assetsDest),
         output: dataDir,
