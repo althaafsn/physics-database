@@ -4,7 +4,7 @@ import re
 
 from src.attach_images import extract_image_refs
 from src.schema import ProblemImage, ProblemRecord, SubPart
-from src.split_problems import extract_subparts
+from src.split_problems import SUBPART_RE, extract_subparts
 
 # Shared with validate.py — lines/blocks that are never problem content.
 FOOTER_LINE_RE = re.compile(
@@ -262,6 +262,51 @@ def clean_text(text: str) -> str:
     text = _html_to_latex(text)
     text = _fix_gravity_constant(text)
     return _normalize_whitespace(text)
+
+
+def _strip_inline_subparts(body: str | None, subparts: list[SubPart]) -> tuple[str | None, bool]:
+    """Drop the inline ``(a) … (b) …`` block from a body when those subparts are
+    already held in ``subparts`` (rendered separately as the parts list).
+
+    Returns ``(new_body, changed)``. The body is only stripped when the subpart
+    content is preserved in the list, so no text is ever lost.
+    """
+    if not body or not SUBPART_RE.search(body):
+        return body, False
+    if not subparts:
+        return body, False
+    stripped = _normalize_whitespace(SUBPART_RE.sub("", body))
+    if stripped == body:
+        return body, False
+    return stripped, True
+
+
+def strip_duplicate_subparts(record: ProblemRecord) -> bool:
+    """Remove subpart text that is duplicated both inline in the body and in the
+    ``subparts`` list, so the reader/preview render each subpart only once.
+
+    Works on the Indonesian (``body_md``/``subparts``) and English
+    (``body_md_en``/``subparts_en``) variants. Idempotent: once an inline block
+    is removed, a second pass finds nothing to strip. Returns ``True`` when the
+    record was modified.
+    """
+    changed = False
+
+    if record.body_md and SUBPART_RE.search(record.body_md) and not record.subparts:
+        record.subparts = [SubPart(**sp) for sp in extract_subparts(record.body_md)]
+    new_body, did = _strip_inline_subparts(record.body_md, record.subparts)
+    if did:
+        record.body_md = new_body
+        changed = True
+
+    if record.body_md_en and SUBPART_RE.search(record.body_md_en) and not record.subparts_en:
+        record.subparts_en = [SubPart(**sp) for sp in extract_subparts(record.body_md_en)]
+    new_body_en, did_en = _strip_inline_subparts(record.body_md_en, record.subparts_en)
+    if did_en:
+        record.body_md_en = new_body_en
+        changed = True
+
+    return changed
 
 
 def sync_images_with_body(record: ProblemRecord) -> None:

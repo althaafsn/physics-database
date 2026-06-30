@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.clean import clean_record, clean_text
+from src.clean import clean_record, clean_text, strip_duplicate_subparts
 from src.schema import ProblemRecord, ProblemSource, SubPart
 from src.validate import validate_record
 
@@ -147,6 +147,88 @@ def test_clean_record_reextracts_subparts():
     labels = [sp.label for sp in record.subparts]
     assert "a" in labels
     assert "b" in labels
+
+
+def _record_with_inline_subparts(**overrides) -> ProblemRecord:
+    defaults = dict(
+        id="OSK-2003-05",
+        document_slug="Soal OSK Fisika SMA 2003",
+        level="OSK",
+        year=2003,
+        problem_number=5,
+        title="Bidang miring",
+        topic="mechanics",
+        topic_confidence=1.0,
+        body_md=(
+            "Sebuah balok ditarik ke atas bidang miring.\n\n"
+            "- (a) Hitung koefisien gesekan balok.\n"
+            "- (b) Analisis apa yang terjadi bila gaya nol."
+        ),
+        source=SOURCE,
+        subparts=[
+            SubPart(label="a", text="Hitung koefisien gesekan balok."),
+            SubPart(label="b", text="Analisis apa yang terjadi bila gaya nol."),
+        ],
+    )
+    defaults.update(overrides)
+    return ProblemRecord(**defaults)
+
+
+def test_strip_duplicate_subparts_removes_inline_block():
+    record = _record_with_inline_subparts()
+    changed = strip_duplicate_subparts(record)
+    assert changed is True
+    assert record.body_md == "Sebuah balok ditarik ke atas bidang miring."
+    # subparts list is untouched and still carries the questions.
+    assert [sp.label for sp in record.subparts] == ["a", "b"]
+    assert record.subparts[0].text == "Hitung koefisien gesekan balok."
+
+
+def test_strip_duplicate_subparts_is_idempotent():
+    record = _record_with_inline_subparts()
+    assert strip_duplicate_subparts(record) is True
+    body_after_first = record.body_md
+    assert strip_duplicate_subparts(record) is False
+    assert record.body_md == body_after_first
+
+
+def test_strip_duplicate_subparts_preserves_stem_images():
+    record = _record_with_inline_subparts(
+        body_md=(
+            "Sebuah tongkat bersandar pada dinding.\n\n"
+            "![](_page_1_Picture_12.jpeg)\n\n"
+            "- (a) Hitung koefisien gesekan balok.\n"
+            "- (b) Analisis apa yang terjadi bila gaya nol."
+        ),
+    )
+    assert strip_duplicate_subparts(record) is True
+    assert "![](_page_1_Picture_12.jpeg)" in record.body_md
+    assert "(a)" not in record.body_md and "(b)" not in record.body_md
+
+
+def test_strip_duplicate_subparts_noop_without_inline_subparts():
+    record = _record_with_inline_subparts(
+        body_md="Sebuah balok ditarik ke atas bidang miring.",
+    )
+    assert strip_duplicate_subparts(record) is False
+    assert record.body_md == "Sebuah balok ditarik ke atas bidang miring."
+
+
+def test_strip_duplicate_subparts_handles_english_variant():
+    record = _record_with_inline_subparts(
+        body_md_en=(
+            "A block is pulled up an incline.\n\n"
+            "- (a) Find the coefficient of friction.\n"
+            "- (b) Analyse what happens when the force is zero."
+        ),
+        subparts_en=[
+            SubPart(label="a", text="Find the coefficient of friction."),
+            SubPart(label="b", text="Analyse what happens when the force is zero."),
+        ],
+    )
+    assert strip_duplicate_subparts(record) is True
+    assert record.body_md_en == "A block is pulled up an incline."
+    assert [sp.label for sp in record.subparts_en] == ["a", "b"]
 
 
 def test_clean_record_clears_footer_validation_error():
