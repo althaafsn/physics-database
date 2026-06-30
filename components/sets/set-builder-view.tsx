@@ -157,8 +157,8 @@ export function SetBuilderView() {
         }
       />
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 overflow-hidden lg:grid-cols-2">
-        <div className="flex min-h-0 flex-col overflow-hidden border-r border-border/80">
+      <div className="grid min-h-0 flex-1 grid-cols-1 overflow-y-auto lg:grid-cols-2 lg:overflow-hidden">
+        <div className="flex flex-col border-b border-border/80 lg:min-h-0 lg:overflow-hidden lg:border-r lg:border-b-0">
           <div className="space-y-3 border-b border-border/70 bg-card/40 px-4 py-4 backdrop-blur-sm">
             <h2 className="text-sm font-semibold tracking-tight text-foreground">
               Source Corpus Pool
@@ -266,7 +266,7 @@ export function SetBuilderView() {
               </Button>
             </div>
           ) : (
-            <ul className="min-h-0 flex-1 divide-y divide-border overflow-y-auto">
+            <ul className="max-h-[60vh] divide-y divide-border overflow-y-auto lg:max-h-none lg:min-h-0 lg:flex-1">
               {pool.map((p) => (
                 <li
                   key={p.id}
@@ -303,7 +303,7 @@ export function SetBuilderView() {
           )}
         </div>
 
-        <div className="flex min-h-0 flex-col overflow-hidden">
+        <div className="flex flex-col lg:min-h-0 lg:overflow-hidden">
           <SetHistoryPanel />
           <div className="space-y-3 border-b border-border/70 bg-card/40 px-4 py-4 backdrop-blur-sm">
             <div className="flex items-center justify-between">
@@ -328,15 +328,15 @@ export function SetBuilderView() {
           </div>
 
           {!isReady ? (
-            <div className="flex flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground">
+            <div className="flex min-h-[40vh] flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground lg:min-h-0">
               Loading sample set…
             </div>
           ) : items.length === 0 ? (
-            <div className="flex flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground">
+            <div className="flex min-h-[40vh] flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground lg:min-h-0">
               Add problems from the corpus pool to start drafting your exam.
             </div>
           ) : (
-            <ol className="min-h-0 flex-1 divide-y divide-border overflow-y-auto">
+            <ol className="max-h-[60vh] divide-y divide-border overflow-y-auto lg:max-h-none lg:min-h-0 lg:flex-1">
               {items.map((p, idx) => (
                 <li
                   key={p.id}

@@ -14,14 +14,6 @@ export function AdminChrome({ children }: { children: React.ReactNode }) {
     pathname === '/admin/login' || pathname === '/admin/signup'
   const { user, logout } = useAdminAuth()
 
-  if (isAuthPage) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background p-4">
-        {children}
-      </div>
-    )
-  }
-
   if (!ADMIN_UI_ENABLED) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background p-6 text-center">
@@ -35,6 +27,14 @@ export function AdminChrome({ children }: { children: React.ReactNode }) {
           <ArrowLeft className="size-4" />
           Back to reader
         </Button>
+      </div>
+    )
+  }
+
+  if (isAuthPage) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background p-4">
+        {children}
       </div>
     )
   }

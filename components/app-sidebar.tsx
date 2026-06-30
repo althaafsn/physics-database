@@ -32,11 +32,20 @@ const NAV: NavItem[] = [
     : []),
 ]
 
-function NavLink({ item, active }: { item: NavItem; active: boolean }) {
+function NavLink({
+  item,
+  active,
+  onNavigate,
+}: {
+  item: NavItem
+  active: boolean
+  onNavigate?: () => void
+}) {
   const Icon = item.icon
   return (
     <Link
       href={item.href}
+      onClick={onNavigate}
       className={cn(
         'relative flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200',
         active
@@ -56,7 +65,13 @@ function NavLink({ item, active }: { item: NavItem; active: boolean }) {
   )
 }
 
-export function AppSidebar() {
+export function AppSidebar({
+  className,
+  onNavigate,
+}: {
+  className?: string
+  onNavigate?: () => void
+}) {
   const pathname = usePathname()
   const { items } = useSetBuilder()
   const { data } = useSWR<{ stats: { totalAvailable: number } }>(
@@ -71,7 +86,12 @@ export function AppSidebar() {
   }
 
   return (
-    <aside className="flex w-64 shrink-0 flex-col border-r border-sidebar-border/80 bg-sidebar shadow-[1px_0_0_0_oklch(1_0_0_/_0.4)_inset] print:hidden">
+    <aside
+      className={cn(
+        'flex h-full w-64 shrink-0 flex-col border-r border-sidebar-border/80 bg-sidebar shadow-[1px_0_0_0_oklch(1_0_0_/_0.4)_inset] print:hidden',
+        className,
+      )}
+    >
       <div className="flex items-center gap-3 px-5 py-5">
         <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-md shadow-primary/20">
           <Atom className="size-5" />
@@ -90,7 +110,7 @@ export function AppSidebar() {
         </p>
         {NAV.map((item) => (
           <div key={item.href} className="relative">
-            <NavLink item={item} active={isActive(item.href)} />
+            <NavLink item={item} active={isActive(item.href)} onNavigate={onNavigate} />
             {item.href === '/sets' && items.length > 0 && (
               <span className="absolute top-1/2 right-3 -translate-y-1/2 rounded-full bg-primary/90 px-2 py-0.5 text-[10px] font-semibold tabular-nums text-primary-foreground shadow-sm">
                 {items.length}

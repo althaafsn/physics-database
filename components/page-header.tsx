@@ -8,10 +8,10 @@ export function PageHeader({
   actions?: React.ReactNode
 }) {
   return (
-    <header className="border-b border-border/80 bg-card/50 px-6 py-5 backdrop-blur-md">
-      <div className="flex flex-wrap items-end justify-between gap-4">
+    <header className="border-b border-border/80 bg-card/50 px-4 py-4 backdrop-blur-md sm:px-6 sm:py-5">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between sm:gap-4">
         <div className="space-y-1">
-          <h1 className="text-xl font-semibold tracking-tight text-foreground text-balance">
+          <h1 className="text-lg font-semibold tracking-tight text-foreground text-balance sm:text-xl">
             {title}
           </h1>
           {description && (
@@ -20,7 +20,9 @@ export function PageHeader({
             </p>
           )}
         </div>
-        {actions && <div className="flex items-center gap-2">{actions}</div>}
+        {actions && (
+          <div className="flex flex-wrap items-center gap-2">{actions}</div>
+        )}
       </div>
     </header>
   )

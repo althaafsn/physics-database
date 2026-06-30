@@ -115,7 +115,7 @@ export function LibraryView() {
         description="Browse validated problems from the published catalog."
       />
 
-      <div className="border-b border-border/70 bg-card/40 px-6 py-4 backdrop-blur-sm">
+      <div className="border-b border-border/70 bg-card/40 px-4 py-3 backdrop-blur-sm sm:px-6 sm:py-4">
         <div className="surface-panel flex flex-col gap-3 p-3">
           <div className="relative">
             <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground/70" />
@@ -195,7 +195,9 @@ export function LibraryView() {
                     <th className="w-10 px-2 py-2.5 text-center font-medium">Lang</th>
                   ) : null}
                   <th className="px-4 py-2.5 font-medium">Title</th>
-                  <th className="px-4 py-2.5 font-medium">Topic</th>
+                  <th className="hidden px-4 py-2.5 font-medium sm:table-cell">
+                    Topic
+                  </th>
                   <th className="w-10 px-4 py-2.5" />
                 </tr>
               </thead>
@@ -224,7 +226,7 @@ export function LibraryView() {
                       <td className="px-4 py-2.5">
                         <span className="line-clamp-1 text-foreground">{p.title}</span>
                       </td>
-                      <td className="px-4 py-2.5 text-xs whitespace-nowrap text-muted-foreground">
+                      <td className="hidden px-4 py-2.5 text-xs whitespace-nowrap text-muted-foreground sm:table-cell">
                         {TOPIC_LABELS[p.topic]}
                       </td>
                       <td className="px-2 py-2.5">
