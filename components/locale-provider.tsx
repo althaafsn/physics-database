@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 import useSWR, { useSWRConfig } from 'swr'
@@ -36,16 +37,19 @@ interface ProblemsResponse {
 function SetBuilderLocaleSync() {
   const { locale } = useLocale()
   const { ids, replaceAll, setId } = useSetBuilder()
+  const setIdRef = useRef(setId)
+  setIdRef.current = setId
   const idKey = ids.join(',')
 
   useEffect(() => {
-    if (!ids.length) return
+    if (!ids.length || !setId) return
 
     const ownerSetId = setId
     let cancelled = false
     catalogFetcher(locale)
       .then((data: ProblemsResponse) => {
         if (cancelled) return
+        if (ownerSetId !== setIdRef.current) return
         const byId = new Map(data.problems.map((p) => [p.id, p]))
         const next = ids
           .map((id) => byId.get(id))

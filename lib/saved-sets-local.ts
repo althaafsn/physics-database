@@ -22,10 +22,9 @@ function newId(): string {
   return crypto.randomUUID()
 }
 
+/** Saved sets in stable creation order (array order in localStorage). */
 export function listSavedSets(): SavedProblemSet[] {
-  return readAll().sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
-  )
+  return readAll()
 }
 
 /** Load saved sets from localStorage. Does not auto-create starter sets. */
@@ -70,7 +69,7 @@ export function upsertSavedSet(input: {
     createdAt: now,
     updatedAt: now,
   }
-  writeAll([created, ...sets])
+  writeAll([...sets, created])
   return created
 }
 

@@ -24,6 +24,14 @@ import {
 import type { Problem, SavedProblemSet } from '@/lib/types'
 
 const ACTIVE_SET_KEY = 'physics-db-active-set-id'
+const AUTOSAVE_MS = 800
+
+interface SetDraft {
+  setId: string | null
+  items: Problem[]
+  name: string
+  mode: 'manual' | 'random'
+}
 
 interface SetBuilderState {
   name: string
@@ -63,15 +71,18 @@ export function SetBuilderProvider({
   const [isSaving, setIsSaving] = useState(false)
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null)
   const [isReady, setIsReady] = useState(false)
-  const skipNextSave = useRef(false)
+
+  const skipNextAutosave = useRef(false)
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const setIdRef = useRef<string | null>(null)
   const loadGenerationRef = useRef(0)
-  const draftRef = useRef({
-    setId: null as string | null,
-    items: [] as Problem[],
+  const saveEpochRef = useRef(0)
+  const switchChainRef = useRef<Promise<void>>(Promise.resolve())
+  const draftRef = useRef<SetDraft>({
+    setId: null,
+    items: [],
     name: 'Untitled Set',
-    mode: 'manual' as 'manual' | 'random',
+    mode: 'manual',
   })
 
   setIdRef.current = setId
@@ -81,71 +92,50 @@ export function SetBuilderProvider({
     setSavedSets(listSavedSets())
   }, [])
 
-  const resetActiveDraft = useCallback(() => {
-    skipNextSave.current = true
+  const cancelAutosaveTimer = useCallback(() => {
     if (saveTimerRef.current) {
       clearTimeout(saveTimerRef.current)
       saveTimerRef.current = null
     }
-    setSetId(null)
-    setName('Untitled Set')
-    setMode('manual')
-    setItems([])
-    setLastSavedAt(null)
-    localStorage.removeItem(ACTIVE_SET_KEY)
   }, [])
 
-  const persistSet = useCallback(
-    (override?: {
-      id?: string | null
-      name?: string
-      mode?: 'manual' | 'random'
-      problemIds?: string[]
-    }) => {
-      const problemIds = override?.problemIds ?? items.map((p) => p.id)
-      const targetId = override?.id ?? setId
-      if (!problemIds.length && !targetId) return null
+  const bumpSaveEpoch = useCallback(() => {
+    saveEpochRef.current += 1
+    cancelAutosaveTimer()
+  }, [cancelAutosaveTimer])
 
+  /** Write one set to localStorage without changing the active UI selection. */
+  const writeSetToStorage = useCallback(
+    (draft: SetDraft) => {
+      if (!draft.setId) return null
       setIsSaving(true)
       try {
         const record = upsertSavedSet({
-          id: targetId,
-          name: override?.name ?? name,
-          mode: override?.mode ?? mode,
-          problemIds,
+          id: draft.setId,
+          name: draft.name,
+          mode: draft.mode,
+          problemIds: draft.items.map((p) => p.id),
         })
-        setSetId(record.id)
-        localStorage.setItem(ACTIVE_SET_KEY, record.id)
-        setLastSavedAt(record.updatedAt)
+        if (draft.setId === setIdRef.current) {
+          setLastSavedAt(record.updatedAt)
+        }
         refreshSavedSets()
         return record
       } finally {
         setIsSaving(false)
       }
     },
-    [items, setId, name, mode, refreshSavedSets],
+    [refreshSavedSets],
   )
 
-  /** Persist immediately — used before switching sets so debounced saves are not lost. */
   const flushPendingSave = useCallback(() => {
-    if (saveTimerRef.current) {
-      clearTimeout(saveTimerRef.current)
-      saveTimerRef.current = null
-    }
+    cancelAutosaveTimer()
     if (!isReady) return null
-    const draft = draftRef.current
-    if (!draft.setId) return null
-    return persistSet({
-      id: draft.setId,
-      name: draft.name,
-      mode: draft.mode,
-      problemIds: draft.items.map((p) => p.id),
-    })
-  }, [isReady, persistSet])
+    return writeSetToStorage(draftRef.current)
+  }, [isReady, cancelAutosaveTimer, writeSetToStorage])
 
-  const loadSetMeta = useCallback(async (meta: SavedProblemSet) => {
-    const generation = ++loadGenerationRef.current
-    skipNextSave.current = true
+  const loadSetMeta = useCallback(async (meta: SavedProblemSet, generation: number) => {
+    skipNextAutosave.current = true
     const locale =
       typeof window !== 'undefined'
         ? parseProblemLocale(localStorage.getItem(LOCALE_STORAGE_KEY))
@@ -165,17 +155,38 @@ export function SetBuilderProvider({
   }, [])
 
   const loadSavedSet = useCallback(
-    async (id: string) => {
-      if (id === setId) return
-      flushPendingSave()
-      skipNextSave.current = true
-      const meta = listSavedSets().find((s) => s.id === id)
-      if (!meta) return
-      await loadSetMeta(meta)
-      refreshSavedSets()
+    (id: string) => {
+      const run = async () => {
+        if (id === setIdRef.current) return
+
+        bumpSaveEpoch()
+        flushPendingSave()
+        skipNextAutosave.current = true
+
+        const generation = ++loadGenerationRef.current
+        const meta = listSavedSets().find((s) => s.id === id)
+        if (!meta) return
+
+        await loadSetMeta(meta, generation)
+        refreshSavedSets()
+      }
+
+      switchChainRef.current = switchChainRef.current.then(run, run)
+      return switchChainRef.current
     },
-    [setId, flushPendingSave, loadSetMeta, refreshSavedSets],
+    [bumpSaveEpoch, flushPendingSave, loadSetMeta, refreshSavedSets],
   )
+
+  const resetActiveDraft = useCallback(() => {
+    bumpSaveEpoch()
+    skipNextAutosave.current = true
+    setSetId(null)
+    setName('Untitled Set')
+    setMode('manual')
+    setItems([])
+    setLastSavedAt(null)
+    localStorage.removeItem(ACTIVE_SET_KEY)
+  }, [bumpSaveEpoch])
 
   useEffect(() => {
     if (isReady) return
@@ -186,11 +197,12 @@ export function SetBuilderProvider({
 
       const storedId = localStorage.getItem(ACTIVE_SET_KEY)
       const preferred = storedId ? sets.find((s) => s.id === storedId) : undefined
+      const generation = ++loadGenerationRef.current
 
       if (preferred) {
-        await loadSetMeta(preferred)
+        await loadSetMeta(preferred, generation)
       } else if (sets.length > 0) {
-        await loadSetMeta(sets[0])
+        await loadSetMeta(sets[0], generation)
       }
 
       setIsReady(true)
@@ -200,34 +212,32 @@ export function SetBuilderProvider({
   }, [isReady, loadSetMeta])
 
   useEffect(() => {
-    if (!isReady || skipNextSave.current) {
-      skipNextSave.current = false
+    if (!isReady || skipNextAutosave.current) {
+      skipNextAutosave.current = false
       return
     }
 
-    if (saveTimerRef.current) {
-      clearTimeout(saveTimerRef.current)
+    const activeId = setIdRef.current
+    if (!activeId) return
+
+    cancelAutosaveTimer()
+    const epoch = saveEpochRef.current
+    const snapshot: SetDraft = {
+      setId: activeId,
+      items: draftRef.current.items,
+      name: draftRef.current.name,
+      mode: draftRef.current.mode,
     }
 
     saveTimerRef.current = window.setTimeout(() => {
       saveTimerRef.current = null
-      const draft = draftRef.current
-      if (!draft.setId || draft.setId !== setIdRef.current) return
-      persistSet({
-        id: draft.setId,
-        name: draft.name,
-        mode: draft.mode,
-        problemIds: draft.items.map((p) => p.id),
-      })
-    }, 800)
+      if (epoch !== saveEpochRef.current) return
+      if (activeId !== setIdRef.current) return
+      writeSetToStorage(snapshot)
+    }, AUTOSAVE_MS)
 
-    return () => {
-      if (saveTimerRef.current) {
-        clearTimeout(saveTimerRef.current)
-        saveTimerRef.current = null
-      }
-    }
-  }, [isReady, items, name, mode, setId, persistSet])
+    return cancelAutosaveTimer
+  }, [isReady, items, name, mode, setId, cancelAutosaveTimer, writeSetToStorage])
 
   const add = useCallback((problem: Problem) => {
     if (!setIdRef.current) return
@@ -256,52 +266,76 @@ export function SetBuilderProvider({
   }, [])
 
   const clear = useCallback(() => {
+    if (!setIdRef.current) return
+    bumpSaveEpoch()
     setItems([])
-    if (setId) {
-      persistSet({ problemIds: [] })
-    }
-  }, [setId, persistSet])
+    writeSetToStorage({
+      setId: setIdRef.current,
+      items: [],
+      name: draftRef.current.name,
+      mode: draftRef.current.mode,
+    })
+    skipNextAutosave.current = true
+  }, [bumpSaveEpoch, writeSetToStorage])
 
   const createNewSet = useCallback(() => {
-    flushPendingSave()
-    skipNextSave.current = true
-    const count = listSavedSets().length
-    const newName = `Untitled Set ${count + 1}`
-    setIsSaving(true)
-    try {
-      const record = upsertSavedSet({
-        name: newName,
-        mode: 'manual',
-        problemIds: [],
-      })
-      setSetId(record.id)
-      setName(record.name)
-      setMode('manual')
-      setItems([])
-      setLastSavedAt(record.updatedAt)
-      localStorage.setItem(ACTIVE_SET_KEY, record.id)
-      refreshSavedSets()
-    } finally {
-      setIsSaving(false)
+    const run = async () => {
+      bumpSaveEpoch()
+      flushPendingSave()
+      skipNextAutosave.current = true
+
+      const count = listSavedSets().length
+      const newName = `Untitled Set ${count + 1}`
+
+      setIsSaving(true)
+      try {
+        const record = upsertSavedSet({
+          name: newName,
+          mode: 'manual',
+          problemIds: [],
+        })
+        ++loadGenerationRef.current
+        setSetId(record.id)
+        setName(record.name)
+        setMode('manual')
+        setItems([])
+        setLastSavedAt(record.updatedAt)
+        localStorage.setItem(ACTIVE_SET_KEY, record.id)
+        refreshSavedSets()
+      } finally {
+        setIsSaving(false)
+      }
     }
-  }, [refreshSavedSets, flushPendingSave])
+
+    switchChainRef.current = switchChainRef.current.then(run, run)
+    void switchChainRef.current
+  }, [bumpSaveEpoch, flushPendingSave, refreshSavedSets])
 
   const deleteSavedSet = useCallback(
-    async (id: string) => {
-      if (!deleteLocalSet(id)) return
-      const remaining = listSavedSets()
-      setSavedSets(remaining)
+    (id: string) => {
+      const run = async () => {
+        if (!deleteLocalSet(id)) return
 
-      if (setId === id) {
-        if (remaining.length) {
-          await loadSetMeta(remaining[0])
-          refreshSavedSets()
-        } else {
-          resetActiveDraft()
+        bumpSaveEpoch()
+        const remaining = listSavedSets()
+        setSavedSets(remaining)
+
+        if (setIdRef.current === id) {
+          skipNextAutosave.current = true
+          if (remaining.length) {
+            const generation = ++loadGenerationRef.current
+            await loadSetMeta(remaining[0], generation)
+            refreshSavedSets()
+          } else {
+            resetActiveDraft()
+          }
         }
       }
+
+      switchChainRef.current = switchChainRef.current.then(run, run)
+      return switchChainRef.current
     },
-    [setId, loadSetMeta, refreshSavedSets, resetActiveDraft],
+    [bumpSaveEpoch, loadSetMeta, refreshSavedSets, resetActiveDraft],
   )
 
   const value = useMemo<SetBuilderState>(
