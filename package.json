@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/export-static-data.mjs",
     "dev": "next dev",
     "dev:admin": "./admin/dev.sh",
     "build": "node scripts/build-static.mjs",
