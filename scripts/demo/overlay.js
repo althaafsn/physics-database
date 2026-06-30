@@ -62,17 +62,23 @@
 
     const caption = document.createElement('div')
     caption.id = CAPTION_ID
+    const isMobile = window.innerWidth < 768
+    const captionFont = isMobile ? '15px' : '22px'
+    const titleFont = isMobile ? '20px' : '26px'
+    const captionBottom = isMobile ? '18px' : '28px'
+    const captionPad = isMobile ? '12px 18px' : '16px 28px'
+
     caption.style.cssText = [
       'position:fixed',
       'left:50%',
-      'bottom:28px',
+      `bottom:${captionBottom}`,
       'transform:translateX(-50%)',
-      'max-width:min(960px,calc(100vw - 64px))',
-      'padding:16px 28px',
+      'max-width:min(960px,calc(100vw - 32px))',
+      `padding:${captionPad}`,
       'border-radius:16px',
       'background:rgba(15,23,42,0.94)',
       'color:#f8fafc',
-      'font-size:22px',
+      `font-size:${captionFont}`,
       'line-height:1.45',
       'text-align:center',
       'box-shadow:0 12px 40px rgba(0,0,0,0.35)',
@@ -143,7 +149,7 @@
       const caption = document.getElementById(CAPTION_ID)
       const step = document.getElementById(STEP_ID)
       const backdrop = document.getElementById(BACKDROP_ID)
-      caption.innerHTML = `<strong style="display:block;font-size:26px;margin-bottom:8px">${title}</strong>${subtitle || ''}`
+      caption.innerHTML = `<strong style="display:block;font-size:${window.innerWidth < 768 ? '20px' : '26px'};margin-bottom:8px">${title}</strong>${subtitle || ''}`
       step.textContent = `Step ${stepCounter}`
       caption.style.opacity = '1'
       step.style.opacity = '1'

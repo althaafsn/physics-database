@@ -11,7 +11,9 @@
     "export:data": "node scripts/export-static-data.mjs",
     "preview:static": "npx serve out",
     "demo:record": "node scripts/demo/record.mjs",
+    "demo:record:mobile": "node scripts/demo/record-mobile.mjs",
     "demo:enhance": "ffmpeg -y -i demo/output/physics-db-demo.mp4 -vf \"scale=3840:2160:flags=lanczos,unsharp=5:5:0.65:5:5:0.0\" -c:v libx264 -preset slow -crf 17 -pix_fmt yuv420p -movflags +faststart demo/output/physics-db-demo-4k.mp4",
+    "demo:enhance:mobile": "ffmpeg -y -i demo/output/physics-db-demo-mobile.mp4 -vf \"scale=2160:3840:flags=lanczos:force_original_aspect_ratio=decrease,pad=2160:3840:(ow-iw)/2:(oh-ih)/2:black,unsharp=5:5:0.65:5:5:0.0\" -c:v libx264 -preset slow -crf 17 -pix_fmt yuv420p -movflags +faststart demo/output/physics-db-demo-mobile-4k.mp4",
     "lint": "eslint ."
   },
   "dependencies": {

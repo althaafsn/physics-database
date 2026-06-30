@@ -11,7 +11,7 @@ npx playwright install chromium
 
 Optional: `ffmpeg` for MP4 export.
 
-## Record
+## Record (desktop)
 
 ```bash
 npm run demo:record
@@ -22,15 +22,29 @@ Outputs:
 - `demo/output/physics-db-demo.webm` (1920×1080)
 - `demo/output/physics-db-demo.mp4` (if ffmpeg is installed)
 
+## Record (mobile)
+
+```bash
+npm run demo:record:mobile
+```
+
+Outputs:
+
+- `demo/output/physics-db-demo-mobile.webm` (390×844)
+- `demo/output/physics-db-demo-mobile.mp4` (if ffmpeg is installed)
+
+Shows the hamburger menu, library search, add-to-set, and print preview on a phone viewport.
+
 ## Upscale to 4K (optional)
 
 After recording, sharpen and upscale for portfolio / LinkedIn:
 
 ```bash
-npm run demo:enhance
+npm run demo:enhance          # desktop → physics-db-demo-4k.mp4 (3840×2160)
+npm run demo:enhance:mobile   # mobile → physics-db-demo-mobile-4k.mp4 (2160×3840)
 ```
 
-Outputs `demo/output/physics-db-demo-4k.mp4` (3840×2160) using Lanczos scaling plus a light unsharp mask, re-encoded at CRF 17.
+Uses Lanczos scaling plus a light unsharp mask, re-encoded at CRF 17.
 
 ## Options
 

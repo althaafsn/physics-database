@@ -52,6 +52,7 @@ parsed/sets/repro-*/
 # Admin app local artifacts
 admin/server/.venv/
 admin/server/admin.db
+admin/server/.dev-jwt-secret
 
 # Terraform (never commit state)
 deploy/aws/terraform/.terraform/

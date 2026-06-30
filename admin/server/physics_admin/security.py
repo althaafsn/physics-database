@@ -7,11 +7,12 @@ from physics_admin.config import get_settings
 
 def is_email_allowed(email: str) -> bool:
     settings = get_settings()
+    if not settings.is_production and settings.allow_public_registration:
+        return True
     allowed = settings.allowed_email_set
     if allowed:
         return email.strip().lower() in allowed
-    # Local dev: open registration when no allowlist configured.
-    return not settings.is_production and settings.allow_public_registration
+    return False
 
 
 def assert_email_allowed(email: str) -> None:

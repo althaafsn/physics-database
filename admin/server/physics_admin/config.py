@@ -8,6 +8,9 @@ from pathlib import Path
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+# Stable dev secret when JWT_SECRET is unset (must not change between encode/decode).
+_DEV_JWT_SECRET: str | None = None
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
@@ -43,12 +46,14 @@ class Settings(BaseSettings):
         return {e.strip().lower() for e in self.admin_allowed_emails.split(",") if e.strip()}
 
     def effective_jwt_secret(self) -> str:
+        global _DEV_JWT_SECRET
         if self.jwt_secret:
             return self.jwt_secret
         if self.is_production:
             raise RuntimeError("JWT_SECRET is required when APP_ENV=production")
-        # Ephemeral secret for local dev only (tokens invalid after restart).
-        return os.environ.get("_PHYSICS_ADMIN_DEV_JWT", secrets.token_urlsafe(48))
+        if _DEV_JWT_SECRET is None:
+            _DEV_JWT_SECRET = os.environ.get("_PHYSICS_ADMIN_DEV_JWT") or secrets.token_urlsafe(48)
+        return _DEV_JWT_SECRET
 
     def validate_security(self) -> None:
         if not self.is_production:
