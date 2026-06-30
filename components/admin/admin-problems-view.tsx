@@ -25,8 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { TOPIC_LABELS } from '@/lib/types'
-import type { Topic } from '@/lib/types'
+import { GOLD_TOPIC_LABELS } from '@/lib/types'
 
 export function AdminProblemsView() {
   const { loading } = useRequireAdminAuth({ requireSubscription: true })
@@ -144,7 +143,7 @@ export function AdminProblemsView() {
                 </TableCell>
                 <TableCell className="max-w-md truncate">{p.title}</TableCell>
                 <TableCell className="text-muted-foreground">
-                  {TOPIC_LABELS[p.topic as Topic] ?? p.topic}
+                  {GOLD_TOPIC_LABELS[p.topic] ?? p.topic}
                 </TableCell>
                 <TableCell>
                   {p.error_count > 0 ? (

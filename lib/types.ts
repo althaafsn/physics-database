@@ -108,6 +108,18 @@ export const TOPIC_LABELS: Record<Topic, string> = {
   mixed: 'Mixed / Unclassified',
 }
 
+/** Topic slugs stored in gold JSONL (pre-catalog mapping). */
+export const GOLD_TOPIC_LABELS: Record<string, string> = {
+  mechanics: 'Mechanics',
+  electromagnetism: 'Electromagnetism',
+  thermodynamics: 'Thermodynamics',
+  waves_optics: 'Waves & Optics',
+  modern_physics: 'Modern Physics',
+  mixed: 'Mixed / Unclassified',
+}
+
+export const GOLD_TOPICS = Object.keys(GOLD_TOPIC_LABELS)
+
 export const PHASE_LABELS: Record<IngestPhase, string> = {
   pdf_only: 'pdf_only',
   bronze_ready: 'bronze_ready',

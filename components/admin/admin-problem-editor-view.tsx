@@ -38,11 +38,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { TOPIC_LABELS } from '@/lib/types'
-import type { Topic } from '@/lib/types'
+import { GOLD_TOPIC_LABELS, GOLD_TOPICS } from '@/lib/types'
 import { cn } from '@/lib/utils'
-
-const TOPICS = Object.keys(TOPIC_LABELS) as Topic[]
 
 type BodyField = 'id' | 'en'
 
@@ -265,9 +262,9 @@ export function AdminProblemEditorView({ problemId }: { problemId: string }) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {TOPICS.map((t) => (
+                  {GOLD_TOPICS.map((t) => (
                     <SelectItem key={t} value={t}>
-                      {TOPIC_LABELS[t]}
+                      {GOLD_TOPIC_LABELS[t]}
                     </SelectItem>
                   ))}
                 </SelectContent>
