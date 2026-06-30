@@ -64,6 +64,7 @@ export function SetBuilderProvider({
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null)
   const [isReady, setIsReady] = useState(false)
   const skipNextSave = useRef(false)
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const refreshSavedSets = useCallback(() => {
     setSavedSets(listSavedSets())
@@ -100,6 +101,16 @@ export function SetBuilderProvider({
     [items, setId, name, mode, refreshSavedSets],
   )
 
+  /** Persist immediately — used before switching sets so debounced saves are not lost. */
+  const flushPendingSave = useCallback(() => {
+    if (saveTimerRef.current) {
+      clearTimeout(saveTimerRef.current)
+      saveTimerRef.current = null
+    }
+    if (!isReady || !setId) return null
+    return persistSet()
+  }, [isReady, setId, persistSet])
+
   const loadSetMeta = useCallback(async (meta: SavedProblemSet) => {
     skipNextSave.current = true
     const locale =
@@ -120,11 +131,15 @@ export function SetBuilderProvider({
 
   const loadSavedSet = useCallback(
     async (id: string) => {
-      const meta = savedSets.find((s) => s.id === id)
+      if (id === setId) return
+      flushPendingSave()
+      skipNextSave.current = true
+      const meta = listSavedSets().find((s) => s.id === id)
       if (!meta) return
       await loadSetMeta(meta)
+      refreshSavedSets()
     },
-    [savedSets, loadSetMeta],
+    [setId, flushPendingSave, loadSetMeta, refreshSavedSets],
   )
 
   useEffect(() => {
@@ -162,11 +177,21 @@ export function SetBuilderProvider({
       return
     }
 
-    const timer = window.setTimeout(() => {
+    if (saveTimerRef.current) {
+      clearTimeout(saveTimerRef.current)
+    }
+
+    saveTimerRef.current = window.setTimeout(() => {
+      saveTimerRef.current = null
       persistSet()
     }, 800)
 
-    return () => window.clearTimeout(timer)
+    return () => {
+      if (saveTimerRef.current) {
+        clearTimeout(saveTimerRef.current)
+        saveTimerRef.current = null
+      }
+    }
   }, [isReady, items, name, mode, setId, persistSet])
 
   const add = useCallback((problem: Problem) => {
@@ -201,6 +226,7 @@ export function SetBuilderProvider({
   }, [setId, persistSet])
 
   const createNewSet = useCallback(() => {
+    flushPendingSave()
     skipNextSave.current = true
     const newName = `Untitled Set ${savedSets.length + 1}`
     setIsSaving(true)
@@ -220,7 +246,7 @@ export function SetBuilderProvider({
     } finally {
       setIsSaving(false)
     }
-  }, [savedSets.length, refreshSavedSets])
+  }, [savedSets.length, refreshSavedSets, flushPendingSave])
 
   const deleteSavedSet = useCallback(
     async (id: string) => {

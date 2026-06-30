@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-06-30T01:52:22.151683+00:00",
+  "updated_at": "2026-06-30T19:33:14.806015+00:00",
   "source": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/parsed/gold/problems.jsonl",
-  "gold_total": 639,
-  "catalog_total": 553,
-  "excluded_errors": 47,
+  "gold_total": 631,
+  "catalog_total": 546,
+  "excluded_errors": 46,
   "excluded_low_confidence": 39
 }
