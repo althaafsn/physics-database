@@ -1,8 +1,6 @@
-import starterConfig from '@/data/starter-sets.json'
 import type { SavedProblemSet } from '@/lib/types'
 
 const STORAGE_KEY = 'physics-db-saved-sets'
-const SEEDED_KEY = 'physics-db-starter-sets-seeded'
 
 function readAll(): SavedProblemSet[] {
   if (typeof window === 'undefined') return []
@@ -24,19 +22,21 @@ function newId(): string {
   return crypto.randomUUID()
 }
 
-function builtinStarters(): SavedProblemSet[] {
-  const now = new Date().toISOString()
-  return (starterConfig.sets ?? []).map((set) => ({
-    ...set,
-    createdAt: now,
-    updatedAt: now,
-  }))
-}
-
 export function listSavedSets(): SavedProblemSet[] {
   return readAll().sort(
     (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
   )
+}
+
+/** Load saved sets from localStorage. Does not auto-create starter sets. */
+export async function loadSavedSets(): Promise<SavedProblemSet[]> {
+  if (typeof window === 'undefined') return []
+  return listSavedSets()
+}
+
+/** @deprecated Use loadSavedSets — kept for call-site compatibility. */
+export async function ensureStarterSets(): Promise<SavedProblemSet[]> {
+  return loadSavedSets()
 }
 
 export function upsertSavedSet(input: {
@@ -80,41 +80,4 @@ export function deleteSavedSet(id: string): boolean {
   if (next.length === sets.length) return false
   writeAll(next)
   return true
-}
-
-export async function ensureStarterSets(): Promise<SavedProblemSet[]> {
-  if (typeof window === 'undefined') return []
-
-  const existing = readAll()
-  if (existing.length > 0) {
-    localStorage.setItem(SEEDED_KEY, '1')
-    return listSavedSets()
-  }
-
-  // First visit, or saved-set storage was cleared — always seed starters.
-  try {
-    const res = await fetch('/data/starter-sets.json')
-    if (res.ok) {
-      const json = (await res.json()) as { sets?: SavedProblemSet[] }
-      const starters = json.sets ?? []
-      if (starters.length) {
-        const now = new Date().toISOString()
-        writeAll(
-          starters.map((set) => ({
-            ...set,
-            createdAt: set.createdAt ?? now,
-            updatedAt: set.updatedAt ?? now,
-          })),
-        )
-        localStorage.setItem(SEEDED_KEY, '1')
-        return listSavedSets()
-      }
-    }
-  } catch {
-    // fall through to committed starter config
-  }
-
-  writeAll(builtinStarters())
-  localStorage.setItem(SEEDED_KEY, '1')
-  return listSavedSets()
 }

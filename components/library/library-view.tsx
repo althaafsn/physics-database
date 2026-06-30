@@ -54,7 +54,7 @@ export function LibraryView() {
   const [englishOnly, setEnglishOnly] = useState(false)
 
   const isLarge = useMediaQuery('(min-width: 1024px)')
-  const { add, has } = useSetBuilder()
+  const { add, has, setId } = useSetBuilder()
   const { locale } = useLocale()
 
   const params = new URLSearchParams()
@@ -84,6 +84,10 @@ export function LibraryView() {
   }
 
   const handleAdd = (problem: Problem) => {
+    if (!setId) {
+      toast.error('Open Set Builder and click New set first')
+      return
+    }
     add(problem)
     toast.success(`Added ${problem.id} to set`)
   }

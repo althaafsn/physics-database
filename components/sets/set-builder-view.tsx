@@ -55,6 +55,7 @@ export function SetBuilderView() {
     mode,
     setMode,
     items,
+    setId,
     add,
     remove,
     move,
@@ -66,7 +67,8 @@ export function SetBuilderView() {
   const { locale } = useLocale()
   const router = useRouter()
 
-  const canPreview = !isReady || items.length > 0
+  const canPreview = Boolean(setId) && (!isReady || items.length > 0)
+  const hasActiveSet = Boolean(setId)
 
   const [query, setQuery] = useState('')
   const [previewProblem, setPreviewProblem] = useState<Problem | null>(null)
@@ -93,6 +95,10 @@ export function SetBuilderView() {
   }
 
   const generateRandom = async () => {
+    if (!hasActiveSet) {
+      toast.error('Click New set before generating a draft')
+      return
+    }
     setGenerating(true)
     try {
       const all = (await catalogFetcher(locale)).problems
@@ -291,6 +297,10 @@ export function SetBuilderView() {
                     aria-label={`Add ${p.id}`}
                     disabled={has(p.id)}
                     onClick={() => {
+                      if (!hasActiveSet) {
+                        toast.error('Click New set before adding problems')
+                        return
+                      }
                       add(p)
                       toast.success(`Added ${p.id}`)
                     }}
@@ -319,17 +329,31 @@ export function SetBuilderView() {
             </div>
             <div className="space-y-1">
               <label className="text-xs text-muted-foreground">Set Name</label>
-              <Input value={name} onChange={(e) => setName(e.target.value)} />
+              <Input
+                value={name}
+                disabled={!hasActiveSet}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <p className="text-xs text-muted-foreground">
-              Mode: {mode === 'random' ? 'Seeded Random Set' : 'Mixed Custom Set'} ·{' '}
-              {items.length} problems
+              {hasActiveSet ? (
+                <>
+                  Mode: {mode === 'random' ? 'Seeded Random Set' : 'Mixed Custom Set'} ·{' '}
+                  {items.length} problems
+                </>
+              ) : (
+                'No active set — click New set above to start drafting.'
+              )}
             </p>
           </div>
 
           {!isReady ? (
             <div className="flex min-h-[40vh] flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground lg:min-h-0">
-              Loading sample set…
+              Loading saved sets…
+            </div>
+          ) : !hasActiveSet ? (
+            <div className="flex min-h-[40vh] flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground lg:min-h-0">
+              Create a set with the New set button, then add problems from the corpus pool.
             </div>
           ) : items.length === 0 ? (
             <div className="flex min-h-[40vh] flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground lg:min-h-0">

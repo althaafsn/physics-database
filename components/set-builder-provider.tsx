@@ -12,8 +12,8 @@ import {
 import { catalogFetcher } from '@/lib/api'
 import {
   deleteSavedSet as deleteLocalSet,
-  ensureStarterSets,
   listSavedSets,
+  loadSavedSets,
   upsertSavedSet,
 } from '@/lib/saved-sets-local'
 import { pickProblemsByIds } from '@/lib/random-set'
@@ -79,6 +79,20 @@ export function SetBuilderProvider({
 
   const refreshSavedSets = useCallback(() => {
     setSavedSets(listSavedSets())
+  }, [])
+
+  const resetActiveDraft = useCallback(() => {
+    skipNextSave.current = true
+    if (saveTimerRef.current) {
+      clearTimeout(saveTimerRef.current)
+      saveTimerRef.current = null
+    }
+    setSetId(null)
+    setName('Untitled Set')
+    setMode('manual')
+    setItems([])
+    setLastSavedAt(null)
+    localStorage.removeItem(ACTIVE_SET_KEY)
   }, [])
 
   const persistSet = useCallback(
@@ -167,23 +181,16 @@ export function SetBuilderProvider({
     if (isReady) return
 
     const init = async () => {
-      const sets = await ensureStarterSets()
+      const sets = await loadSavedSets()
       setSavedSets(sets)
 
       const storedId = localStorage.getItem(ACTIVE_SET_KEY)
-      const preferred =
-        (storedId ? sets.find((s) => s.id === storedId) : undefined) ??
-        sets.find((s) => s.problemIds.length > 0) ??
-        sets[0]
+      const preferred = storedId ? sets.find((s) => s.id === storedId) : undefined
 
       if (preferred) {
-        const loaded = await loadSetMeta(preferred)
-        if (loaded === 0 && preferred.problemIds.length > 0) {
-          const fallback = sets.find(
-            (s) => s.id !== preferred.id && s.problemIds.length > 0,
-          )
-          if (fallback) await loadSetMeta(fallback)
-        }
+        await loadSetMeta(preferred)
+      } else if (sets.length > 0) {
+        await loadSetMeta(sets[0])
       }
 
       setIsReady(true)
@@ -223,6 +230,7 @@ export function SetBuilderProvider({
   }, [isReady, items, name, mode, setId, persistSet])
 
   const add = useCallback((problem: Problem) => {
+    if (!setIdRef.current) return
     setItems((prev) =>
       prev.some((p) => p.id === problem.id) ? prev : [...prev, problem],
     )
@@ -257,7 +265,8 @@ export function SetBuilderProvider({
   const createNewSet = useCallback(() => {
     flushPendingSave()
     skipNextSave.current = true
-    const newName = `Untitled Set ${savedSets.length + 1}`
+    const count = listSavedSets().length
+    const newName = `Untitled Set ${count + 1}`
     setIsSaving(true)
     try {
       const record = upsertSavedSet({
@@ -275,7 +284,7 @@ export function SetBuilderProvider({
     } finally {
       setIsSaving(false)
     }
-  }, [savedSets.length, refreshSavedSets, flushPendingSave])
+  }, [refreshSavedSets, flushPendingSave])
 
   const deleteSavedSet = useCallback(
     async (id: string) => {
@@ -284,20 +293,15 @@ export function SetBuilderProvider({
       setSavedSets(remaining)
 
       if (setId === id) {
-        if (saveTimerRef.current) {
-          clearTimeout(saveTimerRef.current)
-          saveTimerRef.current = null
-        }
-        skipNextSave.current = true
         if (remaining.length) {
           await loadSetMeta(remaining[0])
           refreshSavedSets()
         } else {
-          createNewSet()
+          resetActiveDraft()
         }
       }
     },
-    [setId, loadSetMeta, refreshSavedSets, createNewSet],
+    [setId, loadSetMeta, refreshSavedSets, resetActiveDraft],
   )
 
   const value = useMemo<SetBuilderState>(
