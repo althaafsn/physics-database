@@ -25,6 +25,9 @@ public/assets/
 # Demo recordings (regenerate with npm run demo:record)
 demo/output/
 
+# Browser-verification screenshots (root-level)
+/*.png
+
 # OS
 .DS_Store
 Thumbs.db
