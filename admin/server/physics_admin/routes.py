@@ -33,10 +33,27 @@ from physics_admin.schemas import (
     UserResponse,
     ValidationIssueSchema,
 )
+from physics_admin.security import assert_email_allowed, is_email_allowed, assert_registration_allowed
+
 from src.catalog import is_catalog_eligible
 
 router = APIRouter()
 settings = get_settings()
+
+
+def _grant_production_editor_access(user: User, db: Session) -> User:
+    """Allowlisted admins get editor access in production without mock billing."""
+    if (
+        settings.is_production
+        and is_email_allowed(user.email)
+        and not user.has_active_subscription()
+    ):
+        user.subscription_status = "active"
+        user.subscription_expires_at = datetime.now(UTC) + timedelta(days=3650)
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+    return user
 
 
 def _user_response(user: User) -> UserResponse:
@@ -51,20 +68,24 @@ def _user_response(user: User) -> UserResponse:
 
 @router.post("/auth/register", response_model=TokenResponse)
 def register(body: RegisterRequest, db: Annotated[Session, Depends(get_db)]) -> TokenResponse:
+    assert_registration_allowed(body.email)
     if db.query(User).filter(User.email == body.email).first():
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already registered")
-    user = User(email=body.email, password_hash=hash_password(body.password))
+    user = User(email=body.email.lower(), password_hash=hash_password(body.password))
     db.add(user)
     db.commit()
     db.refresh(user)
+    user = _grant_production_editor_access(user, db)
     return TokenResponse(access_token=create_access_token(user.id, user.email))
 
 
 @router.post("/auth/login", response_model=TokenResponse)
 def login(body: LoginRequest, db: Annotated[Session, Depends(get_db)]) -> TokenResponse:
-    user = db.query(User).filter(User.email == body.email).first()
+    assert_email_allowed(body.email)
+    user = db.query(User).filter(User.email == body.email.lower()).first()
     if user is None or not verify_password(body.password, user.password_hash):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+    user = _grant_production_editor_access(user, db)
     return TokenResponse(access_token=create_access_token(user.id, user.email))
 
 
@@ -89,6 +110,11 @@ def subscribe(
     user: Annotated[User, Depends(get_current_user)],
     db: Annotated[Session, Depends(get_db)],
 ) -> SubscriptionResponse:
+    if not settings.allow_mock_billing:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Mock billing is disabled",
+        )
     days = settings.mock_subscription_days
     if body.plan == "yearly":
         days *= 12

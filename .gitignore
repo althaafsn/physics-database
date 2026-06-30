@@ -53,3 +53,7 @@ parsed/sets/repro-*/
 admin/server/.venv/
 admin/server/admin.db
 
+# Terraform (never commit state)
+deploy/aws/terraform/.terraform/
+deploy/aws/terraform/*.tfstate*
+

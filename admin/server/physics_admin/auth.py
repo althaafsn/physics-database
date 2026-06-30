@@ -12,10 +12,14 @@ from sqlalchemy.orm import Session
 from physics_admin.config import get_settings
 from physics_admin.database import get_db
 from physics_admin.models import User
+from physics_admin.security import assert_email_allowed
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 bearer = HTTPBearer(auto_error=False)
-settings = get_settings()
+
+
+def _settings():
+    return get_settings()
 
 
 def hash_password(password: str) -> str:
@@ -27,13 +31,15 @@ def verify_password(password: str, password_hash: str) -> bool:
 
 
 def create_access_token(user_id: int, email: str) -> str:
+    settings = _settings()
     expire = datetime.now(UTC) + timedelta(minutes=settings.jwt_expire_minutes)
     payload = {"sub": str(user_id), "email": email, "exp": expire}
-    return jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
+    return jwt.encode(payload, settings.effective_jwt_secret(), algorithm=settings.jwt_algorithm)
 
 
 def decode_token(token: str) -> dict:
-    return jwt.decode(token, settings.jwt_secret, algorithms=[settings.jwt_algorithm])
+    settings = _settings()
+    return jwt.decode(token, settings.effective_jwt_secret(), algorithms=[settings.jwt_algorithm])
 
 
 def get_current_user(
@@ -51,13 +57,30 @@ def get_current_user(
     user = db.get(User, user_id)
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+    assert_email_allowed(user.email)
     return user
 
 
-def require_subscription(user: Annotated[User, Depends(get_current_user)]) -> User:
-    if not user.has_active_subscription():
+def require_admin(user: Annotated[User, Depends(get_current_user)]) -> User:
+    """Editor endpoints: authenticated + allowlisted admin email."""
+    return user
+
+
+def require_subscription(user: Annotated[User, Depends(require_admin)]) -> User:
+    settings = _settings()
+    if user.has_active_subscription():
+        return user
+    if settings.allow_mock_billing and not settings.is_production:
         raise HTTPException(
             status_code=status.HTTP_402_PAYMENT_REQUIRED,
             detail="Active subscription required",
         )
-    return user
+    if settings.is_production:
+        raise HTTPException(
+            status_code=status.HTTP_402_PAYMENT_REQUIRED,
+            detail="Active subscription required",
+        )
+    raise HTTPException(
+        status_code=status.HTTP_402_PAYMENT_REQUIRED,
+        detail="Active subscription required",
+    )

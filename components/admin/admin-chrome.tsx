@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ArrowLeft, LogOut, PenLine } from 'lucide-react'
+import { ArrowLeft, LogOut, PenLine, ShieldOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useAdminAuth } from '@/components/admin/use-admin-auth'
+import { ADMIN_UI_ENABLED } from '@/lib/admin-config'
 import { cn } from '@/lib/utils'
 
 export function AdminChrome({ children }: { children: React.ReactNode }) {
@@ -17,6 +18,23 @@ export function AdminChrome({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background p-4">
         {children}
+      </div>
+    )
+  }
+
+  if (!ADMIN_UI_ENABLED) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background p-6 text-center">
+        <ShieldOff className="size-10 text-muted-foreground" />
+        <h1 className="text-lg font-semibold">Editor not available</h1>
+        <p className="max-w-md text-sm text-muted-foreground">
+          The problem editor is disabled on this public site. Run the app locally with{' '}
+          <code className="rounded bg-muted px-1">npm run dev:admin</code> to edit.
+        </p>
+        <Button nativeButton={false} render={<Link href="/" />}>
+          <ArrowLeft className="size-4" />
+          Back to reader
+        </Button>
       </div>
     )
   }

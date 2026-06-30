@@ -35,7 +35,7 @@ main() {
   ensure_terraform
 
   log "Building static site…"
-  npm run build:static
+  NEXT_PUBLIC_ENABLE_ADMIN=false NEXT_PUBLIC_ADMIN_API_URL= npm run build:static
 
   log "Creating/updating S3 bucket + CloudFront…"
   terraform -chdir="$TF_DIR" init -input=false

@@ -10,6 +10,7 @@ import {
   PenLine,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { ADMIN_UI_ENABLED } from '@/lib/admin-config'
 import { ProblemLanguageSwitch } from '@/components/problem-language-switch'
 import { useSetBuilder } from '@/components/set-builder-provider'
 import useSWR from 'swr'
@@ -26,7 +27,9 @@ const NAV: NavItem[] = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/library', label: 'Problem Library', icon: Library },
   { href: '/sets', label: 'Set Builder', icon: FlaskConical },
-  { href: '/admin/problems', label: 'Editor', icon: PenLine },
+  ...(ADMIN_UI_ENABLED
+    ? [{ href: '/admin/problems', label: 'Editor', icon: PenLine }]
+    : []),
 ]
 
 function NavLink({ item, active }: { item: NavItem; active: boolean }) {

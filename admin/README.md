@@ -47,6 +47,19 @@ Root `.env.local` (optional):
 NEXT_PUBLIC_ADMIN_API_URL=http://localhost:8000
 ```
 
-## Production
+## Security
 
-Host this API separately. Wire `POST /api/billing/subscribe` to Stripe. The static CloudFront reader stays unchanged.
+The public CloudFront site ships with **editor UI disabled** (`NEXT_PUBLIC_ENABLE_ADMIN=false`).
+
+The FastAPI API enforces:
+
+| Control | Local dev | Production |
+|---------|-----------|------------|
+| `ADMIN_ALLOWED_EMAILS` | optional (open) | **required** — only these emails can register/login/edit |
+| `JWT_SECRET` | auto-generated | **required** (32+ chars) |
+| `ALLOW_MOCK_BILLING` | `true` | must be `false` |
+| `ALLOW_PUBLIC_REGISTRATION` | `true` | must be `false` |
+
+Copy `admin/server/.env.example` → `admin/server/.env` and set your email before running in production.
+
+**Never expose the admin API publicly without these settings.**
