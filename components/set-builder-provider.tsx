@@ -41,7 +41,7 @@ interface SetBuilderState {
   remove: (id: string) => void
   move: (from: number, to: number) => void
   has: (id: string) => boolean
-  replaceAll: (problems: Problem[]) => void
+  replaceAll: (problems: Problem[], ownerSetId?: string | null) => void
   clear: () => void
   createNewSet: () => void
   loadSavedSet: (id: string) => Promise<void>
@@ -65,6 +65,17 @@ export function SetBuilderProvider({
   const [isReady, setIsReady] = useState(false)
   const skipNextSave = useRef(false)
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const setIdRef = useRef<string | null>(null)
+  const loadGenerationRef = useRef(0)
+  const draftRef = useRef({
+    setId: null as string | null,
+    items: [] as Problem[],
+    name: 'Untitled Set',
+    mode: 'manual' as 'manual' | 'random',
+  })
+
+  setIdRef.current = setId
+  draftRef.current = { setId, items, name, mode }
 
   const refreshSavedSets = useCallback(() => {
     setSavedSets(listSavedSets())
@@ -107,17 +118,27 @@ export function SetBuilderProvider({
       clearTimeout(saveTimerRef.current)
       saveTimerRef.current = null
     }
-    if (!isReady || !setId) return null
-    return persistSet()
-  }, [isReady, setId, persistSet])
+    if (!isReady) return null
+    const draft = draftRef.current
+    if (!draft.setId) return null
+    return persistSet({
+      id: draft.setId,
+      name: draft.name,
+      mode: draft.mode,
+      problemIds: draft.items.map((p) => p.id),
+    })
+  }, [isReady, persistSet])
 
   const loadSetMeta = useCallback(async (meta: SavedProblemSet) => {
+    const generation = ++loadGenerationRef.current
     skipNextSave.current = true
     const locale =
       typeof window !== 'undefined'
         ? parseProblemLocale(localStorage.getItem(LOCALE_STORAGE_KEY))
         : 'id'
     const all = await catalogFetcher(locale)
+    if (generation !== loadGenerationRef.current) return 0
+
     const problems = pickProblemsByIds(all.problems, meta.problemIds)
 
     setSetId(meta.id)
@@ -183,7 +204,14 @@ export function SetBuilderProvider({
 
     saveTimerRef.current = window.setTimeout(() => {
       saveTimerRef.current = null
-      persistSet()
+      const draft = draftRef.current
+      if (!draft.setId || draft.setId !== setIdRef.current) return
+      persistSet({
+        id: draft.setId,
+        name: draft.name,
+        mode: draft.mode,
+        problemIds: draft.items.map((p) => p.id),
+      })
     }, 800)
 
     return () => {
@@ -214,7 +242,8 @@ export function SetBuilderProvider({
     })
   }, [])
 
-  const replaceAll = useCallback((problems: Problem[]) => {
+  const replaceAll = useCallback((problems: Problem[], ownerSetId?: string | null) => {
+    if (ownerSetId != null && ownerSetId !== setIdRef.current) return
     setItems(problems)
   }, [])
 
@@ -255,14 +284,20 @@ export function SetBuilderProvider({
       setSavedSets(remaining)
 
       if (setId === id) {
+        if (saveTimerRef.current) {
+          clearTimeout(saveTimerRef.current)
+          saveTimerRef.current = null
+        }
+        skipNextSave.current = true
         if (remaining.length) {
-          await loadSavedSet(remaining[0].id)
+          await loadSetMeta(remaining[0])
+          refreshSavedSets()
         } else {
           createNewSet()
         }
       }
     },
-    [setId, loadSavedSet, createNewSet],
+    [setId, loadSetMeta, refreshSavedSets, createNewSet],
   )
 
   const value = useMemo<SetBuilderState>(

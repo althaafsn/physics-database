@@ -35,12 +35,13 @@ interface ProblemsResponse {
 
 function SetBuilderLocaleSync() {
   const { locale } = useLocale()
-  const { ids, replaceAll } = useSetBuilder()
+  const { ids, replaceAll, setId } = useSetBuilder()
   const idKey = ids.join(',')
 
   useEffect(() => {
     if (!ids.length) return
 
+    const ownerSetId = setId
     let cancelled = false
     catalogFetcher(locale)
       .then((data: ProblemsResponse) => {
@@ -49,7 +50,7 @@ function SetBuilderLocaleSync() {
         const next = ids
           .map((id) => byId.get(id))
           .filter((p): p is Problem => p != null)
-        if (next.length) replaceAll(next)
+        if (next.length) replaceAll(next, ownerSetId)
       })
       .catch(() => {
         // Keep current set items if refresh fails
@@ -58,7 +59,7 @@ function SetBuilderLocaleSync() {
     return () => {
       cancelled = true
     }
-  }, [locale, idKey, ids, replaceAll])
+  }, [locale, idKey, ids, setId, replaceAll])
 
   return null
 }

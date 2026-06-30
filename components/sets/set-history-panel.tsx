@@ -28,9 +28,7 @@ export function SetHistoryPanel() {
     deleteSavedSet,
   } = useSetBuilder()
 
-  const visibleSets = savedSets.filter(
-    (set) => set.problemIds.length > 0 || set.id === setId,
-  )
+  const visibleSets = savedSets
 
   if (!isReady) {
     return (
