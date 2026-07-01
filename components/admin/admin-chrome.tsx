@@ -10,8 +10,9 @@ import { cn } from '@/lib/utils'
 
 export function AdminChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const normalizedPathname = pathname?.replace(/\/+$/, '') || ''
   const isAuthPage =
-    pathname === '/admin/login' || pathname === '/admin/signup'
+    normalizedPathname === '/admin/login' || normalizedPathname === '/admin/signup'
   const { user, logout } = useAdminAuth()
 
   if (!ADMIN_UI_ENABLED) {
