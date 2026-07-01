@@ -34,7 +34,17 @@ export function AdminChrome({ children }: { children: React.ReactNode }) {
 
   if (isAuthPage) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background p-4">
+      <div className="relative flex min-h-screen items-center justify-center bg-background p-4">
+        <Button
+          variant="ghost"
+          size="sm"
+          nativeButton={false}
+          render={<Link href="/" />}
+          className="absolute left-4 top-4"
+        >
+          <ArrowLeft className="size-4" />
+          Back to reader
+        </Button>
         {children}
       </div>
     )
