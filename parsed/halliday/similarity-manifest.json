@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "method": "tfidf_cosine + topic/detail_tag_jaccard",
+  "top_k": 8,
+  "problem_count": 546
+}

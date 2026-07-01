@@ -4,15 +4,21 @@ import re
 
 from src.schema import ProblemRecord, SubPart, ValidationIssue
 
-from src.clean import FOOTER_INLINE_RE, PROMO_CONTAMINATION_RE
+from src.clean import FOOTER_INLINE_RE, PROMO_CONTAMINATION_RE, clean_text
+from src.attach_images import body_expects_attached_figure, extract_image_refs
 BLANK_SLOT_RE = re.compile(
-    r"\(\s*,\s*\)|,\s*,\s*|dalam\s+,\s*,\s*dan|Nyatakan dalam\s+,\s*,\s*dan",
+    r"\(\s*,\s*\)|,\s*,\s*|dalam\s+,\s*,\s*dan|Nyatakan dalam\s+,\s*,\s*dan"
+    r"|(?:\$[^$\n]{1,20}\$\s*,\s*)+dan\s*[.!?]",
     re.IGNORECASE,
 )
+# "noun adalah/rotasinya <blank>" only counts as a missing-symbol slot when the
+# word is immediately followed by punctuation (nothing meaningful in between).
+# Definitional sentences like "massa adalah osilasi ..." or "Sudut adalah sudut
+# antara ..." must NOT match - there's a real description there, not a blank.
 MISSING_SYMBOL_NOUN_RE = re.compile(
     r"(?<![\w$\\])"
     r"(?:massa|kecepatan|sudut|periode|gravitasi|bermassa|jari-jari|konstanta)"
-    r"\s+(?:=|adalah|rotasinya|,|\.)",
+    r"\s+(?:=(?!\s*\.{2,})|adalah\s*(?!\.{2,})[,.]|rotasinya\s*(?!\.{2,})[,.]|,|\.(?!\.))",
     re.IGNORECASE,
 )
 MISSING_G_RE = re.compile(r"=\s*10\s*m/s\s*2", re.IGNORECASE)
@@ -21,6 +27,39 @@ ORPHAN_SUPERSCRIPT_RE = re.compile(
     re.IGNORECASE,
 )
 HTML_MATH_RE = re.compile(r"<su[bp]>", re.IGNORECASE)
+
+# Signatures left behind by broken/failed LLM repair passes - these should
+# never appear in a real problem body and indicate the record needs a redo.
+PLACEHOLDER_LEFTOVER_RE = re.compile(
+    r"<\s*(?:cleaned\s+markdown|partial|fixed\s+markdown|body_md|unchanged)\s*>",
+    re.IGNORECASE,
+)
+# Concatenated nonsense LaTeX like "$m_1gT$" - multiple physics symbols glued
+# together with no operator is never valid notation, only ever a hallucination.
+GARBLED_SYMBOL_RE = re.compile(r"\$[a-zA-Z]+_\d[a-zA-Z]{2,}\$")
+# A backslash-escape that got mangled into a literal tab/control character,
+# e.g. "$\theta$" corrupted to "$\theta$" with a raw tab instead of backslash-t.
+MANGLED_ESCAPE_RE = re.compile(r"\$[^$\n]*[\t\x00-\x08\x0b-\x1f][^$\n]*\$")
+
+CONTENT_LOSS_THRESHOLD = 0.7
+_WORD_RE = re.compile(r"[a-zA-Zà-ÿ]{3,}")
+
+
+def _word_set(text: str) -> set[str]:
+    return set(_WORD_RE.findall(text.lower()))
+
+
+def _content_loss_ratio(record: ProblemRecord) -> float | None:
+    """Fraction of the original (cleaned) raw text's words still present in
+    the current body + subparts. None when there's no raw baseline to compare."""
+    if not record.body_md_raw:
+        return None
+    raw_words = _word_set(clean_text(record.body_md_raw))
+    if not raw_words:
+        return None
+    current = record.body_md + "\n" + "\n".join(sp.text for sp in record.subparts)
+    body_words = _word_set(current)
+    return len(raw_words & body_words) / len(raw_words)
 
 
 def _snippet(text: str, match: re.Match[str], width: int = 60) -> str:
@@ -32,6 +71,13 @@ def _snippet(text: str, match: re.Match[str], width: int = 60) -> str:
 def _has_g_symbol(text: str, pos: int) -> bool:
     prefix = text[max(0, pos - 30) : pos]
     return bool(re.search(r"\$g\$|\bg\s*=|\bg\s", prefix))
+
+
+def _has_math_symbol_after(text: str, pos: int, window: int = 35) -> bool:
+    """True when OCR/markdown already has $...$ soon after a physics-noun phrase."""
+    chunk = text[pos : pos + window]
+    chunk = re.sub(r"\*+", "", chunk).lstrip()
+    return bool(re.search(r"\$[^$\n]+\$", chunk))
 
 
 def _issues_from_text(text: str) -> list[ValidationIssue]:
@@ -68,6 +114,8 @@ def _issues_from_text(text: str) -> list[ValidationIssue]:
         break
 
     for match in MISSING_SYMBOL_NOUN_RE.finditer(text):
+        if _has_math_symbol_after(text, match.end()):
+            continue
         issues.append(
             ValidationIssue(
                 code="missing_symbol_after_noun",
@@ -109,6 +157,36 @@ def _issues_from_text(text: str) -> list[ValidationIssue]:
             )
         )
 
+    match = PLACEHOLDER_LEFTOVER_RE.search(text)
+    if match:
+        issues.append(
+            ValidationIssue(
+                code="content_placeholder_leftover",
+                message="Body text contains an unfilled LLM template placeholder",
+                snippet=_snippet(text, match),
+            )
+        )
+
+    match = GARBLED_SYMBOL_RE.search(text)
+    if match:
+        issues.append(
+            ValidationIssue(
+                code="garbled_llm_symbol",
+                message="Concatenated/nonsensical symbol likely hallucinated by LLM repair",
+                snippet=_snippet(text, match),
+            )
+        )
+
+    match = MANGLED_ESCAPE_RE.search(text)
+    if match:
+        issues.append(
+            ValidationIssue(
+                code="mangled_latex_escape",
+                message="LaTeX escape corrupted into a control character",
+                snippet=_snippet(text, match),
+            )
+        )
+
     return issues
 
 
@@ -128,6 +206,17 @@ def _issues_from_flags(flags: list[str]) -> list[ValidationIssue]:
                 ValidationIssue(
                     code="expected_image_missing",
                     message="Problem text references a diagram but no image is attached",
+                    snippet=None,
+                )
+            )
+        elif flag == "manual_review_required":
+            issues.append(
+                ValidationIssue(
+                    code="manual_review_required",
+                    message=(
+                        "Raw OCR was too degraded for automated symbol restoration to be "
+                        "trusted - needs a human check against the source PDF"
+                    ),
                     snippet=None,
                 )
             )
@@ -160,6 +249,20 @@ def validate_record(record: ProblemRecord) -> list[ValidationIssue]:
     for text in texts:
         issues.extend(_issues_from_text(text))
     issues.extend(_issues_from_flags(record.flags))
+
+    ratio = _content_loss_ratio(record)
+    if ratio is not None and ratio < CONTENT_LOSS_THRESHOLD:
+        issues.append(
+            ValidationIssue(
+                code="content_loss_vs_raw",
+                message=(
+                    f"Only {ratio:.0%} of original wording survived repair - "
+                    "likely truncated or over-summarized by an LLM pass"
+                ),
+                snippet=None,
+            )
+        )
+
     return _dedupe_issues(issues)
 
 
@@ -178,8 +281,17 @@ def apply_validation(record: ProblemRecord) -> ProblemRecord:
     if record.body_md_raw is None:
         record.body_md_raw = record.body_md
     attach_flags = [
-        f for f in record.flags if f.startswith("missing_image:") or f == "expected_image_missing"
+        f
+        for f in record.flags
+        if f.startswith("missing_image:") or f == "manual_review_required"
     ]
+    if (
+        body_expects_attached_figure(record.body_md)
+        and not extract_image_refs(record.body_md)
+        and not record.images
+    ):
+        attach_flags.append("expected_image_missing")
+    record.flags = attach_flags
     record.errors = validate_record(record)
     record.flags = sync_flags_from_errors(record.errors, attach_flags)
     return record

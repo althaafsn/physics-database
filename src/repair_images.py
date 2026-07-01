@@ -10,7 +10,7 @@ from src.attach_images import (
     extract_image_refs,
     parse_image_filename,
 )
-from src.attach_images import FIGURE_HINTS
+from src.attach_images import FIGURE_HINTS, body_expects_attached_figure
 from src.clean import clean_text
 from src.schema import ProblemImage, ProblemRecord
 
@@ -104,7 +104,7 @@ def strip_watermark_refs(body_md: str) -> str:
 def needs_image_repair(record: ProblemRecord) -> bool:
     refs = extract_image_refs(record.body_md)
     if not refs:
-        return "expected_image_missing" in record.flags
+        return "expected_image_missing" in record.flags or body_expects_attached_figure(record.body_md)
     if not record.images:
         return True
     return all(re.search(r"_Picture_(?:0|1|4|5|6)\.", ref) for ref in refs)
@@ -122,6 +122,13 @@ def repair_record_images(
     original_refs = extract_image_refs(record.body_md)
     body = strip_watermark_refs(clean_text(record.body_md))
     pages = pages_from_refs(original_refs)
+    if not pages and output_folder.is_dir():
+        pages = {
+            page
+            for path in output_folder.glob("_page_*")
+            for page in [parse_image_filename(path.name)[0]]
+            if page is not None
+        }
 
     refs_after_strip = extract_image_refs(body)
     valid_refs = [

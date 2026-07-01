@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 
 from src.attach_images import extract_image_refs
+from src.math_normalize import fix_json_control_artifacts
 from src.schema import ProblemImage, ProblemRecord, SubPart
 from src.split_problems import SUBPART_RE, extract_subparts
 
@@ -256,6 +257,7 @@ def clean_text(text: str) -> str:
     """Deterministic cleanup: ads, watermarks, HTML math, and safe symbol fixes."""
     if not text or not text.strip():
         return text
+    text = fix_json_control_artifacts(text)
     text = _remove_ads_and_watermarks(text)
     text = _fix_noun_orphan_superscripts(text)
     text = _fix_leading_orphan_superscripts(text)
@@ -309,6 +311,24 @@ def strip_duplicate_subparts(record: ProblemRecord) -> bool:
     return changed
 
 
+def dedupe_body_image_refs(body_md: str) -> tuple[str, bool]:
+    """Remove repeated ![](same.jpeg) lines while preserving first occurrence order."""
+    seen: set[str] = set()
+    changed = False
+    lines: list[str] = []
+    for line in body_md.splitlines():
+        stripped = line.strip()
+        match = re.fullmatch(r"!\[\]\(([^)]+)\)", stripped)
+        if match:
+            ref = match.group(1)
+            if ref in seen:
+                changed = True
+                continue
+            seen.add(ref)
+        lines.append(line)
+    return "\n".join(lines), changed
+
+
 def sync_images_with_body(record: ProblemRecord) -> None:
     refs = set(extract_image_refs(record.body_md))
     record.images = [img for img in record.images if img.filename in refs]
@@ -320,6 +340,7 @@ def clean_record(record: ProblemRecord) -> ProblemRecord:
         record.body_md_raw = record.body_md
 
     record.body_md = clean_text(record.body_md)
+    record.body_md, _ = dedupe_body_image_refs(record.body_md)
     record.subparts = [SubPart(**sp) for sp in extract_subparts(record.body_md)]
     sync_images_with_body(record)
     return record

@@ -137,5 +137,3 @@ export function useTranslationStats() {
     coveragePercent: englishCoveragePercent(englishAvailable, totalAvailable),
   }
 }
-
-export { catalogSwrKey, problemsSwrKey }

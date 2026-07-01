@@ -77,9 +77,12 @@ def fix_literal_unicode_escapes(text: str) -> str:
 
 TAB_COMMAND_FIXES: tuple[tuple[str, str], ...] = (
     ("heta", r"\theta"),
+    ("extit{", r"\textit{"),
     ("ext{", r"\text{"),
     ("au", r"\tau"),
     ("imes", r"\times"),
+    ("ilde{", r"\tilde{"),
+    ("o ", r"\to "),
     ("an", r"\tan"),
     ("an(", r"\tan("),
 )
@@ -141,6 +144,13 @@ def fix_json_control_artifacts(text: str) -> str:
     for suffix, cmd in TAB_COMMAND_FIXES:
         text = text.replace("\t" + suffix, cmd)
     text = re.sub(r"(?<!\$)\$rac\{", r"$\\frac{", text)
+    # Generic fallback: any remaining \f or \r control char immediately
+    # followed by letters was almost certainly a LaTeX command (\frac,
+    # \rho, \right...) swallowed by json.loads treating \f/\r as legal
+    # JSON control escapes. \x09 (tab) and \x08 (backspace) are handled
+    # above/via TAB_COMMAND_FIXES already.
+    text = re.sub(r"\x0c(?=[a-zA-Z])", r"\\f", text)
+    text = re.sub(r"\x0d(?=[a-zA-Z])", r"\\r", text)
     return text
 
 

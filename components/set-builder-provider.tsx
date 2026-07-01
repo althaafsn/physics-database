@@ -73,7 +73,7 @@ export function SetBuilderProvider({
   const [isReady, setIsReady] = useState(false)
 
   const skipNextAutosave = useRef(false)
-  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const saveTimerRef = useRef<number | null>(null)
   const setIdRef = useRef<string | null>(null)
   const loadGenerationRef = useRef(0)
   const saveEpochRef = useRef(0)

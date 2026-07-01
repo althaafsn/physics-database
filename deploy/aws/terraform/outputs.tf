@@ -7,5 +7,13 @@ output "cloudfront_distribution_id" {
 }
 
 output "site_url" {
-  value = "https://${aws_cloudfront_distribution.site.domain_name}"
+  value = local.use_custom_domain ? "https://${var.site_domain}" : "https://${aws_cloudfront_distribution.site.domain_name}"
+}
+
+output "site_domain" {
+  value = var.site_domain
+}
+
+output "cloudfront_domain" {
+  value = aws_cloudfront_distribution.site.domain_name
 }

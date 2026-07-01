@@ -8,6 +8,7 @@ import {
   Library,
   FlaskConical,
   PenLine,
+  BookOpen,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ADMIN_UI_ENABLED } from '@/lib/admin-config'
@@ -26,6 +27,7 @@ interface NavItem {
 const NAV: NavItem[] = [
   { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/library', label: 'Problem Library', icon: Library },
+  { href: '/topics', label: 'Physics Topics', icon: BookOpen },
   { href: '/sets', label: 'Set Builder', icon: FlaskConical },
   ...(ADMIN_UI_ENABLED
     ? [{ href: '/admin/problems', label: 'Editor', icon: PenLine }]

@@ -1,0 +1,49 @@
+{
+  "gold_total": 631,
+  "with_errors": 3,
+  "catalog_eligible": 586,
+  "error_codes": {
+    "blank_variable_slot": 2,
+    "missing_symbol_after_noun": 1,
+    "manual_review_required": 3
+  },
+  "unfixed": [
+    {
+      "id": "OSN-2019-01",
+      "slug": "Soal OSN Fisika SMA 2019",
+      "codes": [
+        "blank_variable_slot",
+        "missing_symbol_after_noun",
+        "manual_review_required"
+      ],
+      "catalog_eligible": false
+    },
+    {
+      "id": "OSN-2021-02",
+      "slug": "Soal OSN Fisika SMA 2021",
+      "codes": [
+        "blank_variable_slot",
+        "manual_review_required"
+      ],
+      "catalog_eligible": false
+    },
+    {
+      "id": "OSP-2025-semifinal-05",
+      "slug": "Soal OSP Fisika SMA 2025 + Semifinal",
+      "codes": [
+        "manual_review_required"
+      ],
+      "catalog_eligible": false
+    }
+  ],
+  "duplicate_image_refs_in_body": [],
+  "shared_asset_paths": {
+    "assets/OSN/2020/05/_page_7_Picture_12.jpeg": [
+      "OSN-2020-05",
+      "OSN-2020-05"
+    ]
+  },
+  "shared_asset_path_count": 1,
+  "image_issues": [],
+  "image_issue_count": 0
+}

@@ -1,0 +1,20 @@
+'use client'
+
+import { PhysicsTags } from '@/components/halliday-tags'
+import { SimilarProblems } from '@/components/similar-problems'
+import type { Problem } from '@/lib/types'
+
+export function ProblemExtras({
+  problem,
+  onSelectSimilar,
+}: {
+  problem: Problem
+  onSelectSimilar?: (problem: Problem) => void
+}) {
+  return (
+    <div className="space-y-4">
+      <PhysicsTags problemId={problem.id} />
+      <SimilarProblems problemId={problem.id} onSelect={onSelectSimilar} />
+    </div>
+  )
+}

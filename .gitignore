@@ -11,6 +11,17 @@ __v0_jsx-dev-runtime.ts
 .env.*
 .env*.local
 local.env
+!.env.example
+!**/.env.example
+
+# Private keys / certs
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+id_rsa*
+id_ed25519*
 
 # Dependencies & build
 node_modules/
@@ -54,7 +65,19 @@ admin/server/.venv/
 admin/server/admin.db
 admin/server/.dev-jwt-secret
 
-# Terraform (never commit state)
-deploy/aws/terraform/.terraform/
-deploy/aws/terraform/*.tfstate*
+# Python virtualenvs (anywhere)
+.venv/
+.venv-marker/
+venv/
+
+# Local tool/model caches (Ollama binary + pulled model weights, etc.)
+.tools/
+
+# Terraform (never commit state, plugin cache, or local vars — they hold
+# plaintext secrets like random_password results, IPs, and account IDs)
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/terraform.tfvars
+!**/terraform.tfvars.example
 

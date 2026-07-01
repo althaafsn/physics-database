@@ -190,6 +190,17 @@ async function main() {
     fs.cpSync(assetsSrc, assetsDest, { recursive: true })
   }
 
+  // Halliday tags + similarity (optional — skipped if not generated yet)
+  try {
+    const { spawnSync } = await import('node:child_process')
+    const hallidayExport = path.join(root, 'scripts', 'export-halliday-data.mjs')
+    if (fs.existsSync(hallidayExport)) {
+      spawnSync('node', [hallidayExport], { cwd: root, stdio: 'inherit' })
+    }
+  } catch {
+    // non-fatal
+  }
+
   console.log(
     JSON.stringify(
       {

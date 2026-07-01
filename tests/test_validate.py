@@ -80,6 +80,22 @@ def test_missing_g_constant():
     assert any(issue.code == "missing_g_constant" for issue in issues)
 
 
+def test_missing_symbol_false_positive_when_symbol_present():
+    body = "Jika periode rotasinya $T$, tentukan besar sudut $\\theta$."
+    issues = validate_text(body)
+    assert not any(issue.code == "missing_symbol_after_noun" for issue in issues)
+
+    body2 = "Anggap percepatan gravitasi adalah $g$ = 10 m/s²."
+    issues2 = validate_text(body2)
+    assert not any(issue.code == "missing_symbol_after_noun" for issue in issues2)
+
+
+def test_missing_symbol_still_flags_blank_quantity():
+    body = "Bidang miring dapat bergerak dan bermassa = 2 kg."
+    issues = validate_text(body)
+    assert any(issue.code == "missing_symbol_after_noun" for issue in issues)
+
+
 def test_apply_validation_sets_body_md_raw():
     record = _record("Gunakan percepatan gravitasi = 10 m/s 2 .")
     apply_validation(record)

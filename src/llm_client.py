@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 import time
 from dataclasses import dataclass
 from typing import Any
@@ -10,7 +11,9 @@ from openai import OpenAI
 from src.repair_log import LogFn
 
 DEFAULT_BASE_URL = "https://api.netraruntime.com/v1"
+DEFAULT_LOCAL_BASE_URL = "http://127.0.0.1:11434/v1"
 DEFAULT_MODEL = "qwen3.6-35b"
+DEFAULT_LOCAL_MODEL = "qwen2.5:3b"
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_RETRY_DELAY_S = 2.0
 DEFAULT_TIMEOUT_S = 120.0
@@ -83,12 +86,37 @@ def _env_int(name: str, default: int) -> int:
     return int(raw)
 
 
+def _llm_provider() -> str:
+    explicit = os.environ.get("LLM_PROVIDER", "").strip().lower()
+    if explicit in {"local", "ollama"}:
+        return "local"
+    if explicit == "netra":
+        return "netra"
+    if os.environ.get("LOCAL_LLM_BASE_URL", "").strip():
+        return "local"
+    return "netra"
+
+
+def _local_base_url() -> str:
+    return os.environ.get("LOCAL_LLM_BASE_URL", DEFAULT_LOCAL_BASE_URL).strip()
+
+
 def get_client(*, timeout_s: float | None = None) -> OpenAI:
-    api_key = os.environ.get("NETRA_API_KEY")
-    if not api_key:
-        raise RuntimeError("NETRA_API_KEY environment variable is not set")
     if timeout_s is None:
         timeout_s = _env_float("NETRA_TIMEOUT_S", DEFAULT_TIMEOUT_S)
+    if _llm_provider() == "local":
+        return OpenAI(
+            base_url=_local_base_url(),
+            api_key=os.environ.get("LOCAL_LLM_API_KEY", "ollama"),
+            timeout=timeout_s,
+            max_retries=0,
+        )
+    api_key = os.environ.get("NETRA_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "NETRA_API_KEY environment variable is not set "
+            "(or set LLM_PROVIDER=local for Ollama)"
+        )
     return OpenAI(
         base_url=os.environ.get("NETRA_BASE_URL", DEFAULT_BASE_URL),
         api_key=api_key,
@@ -97,21 +125,42 @@ def get_client(*, timeout_s: float | None = None) -> OpenAI:
     )
 
 
-def netra_provider_info() -> dict[str, str]:
+def provider_info() -> dict[str, str]:
+    if _llm_provider() == "local":
+        return {"provider": "local", "base_url": _local_base_url()}
     return {
         "provider": "netra",
         "base_url": os.environ.get("NETRA_BASE_URL", DEFAULT_BASE_URL),
     }
 
 
+def netra_provider_info() -> dict[str, str]:
+    """Backward-compatible alias."""
+    return provider_info()
+
+
+_STRAY_JSON_ESCAPE_RE = re.compile(r"(?<!\\)\\(?=[bfrt])")
+
+
+def _sanitize_json_escapes(text: str) -> str:
+    """Escape lone backslashes that start a LaTeX command (\\theta, \\frac,
+    \\rho, \\tau, \\text, \\beta, ...) but happen to spell a *legal* JSON
+    control escape (\\b \\f \\r \\t). ``json.loads`` silently accepts those and
+    turns them into real backspace/formfeed/CR/tab characters, quietly
+    destroying the LaTeX command instead of raising a parse error. \\n, \\",
+    \\\\, \\/ and \\uXXXX are left untouched since those are almost always
+    intentional (real newlines, quotes, escaped backslashes, unicode)."""
+    return _STRAY_JSON_ESCAPE_RE.sub(r"\\\\", text)
+
+
 def _message_text(message: Any) -> str:
     content = getattr(message, "content", None)
     if isinstance(content, str) and content.strip():
-        return content.strip()
+        return _sanitize_json_escapes(content.strip())
     for attr in ("reasoning_content", "text"):
         val = getattr(message, attr, None)
         if isinstance(val, str) and val.strip():
-            return val.strip()
+            return _sanitize_json_escapes(val.strip())
     return ""
 
 
@@ -134,7 +183,7 @@ def _extract_usage(
         completion_tokens / latency_s if latency_s > 0 and completion_tokens > 0 else None
     )
     total_tps = total_tokens / latency_s if latency_s > 0 and total_tokens > 0 else None
-    info = netra_provider_info()
+    info = provider_info()
     return LLMCallMetrics(
         model=model,
         provider=info["provider"],
@@ -168,14 +217,16 @@ def chat_completion_json(
         max_tokens = _env_int("NETRA_MAX_TOKENS", DEFAULT_MAX_TOKENS)
 
     client = get_client(timeout_s=timeout_s)
+    provider = _llm_provider()
     kwargs: dict[str, Any] = {
         "model": model,
         "messages": messages,
         "temperature": temperature,
-        "top_p": 1,
         "max_tokens": max_tokens,
-        "extra_body": {"top_k": 40, "min_p": 0},
     }
+    if provider == "netra":
+        kwargs["top_p"] = 1
+        kwargs["extra_body"] = {"top_k": 40, "min_p": 0}
     wall_start = time.perf_counter()
     attempts = 0
     last_error: Exception | None = None
@@ -184,8 +235,9 @@ def chat_completion_json(
     for attempt in range(max_retries):
         attempts += 1
         if log:
+            label = "Ollama" if provider == "local" else "Netra"
             log(
-                f"  → Netra API attempt {attempt + 1}/{max_retries} "
+                f"  → {label} API attempt {attempt + 1}/{max_retries} "
                 f"(timeout={timeout_s:.0f}s, max_tokens={max_tokens})"
             )
         try:
@@ -223,8 +275,9 @@ def chat_completion_json(
                             f"({last_metrics.completion_tokens} completion tokens)"
                         )
                     if log:
+                        label = "Ollama" if provider == "local" else "Netra"
                         log(
-                            f"  ← Netra responded in {latency_s:.1f}s "
+                            f"  ← {label} responded in {latency_s:.1f}s "
                             f"({last_metrics.completion_tokens:,} completion tok, "
                             f"mode={'json' if used_json_mode else 'plain'})"
                         )

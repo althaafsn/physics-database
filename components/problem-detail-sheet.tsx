@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { X } from 'lucide-react'
 import { ProblemPreview } from '@/components/problem-preview'
+import { ProblemExtras } from '@/components/problem-extras'
 import { Button } from '@/components/ui/button'
 import type { Problem } from '@/lib/types'
 
@@ -11,6 +12,7 @@ interface ProblemDetailSheetProps {
   open: boolean
   onClose: () => void
   footer?: React.ReactNode
+  onSelectSimilar?: (problem: Problem) => void
 }
 
 export function ProblemDetailSheet({
@@ -18,6 +20,7 @@ export function ProblemDetailSheet({
   open,
   onClose,
   footer,
+  onSelectSimilar,
 }: ProblemDetailSheetProps) {
   useEffect(() => {
     if (!open) return
@@ -58,6 +61,7 @@ export function ProblemDetailSheet({
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto p-5">
           <ProblemPreview problem={problem} />
+          <ProblemExtras problem={problem} onSelectSimilar={onSelectSimilar} />
         </div>
         {footer ? <div className="border-t border-border p-4">{footer}</div> : null}
       </aside>

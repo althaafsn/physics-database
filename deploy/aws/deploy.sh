@@ -34,14 +34,33 @@ main() {
   require_cmd npm
   ensure_terraform
 
+  local site_domain api_url
+  site_domain="$(terraform -chdir="$TF_DIR" output -raw site_domain 2>/dev/null || true)"
+  if [[ -z "$site_domain" && -f "$TF_DIR/terraform.tfvars" ]]; then
+    site_domain="$(grep -E '^site_domain' "$TF_DIR/terraform.tfvars" | sed 's/.*= *"\(.*\)".*/\1/' || true)"
+  fi
+  api_url="${NEXT_PUBLIC_ADMIN_API_URL:-}"
+  if [[ -z "$api_url" && -n "$site_domain" ]]; then
+    api_url="https://api.${site_domain}"
+  fi
+
   log "Building static site…"
-  NEXT_PUBLIC_ENABLE_ADMIN=false NEXT_PUBLIC_ADMIN_API_URL= npm run build:static
+  if [[ -n "$api_url" ]]; then
+    log "Editor enabled → ${api_url}"
+    NEXT_PUBLIC_ENABLE_ADMIN=true NEXT_PUBLIC_ADMIN_API_URL="$api_url" npm run build:static
+  else
+    NEXT_PUBLIC_ENABLE_ADMIN=false NEXT_PUBLIC_ADMIN_API_URL= npm run build:static
+  fi
 
   log "Creating/updating S3 bucket + CloudFront…"
   terraform -chdir="$TF_DIR" init -input=false
-  terraform -chdir="$TF_DIR" apply -auto-approve \
-    -var="aws_region=${REGION}" \
-    -var="project_name=${PROJECT}"
+  if [[ -f "$TF_DIR/terraform.tfvars" ]]; then
+    terraform -chdir="$TF_DIR" apply -auto-approve
+  else
+    terraform -chdir="$TF_DIR" apply -auto-approve \
+      -var="aws_region=${REGION}" \
+      -var="project_name=${PROJECT}"
+  fi
 
   local bucket dist_id url
   bucket="$(terraform -chdir="$TF_DIR" output -raw bucket_name)"

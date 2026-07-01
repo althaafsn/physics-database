@@ -1,0 +1,18 @@
+[Unit]
+Description=Physics DB Admin API (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/opt/physics-database/admin/server
+Environment=PHYSICS_DB_ROOT=/opt/physics-database
+Environment=PYTHONPATH=/opt/physics-database
+EnvironmentFile=/opt/physics-database/admin/server/.env
+ExecStart=/opt/physics-database/admin/server/.venv/bin/uvicorn physics_admin.main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -200,6 +200,16 @@ def cmd_process(args: argparse.Namespace, paths: PipelinePaths) -> int:
         )
 
     incremental = not args.full and not args.pdf and not args.slug and not args.repair_all
+    llm_model = (
+        os.environ.get("LLM_REPAIR_MODEL")
+        or os.environ.get("HALLIDAY_TAG_MODEL")
+        or (
+            "qwen2.5:3b"
+            if os.environ.get("LLM_PROVIDER", "").strip().lower() in {"local", "ollama"}
+            or os.environ.get("LOCAL_LLM_BASE_URL", "").strip()
+            else "qwen3.6-35b"
+        )
+    )
     manifest = run_pipeline(
         paths,
         only_slugs=only_slugs,
@@ -209,6 +219,7 @@ def cmd_process(args: argparse.Namespace, paths: PipelinePaths) -> int:
         llm_repair=args.llm_repair or args.repair_all,
         llm_reset_progress=args.llm_reset_progress,
         repair_all=args.repair_all,
+        llm_model=llm_model,
     )
     extra = manifest.extra
     print(

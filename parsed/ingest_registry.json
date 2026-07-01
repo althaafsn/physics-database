@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-29T23:06:44.995457+00:00",
+  "updated_at": "2026-07-01T03:47:21.089947+00:00",
   "documents": {
     "Soal OSK Fisika SMA 2003": {
       "slug": "Soal OSK Fisika SMA 2003",
@@ -20,8 +20,8 @@
       "silver_bronze_hash": "983cf57b7c7b342b214a97e6fe9d6ee03efcea32ba418c476d5ef9f0d79e8730",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.973121+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.564012+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2004": {
       "slug": "Soal OSK Fisika SMA 2004",
@@ -41,8 +41,8 @@
       "silver_bronze_hash": "9f31432d79e81cdfb1abb3673a59fc54842c1b6725245c087b5858e98ac8ff48",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.973523+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.564524+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2005": {
       "slug": "Soal OSK Fisika SMA 2005",
@@ -62,8 +62,8 @@
       "silver_bronze_hash": "c1734dbfc7165017a7e6473083608e9cb97961c6f27d75de462769ac73b31cc7",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.973882+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.564912+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2006": {
       "slug": "Soal OSK Fisika SMA 2006",
@@ -83,8 +83,8 @@
       "silver_bronze_hash": "9ff0db68d4cd49a0a0b6dfa9eaeb7a7726b952beb214b2ea75b359d98d0a90d5",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.974231+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.565269+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2007": {
       "slug": "Soal OSK Fisika SMA 2007",
@@ -104,8 +104,8 @@
       "silver_bronze_hash": "44f69eb3077b908fba09260ea7446c6f84826213e69a8b9330abcd4d92493c35",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.974579+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.565616+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2008": {
       "slug": "Soal OSK Fisika SMA 2008",
@@ -125,8 +125,8 @@
       "silver_bronze_hash": "bde97c623a0e10b42a0fa8a9fbf78caa4b065a14e3f8edff0d01d140617f6e63",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.974942+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.565965+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2009": {
       "slug": "Soal OSK Fisika SMA 2009",
@@ -146,8 +146,8 @@
       "silver_bronze_hash": "ac5677474217fc6af98c46a5674dff37186e4590998ebcaa55c61a4aed8b51fa",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.975273+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.566296+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2010": {
       "slug": "Soal OSK Fisika SMA 2010",
@@ -167,8 +167,8 @@
       "silver_bronze_hash": "49fa47bbbc2715a158e784d22ba90af345796e95d8a17a5707de22e7edfc7f34",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.975605+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.566629+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2011": {
       "slug": "Soal OSK Fisika SMA 2011",
@@ -188,15 +188,15 @@
       "silver_bronze_hash": "47400a39ce2bca54f1d05150ff81da0f490380c6d0dc8dc3c8a45aa747732f78",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.975937+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.566974+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2012": {
       "slug": "Soal OSK Fisika SMA 2012",
       "pdf_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSK Fisika SMA 2012.pdf",
       "pdf_hash": "796b8352b2cea0cd033de5b4edb7f22e31fa1052fec187271b8795043155fb4e",
       "bronze_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSK Fisika SMA 2012",
-      "bronze_hash": "692cb900711ab184ac3c41e06698a7296f3dd28682c3e23755cdd603ea00b7cd",
+      "bronze_hash": "879355ec713b045309d062af7943284a77dffbcea9477a3a99e8b2b2e98a4143",
       "stage": "gold_done",
       "level": "OSK",
       "year": 2012,
@@ -205,12 +205,12 @@
       "title": "Soal OSK Fisika SMA 2012",
       "meta_source": "markdown_title",
       "problems_count": 24,
-      "errors_count": 9,
-      "silver_bronze_hash": "692cb900711ab184ac3c41e06698a7296f3dd28682c3e23755cdd603ea00b7cd",
+      "errors_count": 3,
+      "silver_bronze_hash": "879355ec713b045309d062af7943284a77dffbcea9477a3a99e8b2b2e98a4143",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.976282+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T03:47:14.149259+00:00",
+      "last_run_id": "20260701T034700-59025503"
     },
     "Soal OSK Fisika SMA 2013": {
       "slug": "Soal OSK Fisika SMA 2013",
@@ -230,8 +230,8 @@
       "silver_bronze_hash": "c6218eb0e7fb24a7209e42ed6d70de5f7f7af51870ee035d2c0082907ac97bc5",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.976600+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.567633+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2014": {
       "slug": "Soal OSK Fisika SMA 2014",
@@ -251,8 +251,8 @@
       "silver_bronze_hash": "62685044d4894187db889333956f73b810d336300845febe2edd6e94aa97ad95",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.976948+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.567971+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2015": {
       "slug": "Soal OSK Fisika SMA 2015",
@@ -272,8 +272,8 @@
       "silver_bronze_hash": "3e108fb198a07de78d5f7e39a4060064410aa82806da016098b2ab6010813ae0",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.977270+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.568303+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2016": {
       "slug": "Soal OSK Fisika SMA 2016",
@@ -293,8 +293,8 @@
       "silver_bronze_hash": "a1a62fbf45e088899974bcffb96808d0aa52a3de6244196360510e6616377c42",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.977585+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.568634+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2017": {
       "slug": "Soal OSK Fisika SMA 2017",
@@ -314,8 +314,8 @@
       "silver_bronze_hash": "b7aed34ebaae089c8ee305c4438c559a01e7727b1dcf240e1df5d77a1d43e92c",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.977917+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.568977+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2018": {
       "slug": "Soal OSK Fisika SMA 2018",
@@ -335,8 +335,8 @@
       "silver_bronze_hash": "d3023e5729a3964fe0b5fe1fbe181fa701d1d75a9d3a11fa5964c028cd0cf5ce",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.978234+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.569307+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2019": {
       "slug": "Soal OSK Fisika SMA 2019",
@@ -356,8 +356,8 @@
       "silver_bronze_hash": "978c33772bee78e0a1077f8489ca4f1ac964abf317bd9599d33a6f5c92b21595",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.978551+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.569645+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2020": {
       "slug": "Soal OSK Fisika SMA 2020",
@@ -377,8 +377,8 @@
       "silver_bronze_hash": "f5a7a3192dca0ffdf88017753a8fca69ddc3a4203e787ccb19836365757a6488",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.978874+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.569998+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2021": {
       "slug": "Soal OSK Fisika SMA 2021",
@@ -398,8 +398,8 @@
       "silver_bronze_hash": "1ff8664d7a8e582683cf521fbadebeb64f38fcacd8580a2e558d190a5aa0299f",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.979201+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.570327+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2022": {
       "slug": "Soal OSK Fisika SMA 2022",
@@ -419,8 +419,8 @@
       "silver_bronze_hash": "7726067ce4501449ceffd179e165be8c19fcca3c31d9488d3a03bbdf945c78c1",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.979527+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.570655+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2023 (1)": {
       "slug": "Soal OSK Fisika SMA 2023 (1)",
@@ -440,8 +440,8 @@
       "silver_bronze_hash": "4cc3eb12707ab707176840c87a564963a0ef3bcdb808b33ceee4afce3e1b2276",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.979855+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.570991+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2024": {
       "slug": "Soal OSK Fisika SMA 2024",
@@ -461,8 +461,8 @@
       "silver_bronze_hash": "49b7f9bd4ec3f3b2b7c0ae0fd1b9ebe6b2087e9e2e12fdf4e2363c010245f2e4",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.980166+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.571318+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2025": {
       "slug": "Soal OSK Fisika SMA 2025",
@@ -482,8 +482,8 @@
       "silver_bronze_hash": "471ee4a0a97153e6db420800dbf781d087d02bc84e127f025f8ca3aa53fcdeed",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.980486+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.571642+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSK Fisika SMA 2026": {
       "slug": "Soal OSK Fisika SMA 2026",
@@ -503,8 +503,8 @@
       "silver_bronze_hash": "2b6f0a8350a86597831d42ad3d5bafdf3486fe3c3634682e7fec47e256c4fa64",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.980836+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.571977+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2004": {
       "slug": "Soal OSN Fisika SMA 2004",
@@ -524,15 +524,15 @@
       "silver_bronze_hash": "28dbc27d0707a2742225bf2058dd0fbb9fc58a3d5afcab96742d2d0363eec683",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.981147+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.572299+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2005": {
       "slug": "Soal OSN Fisika SMA 2005",
       "pdf_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSN Fisika SMA 2005.pdf",
       "pdf_hash": "b1ee6915eb7017c69b349c9d080a4b2aa152fc9d608741cdca095a2880b199a9",
       "bronze_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSN Fisika SMA 2005",
-      "bronze_hash": "1f593811964328f55c1e25aebcaf1da9aed45e621057bff3b2f15e1f59ae7800",
+      "bronze_hash": "cd7122ce5763fba2aa5e3793b74cffe45eded93360c04aa1653ac1996d74fe3f",
       "stage": "gold_done",
       "level": "OSN",
       "year": 2005,
@@ -541,12 +541,12 @@
       "title": "Soal OSN Fisika SMA 2005",
       "meta_source": "markdown_title",
       "problems_count": 8,
-      "errors_count": 3,
-      "silver_bronze_hash": "1f593811964328f55c1e25aebcaf1da9aed45e621057bff3b2f15e1f59ae7800",
+      "errors_count": 1,
+      "silver_bronze_hash": "cd7122ce5763fba2aa5e3793b74cffe45eded93360c04aa1653ac1996d74fe3f",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.981455+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T03:47:15.086507+00:00",
+      "last_run_id": "20260701T034714-6c17559b"
     },
     "Soal OSN Fisika SMA 2006": {
       "slug": "Soal OSN Fisika SMA 2006",
@@ -566,8 +566,8 @@
       "silver_bronze_hash": "4a0f3a5c88028447afa6f2f13dc42a2249040d02c67aea4edf0a417313f8e9e0",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.981779+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.572958+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2007": {
       "slug": "Soal OSN Fisika SMA 2007",
@@ -587,8 +587,8 @@
       "silver_bronze_hash": "45b7e0880700b5566f642b6b53a8e34793189348274659d69a5f8c93f2477ab0",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.982099+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.573282+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2008": {
       "slug": "Soal OSN Fisika SMA 2008",
@@ -608,8 +608,8 @@
       "silver_bronze_hash": "e2ede390bd469eec0140339fef1bf6c52fbe5de8a93eea7bb80666a3deb54f3a",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.982411+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.573606+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2009": {
       "slug": "Soal OSN Fisika SMA 2009",
@@ -629,8 +629,8 @@
       "silver_bronze_hash": "ac3b0d214879bf6f36e0320464b52bcfda20de14aea6ddae521364fa32af8c62",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.982732+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.573940+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2010": {
       "slug": "Soal OSN Fisika SMA 2010",
@@ -650,8 +650,8 @@
       "silver_bronze_hash": "cba3aaae611c4f9c3624ba0bde174be6fdf305c89cbd3e122a36ae32e87a3311",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.983044+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.574265+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2011": {
       "slug": "Soal OSN Fisika SMA 2011",
@@ -671,8 +671,8 @@
       "silver_bronze_hash": "e3a72a946bbd940ad369320e7535a04e16f82943ed47be27e897b89b039d9428",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.983352+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.574586+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2012": {
       "slug": "Soal OSN Fisika SMA 2012",
@@ -692,8 +692,8 @@
       "silver_bronze_hash": "362677674b0917fee3937d2bbb7616c257fb6272fd9a241d065f7d855c186b9a",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.983662+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.574926+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2013": {
       "slug": "Soal OSN Fisika SMA 2013",
@@ -713,8 +713,8 @@
       "silver_bronze_hash": "bcb1a7879d65cbf4f346d5a3333621e4c70fb6c034d58fcaca9a5bf3ce08ccf5",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.983994+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.575256+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2014": {
       "slug": "Soal OSN Fisika SMA 2014",
@@ -734,8 +734,8 @@
       "silver_bronze_hash": "6069beb9bafe70e7e3312c7bc05d90cbd6def28ecf3669332148e2fc2a46031a",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.984310+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.575586+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2015": {
       "slug": "Soal OSN Fisika SMA 2015",
@@ -755,8 +755,8 @@
       "silver_bronze_hash": "0b6b6e504f902e9e3ad6d2e69fc9e52ad79e5413f29cd838f48a39a2fbb0da4e",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.984623+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.575937+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2016": {
       "slug": "Soal OSN Fisika SMA 2016",
@@ -776,8 +776,8 @@
       "silver_bronze_hash": "9925ffc17d6b739f2f5b94ab487f984c240220aeb17af8b92262dd47e59952fa",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.984943+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.576274+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2017": {
       "slug": "Soal OSN Fisika SMA 2017",
@@ -797,8 +797,8 @@
       "silver_bronze_hash": "f8e834bd38e926fb85644343d17e00e7491703904fbe4aa229a3c9b6f18dddff",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.985252+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.576627+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2018": {
       "slug": "Soal OSN Fisika SMA 2018",
@@ -818,8 +818,8 @@
       "silver_bronze_hash": "738c59cdef9e35defb13102cccf9aa6ce28d68788db034466a489e8c10729b46",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.985562+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.577006+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2019": {
       "slug": "Soal OSN Fisika SMA 2019",
@@ -839,8 +839,8 @@
       "silver_bronze_hash": "e550d5a9e11fa388cfa4cea563942b032ecda87ae58a935bb50ef02a88ab2704",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.985880+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.577361+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2020": {
       "slug": "Soal OSN Fisika SMA 2020",
@@ -860,8 +860,8 @@
       "silver_bronze_hash": "55afbaca22884080225270f0fbd1d86cab94425505158968126fdb5c30d032f0",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.986189+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.577705+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2021": {
       "slug": "Soal OSN Fisika SMA 2021",
@@ -881,8 +881,8 @@
       "silver_bronze_hash": "9315f25f44878d22b74c5f543b2cb3d168c9b3ba9f74e9d766c0773b78e0d359",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.986504+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.578056+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2022": {
       "slug": "Soal OSN Fisika SMA 2022",
@@ -902,8 +902,8 @@
       "silver_bronze_hash": "77d8d6c11ae22618fe2fdf55bfae6a6f8a70ff926b8fa4e6733c9f6d2c43030f",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.986822+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.578396+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2023": {
       "slug": "Soal OSN Fisika SMA 2023",
@@ -923,8 +923,8 @@
       "silver_bronze_hash": "2fc73a79cd888b2de2bf6dc1f8c397fbf2ab3e359a5209228173b694953abbf0",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.987132+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.578757+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA 2024": {
       "slug": "Soal OSN Fisika SMA 2024",
@@ -944,8 +944,8 @@
       "silver_bronze_hash": "c243aec1a0832d35086eba36024acb0f131a15c9286af6e1de60886098e67f99",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.987440+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.579098+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSN Fisika SMA Final 2025": {
       "slug": "Soal OSN Fisika SMA Final 2025",
@@ -965,8 +965,8 @@
       "silver_bronze_hash": "7a477ab7175598742464b700fd260c9c51ef4124c6bc2eb1139fdc5cc3eefdd7",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.987770+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.579441+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2002": {
       "slug": "Soal OSP Fisika SMA 2002",
@@ -986,8 +986,8 @@
       "silver_bronze_hash": "daa1e059853e6b273df8c960ed85334d5f76488f820217a4e9ccfb95f05e4a34",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.988082+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.579791+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2003": {
       "slug": "Soal OSP Fisika SMA 2003",
@@ -1007,8 +1007,8 @@
       "silver_bronze_hash": "8f279e038b1dad07401ab379493a35eb9b00a326855fe8976db57f9b35f6c8fb",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.988390+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.580137+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2004": {
       "slug": "Soal OSP Fisika SMA 2004",
@@ -1028,8 +1028,8 @@
       "silver_bronze_hash": "7f4aefd5b85abdd56838bf063401a1f371f6507b7cf1a3ef3a3ddeff548d796f",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.988704+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.580503+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2005": {
       "slug": "Soal OSP Fisika SMA 2005",
@@ -1049,8 +1049,8 @@
       "silver_bronze_hash": "c854fd014ed3677e5361970c076d78ea33f777d21846180814c785fff88fd06b",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.989024+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.580858+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2006": {
       "slug": "Soal OSP Fisika SMA 2006",
@@ -1070,8 +1070,8 @@
       "silver_bronze_hash": "bd0778e7bf13460923256392a20f01bb4506c9b7836a7238cac0a94a42124793",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.989333+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.581192+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2007": {
       "slug": "Soal OSP Fisika SMA 2007",
@@ -1091,15 +1091,15 @@
       "silver_bronze_hash": "aa623428f10ec9c9e330d7191594896eab5a4a6d16943fc7a74782100188f8f7",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.989641+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.581524+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2008": {
       "slug": "Soal OSP Fisika SMA 2008",
       "pdf_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSP Fisika SMA 2008.pdf",
       "pdf_hash": "cafda4f4305c051fd9b18b3686315929d5f01faf97604b19aa633d6155cb999a",
       "bronze_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSP Fisika SMA 2008",
-      "bronze_hash": "e837aae1348e9a9d40928a480192330c89b97c8ac62c0493f7972482479c2548",
+      "bronze_hash": "b57650cb0c8333e002fbb5920dde4a1e4d4289a6b177ef7f43414f981cfa7ac4",
       "stage": "gold_done",
       "level": "OSP",
       "year": 2009,
@@ -1108,12 +1108,12 @@
       "title": "Soal OSP Fisika SMA 2009",
       "meta_source": "markdown_title",
       "problems_count": 6,
-      "errors_count": 3,
-      "silver_bronze_hash": "e837aae1348e9a9d40928a480192330c89b97c8ac62c0493f7972482479c2548",
+      "errors_count": 1,
+      "silver_bronze_hash": "b57650cb0c8333e002fbb5920dde4a1e4d4289a6b177ef7f43414f981cfa7ac4",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.989965+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T03:47:20.038558+00:00",
+      "last_run_id": "20260701T034715-c6c5b875"
     },
     "Soal OSP Fisika SMA 2009": {
       "slug": "Soal OSP Fisika SMA 2009",
@@ -1133,8 +1133,8 @@
       "silver_bronze_hash": "78fd709f055faf292641927f7a9ea5286b87c81e126a192b000f097691abc934",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.990290+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.582226+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2010": {
       "slug": "Soal OSP Fisika SMA 2010",
@@ -1154,8 +1154,8 @@
       "silver_bronze_hash": "455b82e3bb73b09a081cc4a04bdae21245516b0bd34a387021c03143e4392694",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.990603+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.582574+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2011": {
       "slug": "Soal OSP Fisika SMA 2011",
@@ -1175,8 +1175,8 @@
       "silver_bronze_hash": "6d9825aeddbe0dd2b5868b4805f5c4fc49463302d180823a6ca070780531e5a7",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.990920+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.582927+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2012": {
       "slug": "Soal OSP Fisika SMA 2012",
@@ -1196,8 +1196,8 @@
       "silver_bronze_hash": "d1a347bf805bb80f2e12d30fd8a3400f6db31b4742a68d1eff68d4a049a2ccd9",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.991231+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.583283+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2013": {
       "slug": "Soal OSP Fisika SMA 2013",
@@ -1217,8 +1217,8 @@
       "silver_bronze_hash": "8ea657a66faf5662b229afadccbb678e1308caec411e35a96e1ef7e0106cb48a",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.991542+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.583627+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2014": {
       "slug": "Soal OSP Fisika SMA 2014",
@@ -1238,8 +1238,8 @@
       "silver_bronze_hash": "0b755a4398b58bcfb48db8122d7a7db4a94515f86fe31d18fdaef6dd85c409a2",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.991864+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.583972+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2015": {
       "slug": "Soal OSP Fisika SMA 2015",
@@ -1259,8 +1259,8 @@
       "silver_bronze_hash": "da89f0edfc696fc20184e20b4cf516ad222af69459a871c514d3b85aa12ff4f1",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.992174+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.584302+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2016": {
       "slug": "Soal OSP Fisika SMA 2016",
@@ -1280,8 +1280,8 @@
       "silver_bronze_hash": "509b167255257495d22e4f836b0cbeb48ce18cd87016540de3ba829dc149e3e2",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.992489+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.584629+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2017": {
       "slug": "Soal OSP Fisika SMA 2017",
@@ -1301,15 +1301,15 @@
       "silver_bronze_hash": "cba3d92cb777a11eb36017b712710fb46a5d87d80c5b48a55f08fe144c3112c5",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.992810+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.585034+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2018": {
       "slug": "Soal OSP Fisika SMA 2018",
       "pdf_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/all_pdf/Soal OSP Fisika SMA 2018.pdf",
       "pdf_hash": "b2aae6edd19069d7f8425ab1ed21cb3f4d31843fb9d47646dbc46ccbff3bb462",
       "bronze_path": "/home/althaaf/JOB_SEARCH/project/PYTHON/PHYSICS_DATABASE/output/Soal OSP Fisika SMA 2018",
-      "bronze_hash": "a82caac80095f373215b3f21a98d2280dea7c8b87ae63d0189beffe837e6c70a",
+      "bronze_hash": "266e76cdce8e919b73b47ed6dd8d6ec9f85613db0810a85c640f7679d5fcbfe0",
       "stage": "gold_done",
       "level": "OSP",
       "year": 2018,
@@ -1318,12 +1318,12 @@
       "title": "Soal OSP Fisika SMA 2018",
       "meta_source": "markdown_title",
       "problems_count": 7,
-      "errors_count": 2,
-      "silver_bronze_hash": "a82caac80095f373215b3f21a98d2280dea7c8b87ae63d0189beffe837e6c70a",
+      "errors_count": 0,
+      "silver_bronze_hash": "266e76cdce8e919b73b47ed6dd8d6ec9f85613db0810a85c640f7679d5fcbfe0",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.993118+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T03:47:21.089864+00:00",
+      "last_run_id": "20260701T034720-e43cc5b6"
     },
     "Soal OSP Fisika SMA 2019": {
       "slug": "Soal OSP Fisika SMA 2019",
@@ -1343,8 +1343,8 @@
       "silver_bronze_hash": "678f7783089778dd82862b3e38a5c1249db519772543f21579d85728076e46cb",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.993427+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.585693+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2020": {
       "slug": "Soal OSP Fisika SMA 2020",
@@ -1364,8 +1364,8 @@
       "silver_bronze_hash": "2ea64cbdc95abbf86883bae733401fe384987436d8871f4154f82f32b6e102fb",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.993749+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.586031+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2021": {
       "slug": "Soal OSP Fisika SMA 2021",
@@ -1385,8 +1385,8 @@
       "silver_bronze_hash": "a9584be7fdff1c3f9c5674ef3a6b6bb9450a68e85f3308a6dc1122db27608173",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.994078+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.586359+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2022": {
       "slug": "Soal OSP Fisika SMA 2022",
@@ -1406,8 +1406,8 @@
       "silver_bronze_hash": "2462f82f09986671cfaebec51731e533e9fb752bccb20f147ff81a51e54e0e20",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.994406+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.586688+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2023": {
       "slug": "Soal OSP Fisika SMA 2023",
@@ -1427,8 +1427,8 @@
       "silver_bronze_hash": "ef63e659b69a16ff43623bf90d67e404dd9eafa97fc2d697cc76f35e5d4dad6c",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.994763+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.587043+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2024": {
       "slug": "Soal OSP Fisika SMA 2024",
@@ -1448,8 +1448,8 @@
       "silver_bronze_hash": "6989598471a8e6e0cd61157306ea2f99a70367091148cf30494639cbdce88213",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.995095+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.587371+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     },
     "Soal OSP Fisika SMA 2025 + Semifinal": {
       "slug": "Soal OSP Fisika SMA 2025 + Semifinal",
@@ -1469,8 +1469,8 @@
       "silver_bronze_hash": "7efad6337be3f78528e032b83a1f051ea27197e4f00f29e79fb9e18129dc9474",
       "notes": null,
       "first_seen_at": "2026-06-28T14:13:54.153696+00:00",
-      "last_processed_at": "2026-06-29T23:06:44.995420+00:00",
-      "last_run_id": "20260629T230251-fa0da492"
+      "last_processed_at": "2026-07-01T01:24:51.587724+00:00",
+      "last_run_id": "20260701T012424-c65d0794"
     }
   }
 }

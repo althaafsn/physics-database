@@ -63,12 +63,54 @@ def list_pending_marker_pdfs(
     return pending
 
 
-def resolve_marker_single() -> list[str]:
+def marker_extra_args_from_env() -> list[str]:
+    """Build optional Marker CLI flags from environment."""
+    import os
+
+    args: list[str] = []
+    if os.environ.get("MARKER_HIGH_DPI", "1").lower() in {"1", "true", "yes"}:
+        args.extend(["--highres_image_dpi", os.environ.get("MARKER_HIGHRES_DPI", "288")])
+    if os.environ.get("MARKER_FORCE_OCR", "1").lower() in {"1", "true", "yes"}:
+        args.append("--force_ocr")
+    if os.environ.get("MARKER_USE_LLM", "").lower() in {"1", "true", "yes"}:
+        args.extend(
+            [
+                "--use_llm",
+                "--llm_service",
+                os.environ.get(
+                    "MARKER_LLM_SERVICE",
+                    "marker.services.ollama.OllamaService",
+                ),
+            ]
+        )
+    return args
+
+
+def resolve_marker_argv() -> list[str]:
     """Return argv prefix to invoke marker_single."""
+    import os
+
     marker_single = shutil.which("marker_single")
     if marker_single:
         return [marker_single]
+
+    for candidate in (
+        os.environ.get("MARKER_SINGLE"),
+        os.environ.get("MARKER_BIN"),
+    ):
+        if candidate and Path(candidate).is_file():
+            return [candidate]
+
+    default_venv = Path("/home/althaaf/JOB_SEARCH/.venv-marker/bin/marker_single")
+    if default_venv.is_file():
+        return [str(default_venv)]
+
     return [sys.executable, "-m", "marker.scripts.convert_single"]
+
+
+def resolve_marker_single() -> list[str]:
+    """Backward-compatible alias."""
+    return resolve_marker_argv()
 
 
 def marker_env() -> dict[str, str]:
@@ -86,6 +128,7 @@ def convert_pdf_to_bronze(
     *,
     bronze_dir: Path,
     marker_argv: list[str] | None = None,
+    marker_extra_args: list[str] | None = None,
     timeout_s: float | None = None,
 ) -> BronzeConvertResult:
     slug = pdf_path.stem
@@ -97,6 +140,8 @@ def convert_pdf_to_bronze(
         str(bronze_dir.resolve()),
         "--disable_tqdm",
     ]
+    if marker_extra_args:
+        cmd.extend(marker_extra_args)
     try:
         proc = subprocess.run(
             cmd,
@@ -132,18 +177,27 @@ def convert_pending_pdfs(
     items: list[tuple[str, Path]],
     *,
     marker_argv: list[str] | None = None,
+    marker_extra_args: list[str] | None = None,
+    force: bool = False,
     timeout_s: float | None = None,
     log: Callable[[str], None] | None = print,
 ) -> list[BronzeConvertResult]:
+    import shutil
+
     results: list[BronzeConvertResult] = []
     total = len(items)
     for index, (slug, pdf_path) in enumerate(items, start=1):
+        if force:
+            target = paths.bronze_folder(slug)
+            if target.is_dir():
+                shutil.rmtree(target)
         if log:
             log(f"[Marker {index}/{total}] {slug}")
         result = convert_pdf_to_bronze(
             pdf_path,
             bronze_dir=paths.bronze_dir,
             marker_argv=marker_argv,
+            marker_extra_args=marker_extra_args,
             timeout_s=timeout_s,
         )
         results.append(result)

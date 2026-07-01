@@ -1,0 +1,442 @@
+{
+  "version": 2,
+  "source": "Streamlined Halliday/Resnick concepts (topic + detail tags)",
+  "disciplines": [
+    {
+      "id": "fundamentals-and-math",
+      "title": "Fundamentals & Math",
+      "topics": ["units-and-vectors"]
+    },
+    {
+      "id": "classical-mechanics",
+      "title": "Classical Mechanics",
+      "topics": [
+        "kinematics",
+        "newtons-laws-and-forces",
+        "work-and-energy",
+        "momentum-and-collisions",
+        "rotational-motion",
+        "statics-and-elasticity",
+        "gravitation-and-orbits"
+      ]
+    },
+    {
+      "id": "fluids-oscillations-waves",
+      "title": "Fluids, Oscillations & Waves",
+      "topics": [
+        "fluid-mechanics",
+        "simple-harmonic-motion",
+        "mechanical-waves-and-sound"
+      ]
+    },
+    {
+      "id": "thermodynamics",
+      "title": "Thermodynamics",
+      "topics": [
+        "temperature-and-heat-transfer",
+        "kinetic-theory-and-gases",
+        "laws-of-thermodynamics"
+      ]
+    },
+    {
+      "id": "electromagnetism",
+      "title": "Electromagnetism",
+      "topics": [
+        "electrostatics",
+        "gauss-law",
+        "electric-potential",
+        "dc-circuits-and-capacitance",
+        "magnetostatics",
+        "electromagnetic-induction",
+        "ac-circuits-and-em-waves"
+      ]
+    },
+    {
+      "id": "optics",
+      "title": "Optics",
+      "topics": ["geometric-optics", "physical-optics"]
+    },
+    {
+      "id": "modern-physics",
+      "title": "Modern Physics & Quantum Mechanics",
+      "topics": [
+        "special-relativity",
+        "quantum-mechanics",
+        "atomic-physics",
+        "solid-state-physics",
+        "nuclear-physics",
+        "particle-physics-and-cosmology"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "units-and-vectors",
+      "title": "Units and Vectors",
+      "discipline": "fundamentals-and-math",
+      "details": [
+        { "id": "si-units", "title": "SI units and unit conversion" },
+        { "id": "significant-figures", "title": "Significant figures and decimal places" },
+        { "id": "vector-addition", "title": "Vector addition and components" },
+        { "id": "dot-product", "title": "Dot product" },
+        { "id": "cross-product", "title": "Cross product" }
+      ]
+    },
+    {
+      "id": "kinematics",
+      "title": "Kinematics",
+      "discipline": "classical-mechanics",
+      "details": [
+        { "id": "one-dimensional-motion", "title": "1D position, displacement, velocity, acceleration" },
+        { "id": "constant-acceleration", "title": "Constant acceleration and free fall" },
+        { "id": "two-dimensional-motion", "title": "2D/3D motion and velocity" },
+        { "id": "projectile-motion", "title": "Projectile motion" },
+        { "id": "relative-motion", "title": "Relative motion in one and two dimensions" },
+        { "id": "graphical-integration", "title": "Graphical integration in motion analysis" }
+      ]
+    },
+    {
+      "id": "newtons-laws-and-forces",
+      "title": "Newton's Laws and Forces",
+      "discipline": "classical-mechanics",
+      "details": [
+        { "id": "newtons-laws", "title": "Newton's laws and applying forces" },
+        { "id": "friction", "title": "Friction and properties of friction" },
+        { "id": "drag-forces", "title": "Drag force and terminal speed" },
+        { "id": "uniform-circular-motion-dynamics", "title": "Uniform circular motion dynamics" }
+      ]
+    },
+    {
+      "id": "work-and-energy",
+      "title": "Work and Energy",
+      "discipline": "classical-mechanics",
+      "details": [
+        { "id": "kinetic-energy", "title": "Kinetic energy" },
+        { "id": "work", "title": "Work and work-energy theorem" },
+        { "id": "gravitational-work", "title": "Work done by gravitational force" },
+        { "id": "spring-work", "title": "Work done by a spring force" },
+        { "id": "variable-force-work", "title": "Work by a general variable force" },
+        { "id": "power", "title": "Power" },
+        { "id": "potential-energy", "title": "Potential energy and conservative forces" },
+        { "id": "conservation-mechanical-energy", "title": "Conservation of mechanical energy" }
+      ]
+    },
+    {
+      "id": "momentum-and-collisions",
+      "title": "Momentum and Collisions",
+      "discipline": "classical-mechanics",
+      "details": [
+        { "id": "center-of-mass", "title": "Center of mass" },
+        { "id": "impulse", "title": "Collision and impulse" },
+        { "id": "linear-momentum", "title": "Linear momentum and conservation" },
+        { "id": "inelastic-collisions", "title": "Inelastic collisions in one dimension" },
+        { "id": "elastic-collisions", "title": "Elastic collisions in one dimension" },
+        { "id": "two-dimensional-collisions", "title": "Collisions in two dimensions" },
+        { "id": "variable-mass-systems", "title": "Systems with varying mass" }
+      ]
+    },
+    {
+      "id": "rotational-motion",
+      "title": "Rotational Motion",
+      "discipline": "classical-mechanics",
+      "details": [
+        { "id": "angular-kinematics", "title": "Rotational variables and constant angular acceleration" },
+        { "id": "moment-of-inertia", "title": "Moment of inertia and rotational kinetic energy" },
+        { "id": "torque", "title": "Torque and Newton's second law for rotation" },
+        { "id": "rolling-motion", "title": "Rolling as translation and rotation" },
+        { "id": "angular-momentum", "title": "Angular momentum and conservation" },
+        { "id": "gyroscope-precession", "title": "Precession of a gyroscope" }
+      ]
+    },
+    {
+      "id": "statics-and-elasticity",
+      "title": "Statics and Elasticity",
+      "discipline": "classical-mechanics",
+      "details": [
+        { "id": "static-equilibrium", "title": "Static equilibrium and center of gravity" },
+        { "id": "elasticity", "title": "Elasticity and indeterminate structures" }
+      ]
+    },
+    {
+      "id": "gravitation-and-orbits",
+      "title": "Gravitation and Orbits",
+      "discipline": "classical-mechanics",
+      "details": [
+        { "id": "newtons-law-gravitation", "title": "Newton's law of gravitation" },
+        { "id": "gravitational-potential", "title": "Gravitational potential energy" },
+        { "id": "gravitation-near-earth", "title": "Gravitation near and inside Earth" },
+        { "id": "keplers-laws", "title": "Kepler's laws and satellite orbits" }
+      ]
+    },
+    {
+      "id": "fluid-mechanics",
+      "title": "Fluid Mechanics",
+      "discipline": "fluids-oscillations-waves",
+      "details": [
+        { "id": "density-pressure", "title": "Density and pressure" },
+        { "id": "fluids-at-rest", "title": "Fluids at rest" },
+        { "id": "pascals-principle", "title": "Pascal's principle" },
+        { "id": "archimedes-principle", "title": "Archimedes' principle" },
+        { "id": "continuity-equation", "title": "Equation of continuity" },
+        { "id": "bernoullis-equation", "title": "Bernoulli's equation" }
+      ]
+    },
+    {
+      "id": "simple-harmonic-motion",
+      "title": "Simple Harmonic Motion",
+      "discipline": "fluids-oscillations-waves",
+      "details": [
+        { "id": "simple-harmonic-oscillators", "title": "Simple harmonic oscillators" },
+        { "id": "pendulums", "title": "Pendulums and angular SHM" },
+        { "id": "damped-oscillations", "title": "Damped simple harmonic motion" },
+        { "id": "forced-oscillations", "title": "Forced oscillations and resonance" }
+      ]
+    },
+    {
+      "id": "mechanical-waves-and-sound",
+      "title": "Mechanical Waves and Sound",
+      "discipline": "fluids-oscillations-waves",
+      "details": [
+        { "id": "transverse-waves", "title": "Transverse waves on strings" },
+        { "id": "wave-equation", "title": "Wave equation and standing waves" },
+        { "id": "sound-speed", "title": "Speed of sound and traveling sound waves" },
+        { "id": "doppler-effect", "title": "Doppler effect" },
+        { "id": "beats", "title": "Beats and interference" },
+        { "id": "intensity-sound-level", "title": "Intensity and sound level" }
+      ]
+    },
+    {
+      "id": "temperature-and-heat-transfer",
+      "title": "Temperature and Heat Transfer",
+      "discipline": "thermodynamics",
+      "details": [
+        { "id": "temperature-scales", "title": "Temperature and Celsius/Fahrenheit scales" },
+        { "id": "thermal-expansion", "title": "Thermal expansion" },
+        { "id": "specific-heat", "title": "Heat absorption and specific heat" },
+        { "id": "heat-transfer-mechanisms", "title": "Heat transfer mechanisms" }
+      ]
+    },
+    {
+      "id": "kinetic-theory-and-gases",
+      "title": "Kinetic Theory and Gases",
+      "discipline": "thermodynamics",
+      "details": [
+        { "id": "ideal-gas-law", "title": "Ideal gases and Avogadro's number" },
+        { "id": "rms-speed", "title": "Pressure, temperature, and RMS speed" },
+        { "id": "mean-free-path", "title": "Mean free path" },
+        { "id": "molecular-speed-distribution", "title": "Distribution of molecular speeds" },
+        { "id": "molar-specific-heats", "title": "Molar specific heats and degrees of freedom" },
+        { "id": "adiabatic-expansion", "title": "Adiabatic expansion of an ideal gas" }
+      ]
+    },
+    {
+      "id": "laws-of-thermodynamics",
+      "title": "Laws of Thermodynamics",
+      "discipline": "thermodynamics",
+      "details": [
+        { "id": "first-law-thermodynamics", "title": "First law of thermodynamics" },
+        { "id": "entropy", "title": "Entropy and change in entropy" },
+        { "id": "second-law-thermodynamics", "title": "Second law of thermodynamics" },
+        { "id": "heat-engines", "title": "Heat engines and efficiency" },
+        { "id": "refrigerators", "title": "Refrigerators and real engines" },
+        { "id": "statistical-entropy", "title": "Statistical view of entropy" }
+      ]
+    },
+    {
+      "id": "electrostatics",
+      "title": "Electrostatics",
+      "discipline": "electromagnetism",
+      "details": [
+        { "id": "coulombs-law", "title": "Coulomb's law and electric charge" },
+        { "id": "electric-field", "title": "Electric field and field lines" },
+        { "id": "electric-dipole", "title": "Electric dipole field and torque" },
+        { "id": "continuous-charge-distributions", "title": "Line, disk, and continuous charge distributions" }
+      ]
+    },
+    {
+      "id": "gauss-law",
+      "title": "Gauss' Law",
+      "discipline": "electromagnetism",
+      "details": [
+        { "id": "electric-flux", "title": "Electric flux" },
+        { "id": "gauss-law-applications", "title": "Gauss' law applications and conductors" },
+        { "id": "cylindrical-symmetry", "title": "Cylindrical symmetry" },
+        { "id": "planar-symmetry", "title": "Planar symmetry" },
+        { "id": "spherical-symmetry", "title": "Spherical symmetry" }
+      ]
+    },
+    {
+      "id": "electric-potential",
+      "title": "Electric Potential",
+      "discipline": "electromagnetism",
+      "details": [
+        { "id": "equipotential-surfaces", "title": "Equipotential surfaces" },
+        { "id": "potential-from-field", "title": "Calculating potential from the field" },
+        { "id": "point-charge-potential", "title": "Potential due to point charges" },
+        { "id": "potential-energy-systems", "title": "Electric potential energy of charge systems" }
+      ]
+    },
+    {
+      "id": "dc-circuits-and-capacitance",
+      "title": "DC Circuits and Capacitance",
+      "discipline": "electromagnetism",
+      "details": [
+        { "id": "electric-current", "title": "Electric current and current density" },
+        { "id": "resistance-resistivity", "title": "Resistance, resistivity, and Ohm's law" },
+        { "id": "capacitance", "title": "Capacitance and energy in electric fields" },
+        { "id": "capacitors-series-parallel", "title": "Capacitors in series and parallel" },
+        { "id": "dielectrics", "title": "Dielectrics" },
+        { "id": "multiloop-circuits", "title": "Single-loop and multiloop circuits" },
+        { "id": "rc-circuits", "title": "RC circuits" }
+      ]
+    },
+    {
+      "id": "magnetostatics",
+      "title": "Magnetostatics",
+      "discipline": "electromagnetism",
+      "details": [
+        { "id": "magnetic-force-charges", "title": "Magnetic force on moving charges" },
+        { "id": "hall-effect", "title": "Hall effect" },
+        { "id": "cyclotron-motion", "title": "Circulating charged particles and cyclotrons" },
+        { "id": "force-on-wires", "title": "Magnetic force on current-carrying wires" },
+        { "id": "torque-on-loops", "title": "Torque on current loops and magnetic dipole moment" },
+        { "id": "biot-savart-ampere", "title": "Biot-Savart, Ampere's law, solenoids, and toroids" }
+      ]
+    },
+    {
+      "id": "electromagnetic-induction",
+      "title": "Electromagnetic Induction",
+      "discipline": "electromagnetism",
+      "details": [
+        { "id": "faradays-law", "title": "Faraday's law of induction" },
+        { "id": "lenzs-law", "title": "Lenz's law" },
+        { "id": "induced-electric-fields", "title": "Induced electric fields" },
+        { "id": "inductance", "title": "Inductors and inductance" },
+        { "id": "self-induction", "title": "Self-induction" },
+        { "id": "rl-circuits", "title": "RL circuits" },
+        { "id": "mutual-induction", "title": "Mutual induction and magnetic energy" }
+      ]
+    },
+    {
+      "id": "ac-circuits-and-em-waves",
+      "title": "AC Circuits and EM Waves",
+      "discipline": "electromagnetism",
+      "details": [
+        { "id": "lc-oscillations", "title": "LC oscillations" },
+        { "id": "rlc-circuits", "title": "Damped and driven RLC circuits" },
+        { "id": "alternating-current", "title": "Alternating current and power in AC circuits" },
+        { "id": "transformers", "title": "Transformers" },
+        { "id": "maxwells-equations", "title": "Maxwell's equations and displacement current" },
+        { "id": "em-waves", "title": "Electromagnetic waves" },
+        { "id": "poynting-vector", "title": "Poynting vector and radiation pressure" },
+        { "id": "polarization", "title": "Polarization" }
+      ]
+    },
+    {
+      "id": "geometric-optics",
+      "title": "Geometric Optics",
+      "discipline": "optics",
+      "details": [
+        { "id": "reflection-refraction", "title": "Reflection and refraction" },
+        { "id": "total-internal-reflection", "title": "Total internal reflection" },
+        { "id": "spherical-mirrors", "title": "Spherical mirrors" },
+        { "id": "thin-lenses", "title": "Thin lenses and refracting surfaces" },
+        { "id": "optical-instruments", "title": "Optical instruments" }
+      ]
+    },
+    {
+      "id": "physical-optics",
+      "title": "Physical Optics",
+      "discipline": "optics",
+      "details": [
+        { "id": "interference", "title": "Wave interference and Young's double-slit" },
+        { "id": "thin-film-interference", "title": "Interference from thin films" },
+        { "id": "single-slit-diffraction", "title": "Single-slit diffraction" },
+        { "id": "circular-aperture-diffraction", "title": "Diffraction by a circular aperture" },
+        { "id": "diffraction-gratings", "title": "Diffraction gratings and resolving power" },
+        { "id": "x-ray-diffraction", "title": "X-ray diffraction" }
+      ]
+    },
+    {
+      "id": "special-relativity",
+      "title": "Special Relativity",
+      "discipline": "modern-physics",
+      "details": [
+        { "id": "time-dilation", "title": "Simultaneity and time dilation" },
+        { "id": "length-contraction", "title": "Length contraction" },
+        { "id": "lorentz-transformations", "title": "Lorentz transformations" },
+        { "id": "relativistic-velocity", "title": "Relativity of velocities" },
+        { "id": "relativistic-momentum-energy", "title": "Relativistic momentum and energy" },
+        { "id": "doppler-light", "title": "Doppler effect for light" }
+      ]
+    },
+    {
+      "id": "quantum-mechanics",
+      "title": "Quantum Mechanics",
+      "discipline": "modern-physics",
+      "details": [
+        { "id": "photons", "title": "Photons and quantization of light" },
+        { "id": "photoelectric-effect", "title": "Photoelectric effect" },
+        { "id": "compton-scattering", "title": "Compton scattering" },
+        { "id": "matter-waves", "title": "Electrons and matter waves" },
+        { "id": "schrodinger-equation", "title": "Schrödinger's equation" },
+        { "id": "uncertainty-principle", "title": "Heisenberg uncertainty principle" },
+        { "id": "tunneling", "title": "Tunneling through potential barriers" }
+      ]
+    },
+    {
+      "id": "atomic-physics",
+      "title": "Atomic Physics",
+      "discipline": "modern-physics",
+      "details": [
+        { "id": "electron-traps", "title": "Electron traps and finite wells" },
+        { "id": "hydrogen-atom", "title": "Hydrogen atom and Bohr model" },
+        { "id": "stern-gerlach", "title": "Stern-Gerlach experiment" },
+        { "id": "pauli-exclusion", "title": "Pauli exclusion principle" },
+        { "id": "periodic-table", "title": "Building the periodic table" },
+        { "id": "x-rays-elements", "title": "X-rays and ordering of elements" },
+        { "id": "lasers", "title": "Lasers" }
+      ]
+    },
+    {
+      "id": "solid-state-physics",
+      "title": "Solid State Physics",
+      "discipline": "modern-physics",
+      "details": [
+        { "id": "metal-conduction", "title": "Electrical properties of metals" },
+        { "id": "insulators", "title": "Insulators" },
+        { "id": "semiconductors", "title": "Semiconductors and doping" },
+        { "id": "pn-junction", "title": "p-n junction and rectifiers" },
+        { "id": "transistors-leds", "title": "Transistors and LEDs" }
+      ]
+    },
+    {
+      "id": "nuclear-physics",
+      "title": "Nuclear Physics",
+      "discipline": "modern-physics",
+      "details": [
+        { "id": "nuclear-structure", "title": "Nuclear properties and models" },
+        { "id": "radioactive-decay", "title": "Radioactive decay" },
+        { "id": "alpha-decay", "title": "Alpha decay" },
+        { "id": "beta-decay", "title": "Beta decay" },
+        { "id": "radiation-dosage", "title": "Radiation dosage" },
+        { "id": "nuclear-fission", "title": "Nuclear fission and reactors" },
+        { "id": "nuclear-fusion", "title": "Thermonuclear fusion" }
+      ]
+    },
+    {
+      "id": "particle-physics-and-cosmology",
+      "title": "Particle Physics and Cosmology",
+      "discipline": "modern-physics",
+      "details": [
+        { "id": "elementary-particles", "title": "General properties of elementary particles" },
+        { "id": "quarks-leptons", "title": "Quarks and leptons" },
+        { "id": "hadrons", "title": "Hadrons and conservation laws" },
+        { "id": "fundamental-forces", "title": "Fundamental forces and messenger particles" },
+        { "id": "expanding-universe", "title": "Expanding universe" },
+        { "id": "cosmic-background", "title": "Cosmic background radiation" },
+        { "id": "big-bang", "title": "Big Bang cosmology" }
+      ]
+    }
+  ]
+}

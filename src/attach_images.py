@@ -12,7 +12,18 @@ IMAGE_NAME_RE = re.compile(
     re.IGNORECASE,
 )
 
-FIGURE_HINTS = ("gambar", "lihat", "seperti di bawah", "diagram", "grafik")
+FIGURE_HINTS = ("gambar", "lihat gambar", "lihat pada gambar", "seperti di bawah", "diagram", "grafik")
+STUDENT_DRAW_RE = re.compile(
+    r"\b(?:gambarkan|gambar\s+(?:diagram|lintasan|grafik)|buat\s+diagram|nyatakan\s+dalam\s+diagram)\b",
+    re.IGNORECASE,
+)
+
+
+def body_expects_attached_figure(body_md: str) -> bool:
+    lower = body_md.lower()
+    if STUDENT_DRAW_RE.search(body_md):
+        return False
+    return any(hint in lower for hint in FIGURE_HINTS)
 
 
 def parse_image_filename(filename: str) -> tuple[int | None, str | None]:
@@ -83,7 +94,7 @@ def attach_images(
             )
         )
 
-    if not images and any(hint in body_md.lower() for hint in FIGURE_HINTS):
+    if not images and body_expects_attached_figure(body_md):
         flags.append("expected_image_missing")
 
     return images, flags

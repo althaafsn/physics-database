@@ -8,6 +8,7 @@ import { problemsFetcher } from '@/lib/api'
 import { problemsSwrKey } from '@/lib/data-source'
 import { PageHeader } from '@/components/page-header'
 import { ProblemPreview } from '@/components/problem-preview'
+import { ProblemExtras } from '@/components/problem-extras'
 import { ProblemDetailSheet } from '@/components/problem-detail-sheet'
 import { LocaleTableCell } from '@/components/locale-badge'
 import { useSetBuilder } from '@/components/set-builder-provider'
@@ -262,6 +263,10 @@ export function LibraryView() {
           {selected ? (
             <div className="surface-panel space-y-4 p-5">
               <ProblemPreview problem={selected} />
+              <ProblemExtras
+                problem={selected}
+                onSelectSimilar={(p) => handleSelect(p)}
+              />
               {addFooter}
             </div>
           ) : (
@@ -282,6 +287,7 @@ export function LibraryView() {
         open={sheetOpen && !isLarge}
         onClose={() => setSheetOpen(false)}
         footer={addFooter}
+        onSelectSimilar={(p) => handleSelect(p)}
       />
     </div>
   )
