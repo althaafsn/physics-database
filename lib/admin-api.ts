@@ -56,16 +56,6 @@ async function parseError(res: Response): Promise<string> {
   }
 }
 
-export async function adminRegister(email: string, password: string) {
-  const res = await fetch(`${ADMIN_API_URL}/api/auth/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  })
-  if (!res.ok) throw new Error(await parseError(res))
-  return res.json() as Promise<{ access_token: string }>
-}
-
 export async function adminLogin(email: string, password: string) {
   const res = await fetch(`${ADMIN_API_URL}/api/auth/login`, {
     method: 'POST',

@@ -18,6 +18,7 @@ from physics_admin.config import get_settings
 from physics_admin.database import get_db
 from physics_admin.models import User
 from physics_admin import problems as problem_service
+from physics_admin.rate_limit import enforce_auth_rate_limit
 from physics_admin.schemas import (
     LoginRequest,
     ProblemDetail,
@@ -66,7 +67,7 @@ def _user_response(user: User) -> UserResponse:
     )
 
 
-@router.post("/auth/register", response_model=TokenResponse)
+@router.post("/auth/register", response_model=TokenResponse, dependencies=[Depends(enforce_auth_rate_limit)])
 def register(body: RegisterRequest, db: Annotated[Session, Depends(get_db)]) -> TokenResponse:
     assert_registration_allowed(body.email)
     if db.query(User).filter(User.email == body.email).first():
@@ -79,7 +80,7 @@ def register(body: RegisterRequest, db: Annotated[Session, Depends(get_db)]) -> 
     return TokenResponse(access_token=create_access_token(user.id, user.email))
 
 
-@router.post("/auth/login", response_model=TokenResponse)
+@router.post("/auth/login", response_model=TokenResponse, dependencies=[Depends(enforce_auth_rate_limit)])
 def login(body: LoginRequest, db: Annotated[Session, Depends(get_db)]) -> TokenResponse:
     assert_email_allowed(body.email)
     user = db.query(User).filter(User.email == body.email.lower()).first()
