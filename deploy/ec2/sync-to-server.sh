@@ -49,6 +49,12 @@ rsync -avz --delete \
   --exclude '.next' \
   --exclude 'admin/server/.venv' \
   --exclude 'admin/server/admin.db' \
+  --include '.env.example' \
+  --include '**/.env.example' \
+  --exclude '.env' \
+  --exclude '.env.*' \
+  --exclude '**/.env' \
+  --exclude '**/.env.*' \
   --exclude '.venv' \
   --exclude '.venv-marker' \
   --exclude '.tools' \
@@ -58,6 +64,8 @@ rsync -avz --delete \
   --exclude 'demo/output' \
   --exclude 'deploy/**/.terraform' \
   --exclude '**/.terraform' \
+  --exclude '*.tfstate*' \
+  --exclude '*.tfvars' \
   "$ROOT/" "${TARGET}:/opt/physics-database/"
 
 echo "==> Done. Finish on the server:"
