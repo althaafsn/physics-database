@@ -272,7 +272,7 @@ export function SetBuilderView() {
               </Button>
             </div>
           ) : (
-            <ul className="max-h-[60vh] divide-y divide-border overflow-y-auto lg:max-h-none lg:min-h-0 lg:flex-1">
+            <ul className="divide-y divide-border lg:min-h-0 lg:flex-1 lg:overflow-y-auto">
               {pool.map((p) => (
                 <li
                   key={p.id}
@@ -360,7 +360,7 @@ export function SetBuilderView() {
               Add problems from the corpus pool to start drafting your exam.
             </div>
           ) : (
-            <ol className="max-h-[60vh] divide-y divide-border overflow-y-auto lg:max-h-none lg:min-h-0 lg:flex-1">
+            <ol className="divide-y divide-border lg:min-h-0 lg:flex-1 lg:overflow-y-auto">
               {items.map((p, idx) => (
                 <li
                   key={p.id}

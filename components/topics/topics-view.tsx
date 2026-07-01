@@ -14,7 +14,9 @@ import { catalogDataUrl } from '@/lib/data-source'
 import { PageHeader } from '@/components/page-header'
 import { ProblemPreview } from '@/components/problem-preview'
 import { ProblemExtras } from '@/components/problem-extras'
+import { ProblemDetailSheet } from '@/components/problem-detail-sheet'
 import { useLocale } from '@/components/locale-provider'
+import { useMediaQuery } from '@/hooks/use-media-query'
 import { cn } from '@/lib/utils'
 import type { Problem } from '@/lib/types'
 
@@ -22,6 +24,8 @@ export function TopicsView() {
   const { locale } = useLocale()
   const [topicId, setTopicId] = useState<string | null>(null)
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [sheetOpen, setSheetOpen] = useState(false)
+  const isLarge = useMediaQuery('(min-width: 1024px)')
 
   const { data: tagData, isLoading: tagsLoading } = useSWR(
     'physics-tags-data',
@@ -55,6 +59,11 @@ export function TopicsView() {
   const selected =
     topicProblems.find((p) => p.id === selectedId) ?? topicProblems[0] ?? null
 
+  const handleSelectProblem = (id: string) => {
+    setSelectedId(id)
+    if (!isLarge) setSheetOpen(true)
+  }
+
   if (tagsLoading || catalogLoading) {
     return (
       <div className="p-6 text-sm text-muted-foreground">Loading physics topics…</div>
@@ -81,17 +90,17 @@ export function TopicsView() {
         description="Browse problems by topic tags. Similar problems use TF-IDF + tag overlap."
       />
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 overflow-hidden lg:grid-cols-[260px_1fr_minmax(360px,420px)]">
-        <aside className="min-h-0 overflow-y-auto border-r border-border bg-card/30 p-3">
-          <p className="mb-2 px-2 text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">
+      <div className="grid min-h-0 flex-1 grid-cols-1 content-start overflow-y-auto lg:grid-cols-[260px_1fr_minmax(360px,420px)] lg:content-stretch lg:overflow-hidden">
+        <aside className="shrink-0 border-b border-border bg-card/30 lg:min-h-0 lg:overflow-y-auto lg:border-r lg:border-b-0 lg:p-3">
+          <p className="hidden px-2 pt-3 text-[10px] font-semibold tracking-wide text-muted-foreground uppercase lg:mb-2 lg:block lg:pt-0">
             Topics
           </p>
-          <ul className="space-y-0.5">
+          <ul className="flex gap-1.5 overflow-x-auto p-3 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:p-0">
             {topics.map((topic) => {
               const count = problemsByTopic.get(topic.id)?.length ?? 0
               const active = topic.id === activeTopic
               return (
-                <li key={topic.id}>
+                <li key={topic.id} className="shrink-0 lg:shrink">
                   <button
                     type="button"
                     onClick={() => {
@@ -99,18 +108,18 @@ export function TopicsView() {
                       setSelectedId(null)
                     }}
                     className={cn(
-                      'flex w-full items-start gap-2 rounded-lg px-2.5 py-2 text-left text-sm transition-colors',
+                      'flex items-center gap-2 rounded-lg border px-2.5 py-2 text-left text-sm whitespace-nowrap transition-colors lg:w-full lg:items-start lg:border-transparent lg:whitespace-normal',
                       active
-                        ? 'bg-primary/10 text-foreground'
-                        : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground',
+                        ? 'border-primary/30 bg-primary/10 text-foreground lg:border-transparent'
+                        : 'border-border/70 text-muted-foreground hover:bg-muted/50 hover:text-foreground lg:border-transparent',
                     )}
                   >
-                    <BookOpen className="mt-0.5 size-3.5 shrink-0" />
-                    <span className="min-w-0 flex-1 leading-snug">
+                    <BookOpen className="size-3.5 shrink-0 lg:mt-0.5" />
+                    <span className="min-w-0 leading-snug lg:flex-1">
                       <span className="block text-xs font-medium text-foreground">
                         {topicLabel(tagData.taxonomy, topic.id)}
                       </span>
-                      <span className="text-[10px] text-muted-foreground">
+                      <span className="hidden text-[10px] text-muted-foreground lg:block">
                         {disciplineLabel(tagData.taxonomy, topic.discipline)}
                       </span>
                     </span>
@@ -124,7 +133,7 @@ export function TopicsView() {
           </ul>
         </aside>
 
-        <div className="min-h-0 overflow-y-auto border-r border-border">
+        <div className="min-h-0 border-b border-border lg:overflow-y-auto lg:border-r lg:border-b-0">
           <div className="sticky top-0 z-10 border-b border-border bg-card/95 px-4 py-2.5 backdrop-blur-md">
             <h2 className="text-sm font-semibold text-foreground">
               {activeTopic ? topicLabel(tagData.taxonomy, activeTopic) : '—'}
@@ -145,10 +154,12 @@ export function TopicsView() {
                 <li key={p.id}>
                   <button
                     type="button"
-                    onClick={() => setSelectedId(p.id)}
+                    onClick={() => handleSelectProblem(p.id)}
                     className={cn(
                       'w-full border-b border-border/50 px-4 py-3 text-left transition-colors',
-                      selected?.id === p.id ? 'bg-primary/5' : 'hover:bg-muted/40',
+                      selected?.id === p.id && isLarge
+                        ? 'bg-primary/5'
+                        : 'hover:bg-muted/40',
                     )}
                   >
                     <p className="font-mono text-[10px] text-muted-foreground">{p.id}</p>
@@ -176,6 +187,13 @@ export function TopicsView() {
           )}
         </div>
       </div>
+
+      <ProblemDetailSheet
+        problem={selected}
+        open={sheetOpen && !isLarge}
+        onClose={() => setSheetOpen(false)}
+        onSelectSimilar={(p) => handleSelectProblem(p.id)}
+      />
     </div>
   )
 }
