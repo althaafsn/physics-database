@@ -28,6 +28,12 @@ const QUICK_ACTIONS = [
     description: 'Search and filter validated problems by level, year, and topic.',
   },
   {
+    href: '/ai',
+    icon: Sparkles,
+    title: 'Ask the AI tutor',
+    description: 'Get hints, concept explanations, and step-by-step guidance.',
+  },
+  {
     href: '/sets',
     icon: FlaskConical,
     title: 'Build an exam set',

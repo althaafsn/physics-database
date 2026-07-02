@@ -2,6 +2,7 @@
 
 import { PhysicsTags } from '@/components/halliday-tags'
 import { SimilarProblems } from '@/components/similar-problems'
+import { AskAiAboutProblem } from '@/components/ai/ask-ai-about-problem'
 import type { Problem } from '@/lib/types'
 
 export function ProblemExtras({
@@ -15,6 +16,7 @@ export function ProblemExtras({
     <div className="space-y-4">
       <PhysicsTags problemId={problem.id} />
       <SimilarProblems problemId={problem.id} onSelect={onSelectSimilar} />
+      <AskAiAboutProblem problem={problem} />
     </div>
   )
 }

@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from 'react'
 import useSWR from 'swr'
-import { BookOpen } from 'lucide-react'
+import { BookOpen, Plus, Check } from 'lucide-react'
+import { toast } from 'sonner'
 import {
   disciplineLabel,
   normalizeTagRecord,
@@ -16,16 +17,48 @@ import { ProblemPreview } from '@/components/problem-preview'
 import { ProblemExtras } from '@/components/problem-extras'
 import { ProblemDetailSheet } from '@/components/problem-detail-sheet'
 import { useLocale } from '@/components/locale-provider'
+import { useSetBuilder } from '@/components/set-builder-provider'
 import { useMediaQuery } from '@/hooks/use-media-query'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { Problem } from '@/lib/types'
 
 export function TopicsView() {
   const { locale } = useLocale()
+  const { add, has, setId } = useSetBuilder()
   const [topicId, setTopicId] = useState<string | null>(null)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [sheetOpen, setSheetOpen] = useState(false)
   const isLarge = useMediaQuery('(min-width: 1024px)')
+
+  const handleAdd = (problem: Problem) => {
+    if (!setId) {
+      toast.error('Open Set Builder and click New set first')
+      return
+    }
+    add(problem)
+    toast.success(`Added ${problem.id} to set`)
+  }
+
+  const addButton = (problem: Problem) => (
+    <Button
+      className="w-full"
+      variant={has(problem.id) ? 'secondary' : 'default'}
+      onClick={() => handleAdd(problem)}
+    >
+      {has(problem.id) ? (
+        <>
+          <Check className="size-4" />
+          In current set
+        </>
+      ) : (
+        <>
+          <Plus className="size-4" />
+          Add to set
+        </>
+      )}
+    </Button>
+  )
 
   const { data: tagData, isLoading: tagsLoading } = useSWR(
     'physics-tags-data',
@@ -72,10 +105,23 @@ export function TopicsView() {
 
   if (!tagData?.taxonomy || Object.keys(tagData.tags).length === 0) {
     return (
-      <div className="m-6 surface-muted p-8 text-center text-sm text-muted-foreground">
-        Physics tags not available. Run{' '}
-        <code className="rounded bg-muted px-1 py-0.5 text-xs">python3 scripts/tag_halliday.py</code>{' '}
-        then export data.
+      <div className="flex min-h-0 flex-1 flex-col">
+        <PageHeader
+          title="Physics Topics"
+          description="Browse problems grouped by physics topic, then jump to closely related ones."
+        />
+        <div className="surface-muted m-6 flex flex-col items-center gap-3 p-10 text-center">
+          <div className="flex size-12 items-center justify-center rounded-full bg-muted/60 text-muted-foreground">
+            <BookOpen className="size-5" />
+          </div>
+          <p className="max-w-sm text-sm text-muted-foreground text-pretty">
+            Topic tags aren&apos;t available for this catalog yet. Try the{' '}
+            <a href="/library" className="font-medium text-primary hover:underline">
+              Problem Library
+            </a>{' '}
+            to browse everything in the meantime.
+          </p>
+        </div>
       </div>
     )
   }
@@ -87,7 +133,7 @@ export function TopicsView() {
     <div className="flex min-h-0 flex-1 flex-col">
       <PageHeader
         title="Physics Topics"
-        description="Browse problems by topic tags. Similar problems use TF-IDF + tag overlap."
+        description="Browse problems grouped by physics topic, then jump to closely related ones."
       />
 
       <div className="grid min-h-0 flex-1 grid-cols-1 content-start overflow-y-auto lg:grid-cols-[260px_1fr_minmax(360px,420px)] lg:content-stretch lg:overflow-hidden">
@@ -179,6 +225,7 @@ export function TopicsView() {
                 problem={selected}
                 onSelectSimilar={(p) => setSelectedId(p.id)}
               />
+              {addButton(selected)}
             </div>
           ) : (
             <div className="surface-muted flex h-full min-h-[12rem] items-center justify-center p-8 text-center text-sm text-muted-foreground">
@@ -193,6 +240,7 @@ export function TopicsView() {
         open={sheetOpen && !isLarge}
         onClose={() => setSheetOpen(false)}
         onSelectSimilar={(p) => handleSelectProblem(p.id)}
+        footer={selected ? addButton(selected) : null}
       />
     </div>
   )

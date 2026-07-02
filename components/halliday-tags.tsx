@@ -51,10 +51,6 @@ export function PhysicsTags({ problemId }: { problemId: string }) {
           ))}
         </div>
       ) : null}
-      <p className="text-[10px] text-muted-foreground">
-        Tagged via {tags.method}
-        {tags.confidence > 0 ? ` · ${Math.round(tags.confidence * 100)}% confidence` : ''}
-      </p>
     </section>
   )
 }
