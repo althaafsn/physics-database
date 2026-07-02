@@ -89,6 +89,11 @@ def tutor_chat(body: TutorChatRequest, db: Annotated[Session, Depends(get_db)]) 
             messages=llm_messages,
             **_tutor_completion_kwargs(model),
         )
+    except RuntimeError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="The AI tutor is not configured yet. Please try again later.",
+        ) from exc
     except Exception as exc:  # noqa: BLE001 - never leak upstream provider errors to the client
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
