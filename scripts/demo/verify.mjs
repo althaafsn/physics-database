@@ -109,8 +109,16 @@ async function checkUi(page) {
 
   await page.getByText('Thinking…').waitFor({ state: 'visible', timeout: 5000 }).catch(() => {})
   try {
-    await page.locator('.rounded-bl-sm.border').first().waitFor({ state: 'visible', timeout: 45000 })
-    const reply = await page.locator('.rounded-bl-sm.border').first().innerText()
+    const bubble = page.locator('.rounded-bl-sm.border').first()
+    await bubble.waitFor({ state: 'visible', timeout: 60000 })
+    await page.waitForFunction(
+      () => {
+        const el = document.querySelector('.rounded-bl-sm.border')
+        return el && el.textContent && el.textContent.trim().length > 30
+      },
+      { timeout: 60000 },
+    )
+    const reply = await bubble.innerText()
     if (reply.length > 30 && !/aren't connected|Preview mode/i.test(reply)) {
       pass('AI Tutor live reply', `${reply.length} chars`)
     } else {
