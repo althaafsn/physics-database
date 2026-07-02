@@ -13,9 +13,11 @@ from src.repair_log import LogFn
 DEFAULT_BASE_URL = "https://api.netraruntime.com/v1"
 DEFAULT_OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 DEFAULT_LOCAL_BASE_URL = "http://127.0.0.1:11434/v1"
-# Default free-tier tutor model. Gemma 4 31B is faster when available but often
-# rate-limited on OpenRouter free; Nemotron 550B is slower but more reliable.
+# General OpenRouter default (batch jobs, relations). Tutor uses faster models below.
 DEFAULT_OPENROUTER_MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free"
+# AI tutor: prefer a smaller/faster free model; fall back when rate-limited.
+DEFAULT_TUTOR_OPENROUTER_MODEL = "google/gemma-4-31b-it:free"
+FALLBACK_TUTOR_OPENROUTER_MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free"
 DEFAULT_MODEL = "qwen3.6-35b"
 DEFAULT_LOCAL_MODEL = "qwen2.5:3b"
 DEFAULT_MAX_RETRIES = 3

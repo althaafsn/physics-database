@@ -27,7 +27,13 @@ from physics_admin.rate_limit import enforce_tutor_rate_limit
 from physics_admin.schemas import TutorChatRequest, TutorChatResponse
 from physics_admin.tutor_budget import budget_remaining, record_usage
 from physics_admin.tutor_context import build_system_prompt
-from src.llm_client import DEFAULT_OPENROUTER_MODEL, _llm_provider, _message_text, get_client
+from src.llm_client import (
+    DEFAULT_TUTOR_OPENROUTER_MODEL,
+    FALLBACK_TUTOR_OPENROUTER_MODEL,
+    _llm_provider,
+    _message_text,
+    get_client,
+)
 
 router = APIRouter()
 settings = get_settings()
@@ -56,8 +62,23 @@ def _default_tutor_model() -> str:
     if provider == "local":
         return os.environ.get("TUTOR_MODEL", "qwen2.5:7b-instruct")
     if provider == "openrouter":
-        return os.environ.get("TUTOR_MODEL", DEFAULT_OPENROUTER_MODEL)
+        return os.environ.get("TUTOR_MODEL", DEFAULT_TUTOR_OPENROUTER_MODEL)
     return os.environ.get("TUTOR_MODEL", "qwen3.6-35b")
+
+
+def _tutor_model_candidates(primary: str) -> list[str]:
+    """Primary model first, then optional fallback when OpenRouter rate-limits."""
+    if _llm_provider() != "openrouter":
+        return [primary]
+    fallback = os.environ.get("TUTOR_MODEL_FALLBACK", FALLBACK_TUTOR_OPENROUTER_MODEL).strip()
+    if fallback and fallback != primary:
+        return [primary, fallback]
+    return [primary]
+
+
+def _is_rate_limited(exc: Exception) -> bool:
+    msg = str(exc).lower()
+    return "429" in msg or "rate limit" in msg or "too many requests" in msg
 
 
 def _tutor_completion_kwargs(model: str, *, stream: bool = False) -> dict:
@@ -108,20 +129,35 @@ def _stream_plaintext(reply: str) -> Iterator[str]:
 
 def _stream_llm(llm_messages: list[dict[str, str]], db: Session) -> Iterator[str]:
     client = get_client(timeout_s=90.0)
-    model = _default_tutor_model()
+    primary = _default_tutor_model()
     total_tokens = 0
-    try:
-        stream = client.chat.completions.create(
-            messages=llm_messages,
-            **_tutor_completion_kwargs(model, stream=True),
-        )
-    except RuntimeError:
-        yield _sse_event(
-            {"error": "The AI tutor is not configured yet. Please try again later."}
-        )
-        yield _sse_event({"done": True})
-        return
-    except Exception:  # noqa: BLE001 - never leak upstream provider errors to the client
+    stream = None
+    last_error: Exception | None = None
+
+    for model in _tutor_model_candidates(primary):
+        try:
+            stream = client.chat.completions.create(
+                messages=llm_messages,
+                **_tutor_completion_kwargs(model, stream=True),
+            )
+            break
+        except RuntimeError:
+            yield _sse_event(
+                {"error": "The AI tutor is not configured yet. Please try again later."}
+            )
+            yield _sse_event({"done": True})
+            return
+        except Exception as exc:  # noqa: BLE001
+            last_error = exc
+            if _is_rate_limited(exc) and model != _tutor_model_candidates(primary)[-1]:
+                continue
+            yield _sse_event(
+                {"error": "The AI tutor is temporarily unavailable. Please try again in a moment."}
+            )
+            yield _sse_event({"done": True})
+            return
+
+    if stream is None:
         yield _sse_event(
             {"error": "The AI tutor is temporarily unavailable. Please try again in a moment."}
         )
@@ -166,22 +202,36 @@ def tutor_chat(body: TutorChatRequest, db: Annotated[Session, Depends(get_db)]) 
     llm_messages = _build_llm_messages(body)
 
     client = get_client(timeout_s=60.0)
-    model = _default_tutor_model()
-    try:
-        response = client.chat.completions.create(
-            messages=llm_messages,
-            **_tutor_completion_kwargs(model),
-        )
-    except RuntimeError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="The AI tutor is not configured yet. Please try again later.",
-        ) from exc
-    except Exception as exc:  # noqa: BLE001 - never leak upstream provider errors to the client
+    primary = _default_tutor_model()
+    response = None
+    last_error: Exception | None = None
+
+    for model in _tutor_model_candidates(primary):
+        try:
+            response = client.chat.completions.create(
+                messages=llm_messages,
+                **_tutor_completion_kwargs(model),
+            )
+            break
+        except RuntimeError as exc:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="The AI tutor is not configured yet. Please try again later.",
+            ) from exc
+        except Exception as exc:  # noqa: BLE001
+            last_error = exc
+            if _is_rate_limited(exc) and model != _tutor_model_candidates(primary)[-1]:
+                continue
+            raise HTTPException(
+                status_code=status.HTTP_502_BAD_GATEWAY,
+                detail="The AI tutor is temporarily unavailable. Please try again in a moment.",
+            ) from exc
+
+    if response is None:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail="The AI tutor is temporarily unavailable. Please try again in a moment.",
-        ) from exc
+        )
 
     if not response.choices:
         raise HTTPException(
