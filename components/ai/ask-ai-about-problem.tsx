@@ -48,7 +48,7 @@ export function AskAiAboutProblem({ problem }: { problem: Problem }) {
       </button>
 
       {open ? (
-        <div className="mt-3 h-[26rem] overflow-hidden rounded-xl border border-border/70 bg-background/60">
+        <div className="mt-3 flex h-[32rem] flex-col overflow-hidden rounded-xl border border-border/70 bg-background/60">
           <AiTutorChat problem={problem} />
         </div>
       ) : null}

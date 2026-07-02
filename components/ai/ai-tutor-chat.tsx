@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Send, Sparkles, RotateCcw, Loader2 } from 'lucide-react'
 import { AiTutorMessage } from '@/components/ai/ai-tutor-message'
+import { AiTutorProblemPanel } from '@/components/ai/ai-tutor-problem-panel'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
@@ -147,6 +148,10 @@ export function AiTutorChat({
         </div>
       ) : null}
 
+      {problem ? (
+        <AiTutorProblemPanel problem={problem} variant={variant} />
+      ) : null}
+
       <div
         ref={scrollRef}
         className="min-h-0 flex-1 space-y-4 overflow-y-auto px-3 py-4 sm:px-4"
@@ -161,12 +166,12 @@ export function AiTutorChat({
             <div className="space-y-1">
               <p className="text-sm font-medium text-foreground">
                 {problem
-                  ? `Ask about ${problem.id}`
+                  ? 'Ask about this problem'
                   : 'Ask the physics tutor anything'}
               </p>
               <p className="mx-auto max-w-xs text-xs leading-relaxed text-muted-foreground text-pretty">
                 {problem
-                  ? 'Get hints, concept breakdowns, and step-by-step guidance for this problem.'
+                  ? 'The problem statement is pinned above — ask for hints, concepts, or steps.'
                   : 'Concepts, problem-solving strategies, and study help for the olympiad corpus.'}
               </p>
             </div>
