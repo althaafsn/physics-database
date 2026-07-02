@@ -1,4 +1,4 @@
-export type YoutubeMatchType = 'exam_full' | 'problem_number' | 'title_fuzzy'
+export type YoutubeMatchType = 'exam_full' | 'exam_timestamp' | 'problem_number' | 'title_fuzzy'
 
 export interface YoutubeProblemLink {
   problem_id: string
@@ -8,6 +8,10 @@ export interface YoutubeProblemLink {
   match_type: YoutubeMatchType
   confidence: number
   channel: string
+  /** Jump-to time in seconds (from video description timestamps). */
+  start_seconds?: number
+  /** Human-readable timestamp label, e.g. 04:43 or 01:02:31. */
+  start_label?: string
 }
 
 export type YoutubeLinksByProblem = Record<string, YoutubeProblemLink[]>
@@ -28,9 +32,16 @@ export async function fetchYoutubeLinks(): Promise<YoutubeLinksByProblem> {
   return linksCache
 }
 
-export function matchTypeLabel(matchType: YoutubeMatchType): string {
+export function matchTypeLabel(
+  matchType: YoutubeMatchType,
+  startLabel?: string,
+): string {
+  if (startLabel) {
+    return `Starts at ${startLabel}`
+  }
   switch (matchType) {
     case 'exam_full':
+    case 'exam_timestamp':
       return 'Full exam walkthrough'
     case 'problem_number':
       return 'Problem-specific'

@@ -78,3 +78,46 @@ def fetch_channel_videos(
             )
         )
     return videos
+
+
+def fetch_video_description(
+    video_id: str,
+    *,
+    yt_dlp: str | None = None,
+) -> str | None:
+    """Fetch the full video description (includes timestamp lists)."""
+    binary = yt_dlp or _resolve_yt_dlp()
+    url = f"https://www.youtube.com/watch?v={video_id}"
+    cmd = [binary, "--skip-download", "--print", "%(description)s", url]
+    proc = subprocess.run(cmd, capture_output=True, text=True, check=False)
+    if proc.returncode != 0:
+        return None
+    text = proc.stdout.strip()
+    return text or None
+
+
+def enrich_video_descriptions(
+    videos: list[ChannelVideo],
+    video_ids: set[str],
+    *,
+    manual_descriptions: dict[str, str] | None = None,
+    yt_dlp: str | None = None,
+) -> list[ChannelVideo]:
+    """Return videos with descriptions filled from manual overrides or yt-dlp."""
+    manual = manual_descriptions or {}
+    enriched: list[ChannelVideo] = []
+    for video in videos:
+        description = manual.get(video.video_id) or video.description
+        if video.video_id in video_ids and not description:
+            description = fetch_video_description(video.video_id, yt_dlp=yt_dlp)
+        enriched.append(
+            ChannelVideo(
+                video_id=video.video_id,
+                title=video.title,
+                url=video.url,
+                upload_date=video.upload_date,
+                duration=video.duration,
+                description=description,
+            )
+        )
+    return enriched

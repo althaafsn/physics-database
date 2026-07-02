@@ -7,6 +7,11 @@ from difflib import SequenceMatcher
 
 from src.schema import ProblemRecord
 from src.youtube.scrape import CHANNEL_HANDLE, ChannelVideo
+from src.youtube.timestamps import (
+    lookup_timestamp,
+    parse_description_timestamps,
+    youtube_watch_url,
+)
 
 FULL_PEMBAHASAN_RE = re.compile(
     r"pembahasan\s+(OSK|OSP|OSN)\s+fisika\s+sma\s+(\d{4})",
@@ -33,9 +38,12 @@ class ProblemVideoLink:
     match_type: str
     confidence: float
     channel: str = CHANNEL_HANDLE
+    start_seconds: int | None = None
+    start_label: str | None = None
 
     def to_dict(self) -> dict:
-        return asdict(self)
+        data = asdict(self)
+        return {k: v for k, v in data.items() if v is not None}
 
 
 def _normalize_title(text: str) -> str:
@@ -85,17 +93,28 @@ def _match_exam_full(
     matched = _problems_for_exam(problems, level, year_s)
     if not matched:
         return []
-    return [
-        ProblemVideoLink(
-            problem_id=p.id,
-            video_id=video.video_id,
-            title=video.title,
-            url=video.url,
-            match_type="exam_full",
-            confidence=0.95,
+
+    timestamps = parse_description_timestamps(video.description)
+    links: list[ProblemVideoLink] = []
+    for problem in matched:
+        stamp = lookup_timestamp(timestamps, problem)
+        start_seconds = stamp.seconds if stamp else None
+        start_label = stamp.label if stamp else None
+        match_type = "exam_timestamp" if stamp else "exam_full"
+        confidence = 0.98 if stamp else 0.95
+        links.append(
+            ProblemVideoLink(
+                problem_id=problem.id,
+                video_id=video.video_id,
+                title=video.title,
+                url=youtube_watch_url(video.video_id, start_seconds=start_seconds),
+                match_type=match_type,
+                confidence=confidence,
+                start_seconds=start_seconds,
+                start_label=start_label,
+            )
         )
-        for p in matched
-    ]
+    return links
 
 
 def _match_explicit_soal(

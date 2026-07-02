@@ -41,7 +41,7 @@ export function DimensiSainsVideos({ problemId }: DimensiSainsVideosProps) {
                   {link.title}
                 </span>
                 <span className="mt-1 flex flex-wrap items-center gap-2 text-[10px] text-muted-foreground">
-                  <span>{matchTypeLabel(link.match_type)}</span>
+                  <span>{matchTypeLabel(link.match_type, link.start_label)}</span>
                   {link.match_type === 'title_fuzzy' ? (
                     <span>{Math.round(link.confidence * 100)}% match</span>
                   ) : null}

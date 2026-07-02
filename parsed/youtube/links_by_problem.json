@@ -4,10 +4,12 @@
       "problem_id": "OSK-2025-01",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=283",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 283,
+      "start_label": "04:43"
     }
   ],
   "OSK-2025-02": [
@@ -15,10 +17,12 @@
       "problem_id": "OSK-2025-02",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=577",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 577,
+      "start_label": "09:37"
     }
   ],
   "OSK-2025-03": [
@@ -26,10 +30,12 @@
       "problem_id": "OSK-2025-03",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=703",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 703,
+      "start_label": "11:43"
     }
   ],
   "OSK-2025-04": [
@@ -37,10 +43,12 @@
       "problem_id": "OSK-2025-04",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=1009",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1009,
+      "start_label": "16:49"
     }
   ],
   "OSK-2025-05": [
@@ -48,10 +56,12 @@
       "problem_id": "OSK-2025-05",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=1179",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1179,
+      "start_label": "19:39"
     }
   ],
   "OSK-2025-06": [
@@ -59,10 +69,12 @@
       "problem_id": "OSK-2025-06",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=1325",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1325,
+      "start_label": "22:05"
     }
   ],
   "OSK-2025-08": [
@@ -70,10 +82,12 @@
       "problem_id": "OSK-2025-08",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=1547",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1547,
+      "start_label": "25:47"
     }
   ],
   "OSK-2025-10": [
@@ -81,10 +95,12 @@
       "problem_id": "OSK-2025-10",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=1837",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1837,
+      "start_label": "30:37"
     }
   ],
   "OSK-2025-11": [
@@ -92,10 +108,12 @@
       "problem_id": "OSK-2025-11",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=1957",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1957,
+      "start_label": "32:37"
     }
   ],
   "OSK-2025-12": [
@@ -103,10 +121,12 @@
       "problem_id": "OSK-2025-12",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=2055",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2055,
+      "start_label": "34:15"
     }
   ],
   "OSK-2025-13": [
@@ -114,10 +134,12 @@
       "problem_id": "OSK-2025-13",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=2147",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2147,
+      "start_label": "35:47"
     }
   ],
   "OSK-2025-14": [
@@ -125,10 +147,12 @@
       "problem_id": "OSK-2025-14",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=2342",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2342,
+      "start_label": "39:02"
     }
   ],
   "OSK-2025-15": [
@@ -136,10 +160,12 @@
       "problem_id": "OSK-2025-15",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=2543",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2543,
+      "start_label": "42:23"
     }
   ],
   "OSK-2025-16": [
@@ -147,10 +173,12 @@
       "problem_id": "OSK-2025-16",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=2666",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2666,
+      "start_label": "44:26"
     }
   ],
   "OSK-2025-17": [
@@ -158,10 +186,12 @@
       "problem_id": "OSK-2025-17",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=2877",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2877,
+      "start_label": "47:57"
     }
   ],
   "OSK-2025-18": [
@@ -169,10 +199,12 @@
       "problem_id": "OSK-2025-18",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=3195",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 3195,
+      "start_label": "53:15"
     }
   ],
   "OSK-2025-19": [
@@ -180,10 +212,12 @@
       "problem_id": "OSK-2025-19",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=3258",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 3258,
+      "start_label": "54:18"
     }
   ],
   "OSK-2025-20": [
@@ -191,10 +225,12 @@
       "problem_id": "OSK-2025-20",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=3509",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 3509,
+      "start_label": "58:29"
     }
   ],
   "OSK-2025-21": [
@@ -202,10 +238,12 @@
       "problem_id": "OSK-2025-21",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=3751",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 3751,
+      "start_label": "01:02:31"
     }
   ],
   "OSK-2025-22": [
@@ -213,10 +251,12 @@
       "problem_id": "OSK-2025-22",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=4015",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4015,
+      "start_label": "01:06:55"
     }
   ],
   "OSK-2025-23": [
@@ -224,10 +264,12 @@
       "problem_id": "OSK-2025-23",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=4048",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4048,
+      "start_label": "01:07:28"
     }
   ],
   "OSK-2025-24": [
@@ -235,10 +277,12 @@
       "problem_id": "OSK-2025-24",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=4369",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4369,
+      "start_label": "01:12:49"
     }
   ],
   "OSK-2025-25": [
@@ -246,10 +290,12 @@
       "problem_id": "OSK-2025-25",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=4834",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4834,
+      "start_label": "01:20:34"
     }
   ],
   "OSK-2025-26": [
@@ -257,10 +303,12 @@
       "problem_id": "OSK-2025-26",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=4995",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4995,
+      "start_label": "01:23:15"
     }
   ],
   "OSK-2025-27": [
@@ -268,10 +316,12 @@
       "problem_id": "OSK-2025-27",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=5191",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 5191,
+      "start_label": "01:26:31"
     }
   ],
   "OSK-2025-28": [
@@ -279,10 +329,12 @@
       "problem_id": "OSK-2025-28",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=5672",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 5672,
+      "start_label": "01:34:32"
     }
   ],
   "OSK-2025-29": [
@@ -290,10 +342,12 @@
       "problem_id": "OSK-2025-29",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=5951",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 5951,
+      "start_label": "01:39:11"
     }
   ],
   "OSK-2025-30": [
@@ -301,10 +355,12 @@
       "problem_id": "OSK-2025-30",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=7113",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 7113,
+      "start_label": "01:58:33"
     }
   ],
   "OSK-2025-31": [
@@ -312,10 +368,12 @@
       "problem_id": "OSK-2025-31",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=7401",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 7401,
+      "start_label": "02:03:21"
     }
   ],
   "OSK-2025-32": [
@@ -323,10 +381,12 @@
       "problem_id": "OSK-2025-32",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=7855",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 7855,
+      "start_label": "02:10:55"
     }
   ],
   "OSK-2025-33": [
@@ -334,10 +394,12 @@
       "problem_id": "OSK-2025-33",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=8091",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 8091,
+      "start_label": "02:14:51"
     }
   ],
   "OSK-2025-34": [
@@ -345,10 +407,12 @@
       "problem_id": "OSK-2025-34",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=8287",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 8287,
+      "start_label": "02:18:07"
     }
   ],
   "OSK-2025-35": [
@@ -356,10 +420,12 @@
       "problem_id": "OSK-2025-35",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=8516",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 8516,
+      "start_label": "02:21:56"
     }
   ],
   "OSK-2025-36": [
@@ -367,10 +433,12 @@
       "problem_id": "OSK-2025-36",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=8563",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 8563,
+      "start_label": "02:22:43"
     }
   ],
   "OSK-2025-37": [
@@ -378,10 +446,12 @@
       "problem_id": "OSK-2025-37",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=8612",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 8612,
+      "start_label": "02:23:32"
     }
   ],
   "OSK-2025-38": [
@@ -389,10 +459,12 @@
       "problem_id": "OSK-2025-38",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=10451",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 10451,
+      "start_label": "02:54:11"
     }
   ],
   "OSK-2025-39": [
@@ -400,10 +472,12 @@
       "problem_id": "OSK-2025-39",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=10510",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 10510,
+      "start_label": "02:55:10"
     }
   ],
   "OSK-2025-40": [
@@ -411,10 +485,12 @@
       "problem_id": "OSK-2025-40",
       "video_id": "0KXhAZvGx7k",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=0KXhAZvGx7k&t=10579",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 10579,
+      "start_label": "02:56:19"
     }
   ],
   "OSK-2026-01": [
@@ -422,10 +498,12 @@
       "problem_id": "OSK-2026-01",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=74",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 74,
+      "start_label": "01:14"
     }
   ],
   "OSK-2026-02": [
@@ -433,10 +511,12 @@
       "problem_id": "OSK-2026-02",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=435",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 435,
+      "start_label": "07:15"
     }
   ],
   "OSK-2026-03": [
@@ -444,10 +524,12 @@
       "problem_id": "OSK-2026-03",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=901",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 901,
+      "start_label": "15:01"
     }
   ],
   "OSK-2026-05": [
@@ -455,10 +537,12 @@
       "problem_id": "OSK-2026-05",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=1882",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1882,
+      "start_label": "31:22"
     }
   ],
   "OSK-2026-06": [
@@ -466,10 +550,12 @@
       "problem_id": "OSK-2026-06",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=2463",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2463,
+      "start_label": "41:03"
     }
   ],
   "OSK-2026-07": [
@@ -477,10 +563,12 @@
       "problem_id": "OSK-2026-07",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=3103",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 3103,
+      "start_label": "51:43"
     }
   ],
   "OSK-2026-08": [
@@ -488,10 +576,12 @@
       "problem_id": "OSK-2026-08",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=3555",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 3555,
+      "start_label": "59:15"
     }
   ],
   "OSK-2026-09": [
@@ -499,10 +589,12 @@
       "problem_id": "OSK-2026-09",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=4550",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4550,
+      "start_label": "01:15:50"
     }
   ],
   "OSK-2026-11": [
@@ -510,10 +602,12 @@
       "problem_id": "OSK-2026-11",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=5005",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 5005,
+      "start_label": "01:23:25"
     }
   ],
   "OSK-2026-12": [
@@ -521,10 +615,12 @@
       "problem_id": "OSK-2026-12",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=5594",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 5594,
+      "start_label": "01:33:14"
     }
   ],
   "OSK-2026-13": [
@@ -532,10 +628,12 @@
       "problem_id": "OSK-2026-13",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=6231",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 6231,
+      "start_label": "01:43:51"
     }
   ],
   "OSK-2026-14": [
@@ -543,10 +641,12 @@
       "problem_id": "OSK-2026-14",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=6377",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 6377,
+      "start_label": "01:46:17"
     }
   ],
   "OSK-2026-15": [
@@ -554,10 +654,12 @@
       "problem_id": "OSK-2026-15",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=6959",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 6959,
+      "start_label": "01:55:59"
     }
   ],
   "OSK-2026-16": [
@@ -565,10 +667,12 @@
       "problem_id": "OSK-2026-16",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=7276",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 7276,
+      "start_label": "02:01:16"
     }
   ],
   "OSK-2026-17": [
@@ -576,10 +680,12 @@
       "problem_id": "OSK-2026-17",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=7750",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 7750,
+      "start_label": "02:09:10"
     }
   ],
   "OSK-2026-18": [
@@ -587,10 +693,12 @@
       "problem_id": "OSK-2026-18",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=7954",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 7954,
+      "start_label": "02:12:34"
     }
   ],
   "OSK-2026-19": [
@@ -598,10 +706,12 @@
       "problem_id": "OSK-2026-19",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=9285",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 9285,
+      "start_label": "02:34:45"
     }
   ],
   "OSK-2026-20": [
@@ -609,10 +719,12 @@
       "problem_id": "OSK-2026-20",
       "video_id": "-vi00JQtQK8",
       "title": "[Full 3 Jam] Pembahasan OSK Fisika SMA 2026",
-      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=-vi00JQtQK8&t=9732",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 9732,
+      "start_label": "02:42:12"
     }
   ],
   "OSP-2020-01": [
@@ -620,10 +732,12 @@
       "problem_id": "OSP-2020-01",
       "video_id": "ZXV3mUc5r8A",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2020",
-      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A&t=337",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 337,
+      "start_label": "05:37"
     }
   ],
   "OSP-2020-02": [
@@ -631,10 +745,12 @@
       "problem_id": "OSP-2020-02",
       "video_id": "ZXV3mUc5r8A",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2020",
-      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A&t=1840",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1840,
+      "start_label": "30:40"
     }
   ],
   "OSP-2020-03": [
@@ -642,10 +758,12 @@
       "problem_id": "OSP-2020-03",
       "video_id": "ZXV3mUc5r8A",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2020",
-      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A&t=4045",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4045,
+      "start_label": "01:07:25"
     }
   ],
   "OSP-2020-04": [
@@ -653,10 +771,12 @@
       "problem_id": "OSP-2020-04",
       "video_id": "ZXV3mUc5r8A",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2020",
-      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A&t=5291",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 5291,
+      "start_label": "01:28:11"
     }
   ],
   "OSP-2020-05": [
@@ -664,10 +784,12 @@
       "problem_id": "OSP-2020-05",
       "video_id": "ZXV3mUc5r8A",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2020",
-      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A&t=6278",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 6278,
+      "start_label": "01:44:38"
     }
   ],
   "OSP-2020-06": [
@@ -675,10 +797,12 @@
       "problem_id": "OSP-2020-06",
       "video_id": "ZXV3mUc5r8A",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2020",
-      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A&t=7682",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 7682,
+      "start_label": "02:08:02"
     }
   ],
   "OSP-2020-07": [
@@ -686,10 +810,12 @@
       "problem_id": "OSP-2020-07",
       "video_id": "ZXV3mUc5r8A",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2020",
-      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=ZXV3mUc5r8A&t=9412",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 9412,
+      "start_label": "02:36:52"
     }
   ],
   "OSP-2024-01": [
@@ -697,10 +823,12 @@
       "problem_id": "OSP-2024-01",
       "video_id": "oJkq7NiAi5o",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2024",
-      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o&t=520",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 520,
+      "start_label": "08:40"
     }
   ],
   "OSP-2024-02": [
@@ -708,10 +836,12 @@
       "problem_id": "OSP-2024-02",
       "video_id": "oJkq7NiAi5o",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2024",
-      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o&t=1520",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1520,
+      "start_label": "25:20"
     }
   ],
   "OSP-2024-03": [
@@ -719,10 +849,12 @@
       "problem_id": "OSP-2024-03",
       "video_id": "oJkq7NiAi5o",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2024",
-      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o&t=2443",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 2443,
+      "start_label": "40:43"
     }
   ],
   "OSP-2024-05": [
@@ -730,10 +862,12 @@
       "problem_id": "OSP-2024-05",
       "video_id": "oJkq7NiAi5o",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2024",
-      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o&t=6873",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 6873,
+      "start_label": "01:54:33"
     }
   ],
   "OSP-2024-06": [
@@ -741,10 +875,12 @@
       "problem_id": "OSP-2024-06",
       "video_id": "oJkq7NiAi5o",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2024",
-      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o&t=8408",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 8408,
+      "start_label": "02:20:08"
     }
   ],
   "OSP-2024-07": [
@@ -752,10 +888,12 @@
       "problem_id": "OSP-2024-07",
       "video_id": "oJkq7NiAi5o",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2024",
-      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=oJkq7NiAi5o&t=9473",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 9473,
+      "start_label": "02:37:53"
     }
   ],
   "OSP-2025-semifinal-01": [
@@ -763,10 +901,12 @@
       "problem_id": "OSP-2025-semifinal-01",
       "video_id": "9ZfRrSE6kWY",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY&t=249",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 249,
+      "start_label": "04:09"
     }
   ],
   "OSP-2025-semifinal-02": [
@@ -774,10 +914,12 @@
       "problem_id": "OSP-2025-semifinal-02",
       "video_id": "9ZfRrSE6kWY",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY&t=1579",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 1579,
+      "start_label": "26:19"
     }
   ],
   "OSP-2025-semifinal-03": [
@@ -785,10 +927,12 @@
       "problem_id": "OSP-2025-semifinal-03",
       "video_id": "9ZfRrSE6kWY",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY&t=4361",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 4361,
+      "start_label": "01:12:41"
     }
   ],
   "OSP-2025-semifinal-04": [
@@ -796,10 +940,12 @@
       "problem_id": "OSP-2025-semifinal-04",
       "video_id": "9ZfRrSE6kWY",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY&t=5575",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 5575,
+      "start_label": "01:32:55"
     }
   ],
   "OSP-2025-semifinal-v2-01": [
@@ -807,10 +953,12 @@
       "problem_id": "OSP-2025-semifinal-v2-01",
       "video_id": "9ZfRrSE6kWY",
       "title": "[Full 3 Jam] Pembahasan OSP Fisika SMA 2025",
-      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY",
-      "match_type": "exam_full",
-      "confidence": 0.95,
-      "channel": "dimensisains"
+      "url": "https://www.youtube.com/watch?v=9ZfRrSE6kWY&t=249",
+      "match_type": "exam_timestamp",
+      "confidence": 0.98,
+      "channel": "dimensisains",
+      "start_seconds": 249,
+      "start_label": "04:09"
     }
   ]
 }
