@@ -86,18 +86,11 @@ async function runScenario(page) {
     await problemBtn.click()
     await sleep(600)
   }
-  const viewProblem = page.getByRole('button', { name: 'View problem' })
-  if (await viewProblem.isVisible()) {
-    await viewProblem.click()
-    await sleep(500)
-  }
   await spotlightEl(page, page.getByText('Problem statement').first(), {
-    caption: 'Problem statement on demand — chat keeps the full column.',
+    caption: 'Side-by-side workspace: problem left, AI chat right.',
     padding: 10,
     holdMs: 2400,
   })
-  await page.getByLabel('Close problem statement').click().catch(() => {})
-  await sleep(300)
   const chip = page.getByRole('button', { name: /Give me a hint/i }).first()
   if (await chip.isVisible()) {
     await chip.click()

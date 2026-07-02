@@ -6,7 +6,7 @@ import { BookOpen, Search, Sparkles, X } from 'lucide-react'
 import { problemsFetcher } from '@/lib/api'
 import { problemsSwrKey } from '@/lib/data-source'
 import { PageHeader } from '@/components/page-header'
-import { AiTutorChat } from '@/components/ai/ai-tutor-chat'
+import { AiTutorWorkspace } from '@/components/ai/ai-tutor-workspace'
 import { LevelBadge } from '@/components/status-badges'
 import { useLocale } from '@/components/locale-provider'
 import { Input } from '@/components/ui/input'
@@ -140,9 +140,7 @@ export function AiTutorView() {
           </ul>
         </aside>
 
-        <div className="min-h-0 bg-background/50">
-          <AiTutorChat problem={selected} variant="page" />
-        </div>
+        <AiTutorWorkspace problem={selected} />
       </div>
     </div>
   )

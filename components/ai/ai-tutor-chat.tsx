@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Send, Sparkles, RotateCcw, User } from 'lucide-react'
 import { AiTutorMessage } from '@/components/ai/ai-tutor-message'
-import { AiTutorProblemContext } from '@/components/ai/ai-tutor-problem-context'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
@@ -184,10 +183,6 @@ export function AiTutorChat({
         </div>
       ) : null}
 
-      {problem ? (
-        <AiTutorProblemContext problem={problem} variant={variant} />
-      ) : null}
-
       <div
         ref={scrollRef}
         data-tutor-messages
@@ -334,7 +329,7 @@ function EmptyState({
         </p>
         <p className="text-xs leading-relaxed text-muted-foreground text-pretty">
           {problem
-            ? 'Open the problem statement when you need it, then ask for a hint or pick a suggestion below.'
+            ? 'Ask for a hint or pick a suggestion — the problem stays beside you on larger screens.'
             : configured
               ? 'Ask about concepts, strategies, or pick a problem from the sidebar for targeted help.'
               : 'Try the chat UI now — live AI answers activate once an endpoint is connected.'}
