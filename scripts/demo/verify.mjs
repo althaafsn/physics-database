@@ -111,13 +111,13 @@ async function checkUi(page) {
   try {
     await page.waitForFunction(
       () => {
-        const live = document.querySelector('[aria-live="polite"]')
+        const live = document.querySelector('[data-tutor-messages]')
         const text = live?.textContent?.trim() ?? ''
         return text.length > 30 && !/aren't connected|Preview mode/i.test(text)
       },
       { timeout: 60000 },
     )
-    const reply = await page.locator('[aria-live="polite"]').innerText()
+    const reply = await page.locator('[data-tutor-messages]').innerText()
     if (reply.length > 30 && !/aren't connected|Preview mode/i.test(reply)) {
       pass('AI Tutor live reply', `${reply.length} chars`)
     } else {

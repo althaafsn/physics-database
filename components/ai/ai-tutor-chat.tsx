@@ -190,6 +190,7 @@ export function AiTutorChat({
 
       <div
         ref={scrollRef}
+        data-tutor-messages
         className="min-h-0 flex-1 space-y-5 overflow-y-auto px-3 py-4 sm:px-5"
         aria-live="polite"
         aria-busy={pending}
