@@ -197,6 +197,10 @@ async function main() {
     if (fs.existsSync(hallidayExport)) {
       spawnSync('node', [hallidayExport], { cwd: root, stdio: 'inherit' })
     }
+    const youtubeExport = path.join(root, 'scripts', 'export-youtube-data.mjs')
+    if (fs.existsSync(youtubeExport)) {
+      spawnSync('node', [youtubeExport], { cwd: root, stdio: 'inherit' })
+    }
   } catch {
     // non-fatal
   }

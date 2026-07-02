@@ -1,5 +1,6 @@
 'use client'
 
+import { DimensiSainsVideos } from '@/components/dimensi-sains-videos'
 import { PhysicsTags } from '@/components/halliday-tags'
 import { SimilarProblems } from '@/components/similar-problems'
 import type { Problem } from '@/lib/types'
@@ -13,6 +14,7 @@ export function ProblemExtras({
 }) {
   return (
     <div className="space-y-4">
+      <DimensiSainsVideos problemId={problem.id} />
       <PhysicsTags problemId={problem.id} />
       <SimilarProblems problemId={problem.id} onSelect={onSelectSimilar} />
     </div>

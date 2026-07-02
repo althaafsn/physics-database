@@ -22,6 +22,8 @@
     "halliday:all": "bash scripts/ollama-local.sh start && python3 scripts/tag_halliday.py --llm && python3 scripts/build_similarity_index.py && node scripts/export-halliday-data.mjs && node scripts/export-static-data.mjs",
     "index:similarity": "python scripts/build_similarity_index.py",
     "export:halliday": "node scripts/export-halliday-data.mjs",
+    "youtube:sync": ".venv/bin/python3 scripts/sync_dimensi_sains_youtube.py && node scripts/export-youtube-data.mjs",
+    "export:youtube": "node scripts/export-youtube-data.mjs",
     "preview:static": "npx serve out",
     "demo:record": "node scripts/demo/record.mjs",
     "demo:record:mobile": "node scripts/demo/record-mobile.mjs",
