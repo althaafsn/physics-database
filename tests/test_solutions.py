@@ -57,8 +57,57 @@ def test_split_solution_markdown_dash_numbering():
     assert "First solution" in segments[0][1]
 
 
+def test_split_solution_markdown_marker_headings():
+    text = (
+        "## **1- Jawab:**\n"
+        "First solution with enough words to pass safety gates easily here.\n"
+        "2- Second problem starts here with enough words for the gate.\n"
+        "- 3- Jawab:\n"
+        "Third solution segment also long enough for safety gates."
+    )
+    segments = split_solution_markdown(text)
+    assert [n for n, _ in segments] == [1, 2, 3]
+
+
 def test_split_solution_markdown_no_numbering_returns_empty():
     assert split_solution_markdown("just some prose with no numbers at all") == []
+
+
+def test_split_solution_markdown_number_heading():
+    text = (
+        "## OSK Fisika 2014 Number 1\n"
+        "First solution with enough words to pass safety gates easily here.\n"
+        "## OSK Fisika 2014 Number 2\n"
+        "Second solution segment also long enough for safety gates."
+    )
+    segments = split_solution_markdown(text)
+    assert [n for n, _ in segments] == [1, 2]
+
+
+def test_split_solution_markdown_implicit_first_when_numbering_starts_at_two():
+    text = (
+        "Jawaban Soal OSK FISIKA 2014\n"
+        "First problem answer without an explicit one marker but long enough here.\n"
+        "2. (10 poin) Second problem starts here with enough words for the gate.\n"
+        "4. (12 poin) Fourth problem because third is missing in this scan."
+    )
+    segments = split_solution_markdown(text)
+    assert [n for n, _ in segments] == [1, 2, 4]
+
+
+def test_split_solution_into_hints_subparts():
+    from src.solutions.hints import split_solution_into_hints
+
+    text = (
+        "Intro paragraph explaining the overall approach with enough words here.\n\n"
+        "a- First subpart answer with sufficient detail for students to learn.\n\n"
+        "b- Second subpart continues the derivation with more math steps shown.\n\n"
+        "c- Final subpart wraps up with the numeric result for the problem."
+    )
+    hints = split_solution_into_hints(text)
+    assert len(hints) >= 3
+    assert hints[0].startswith("Intro")
+    assert hints[1].startswith("a-")
 
 
 def test_align_exact_match():

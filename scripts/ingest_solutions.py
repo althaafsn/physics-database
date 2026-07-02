@@ -17,20 +17,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from src.env_loader import load_local_env
 
-def load_local_env() -> None:
-    env_path = ROOT / "local.env"
-    if not env_path.is_file():
-        return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        os.environ.setdefault(key.strip(), value.strip())
-
-
-load_local_env()
+load_local_env(ROOT)
 
 from src.bronze_convert import convert_pdf_to_bronze, marker_extra_args_from_env
 from src.paths import PipelinePaths
@@ -207,12 +196,18 @@ def main() -> int:
         touched_key = str(touched_pdf.resolve())
         existing_all = [r for r in existing_all if r.source.pdf != touched_key] + new_records
         save_solutions(out_path, existing_all)
+        touched_pdf_str = str(touched_pdf)
+        existing_skipped = [
+            line
+            for line in existing_skipped
+            if json.loads(line).get("pdf") not in (touched_key, touched_pdf_str)
+        ]
         if skip is not None:
-            existing_skipped = [
-                line for line in existing_skipped if json.loads(line).get("pdf") != str(touched_pdf)
-            ]
             existing_skipped.append(skip.model_dump_json())
+        if existing_skipped:
             skipped_path.write_text("\n".join(existing_skipped) + "\n", encoding="utf-8")
+        elif skipped_path.is_file():
+            skipped_path.unlink()
 
     total_new = 0
     total_skipped = 0

@@ -261,7 +261,11 @@ def chat_completion_json(
     }
     if provider == "netra":
         kwargs["top_p"] = 1
-        kwargs["extra_body"] = {"top_k": 40, "min_p": 0}
+        kwargs["extra_body"] = {
+            "top_k": 40,
+            "min_p": 0,
+            "chat_template_kwargs": {"enable_thinking": False},
+        }
     wall_start = time.perf_counter()
     attempts = 0
     last_error: Exception | None = None

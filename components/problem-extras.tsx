@@ -1,6 +1,7 @@
 'use client'
 
 import { AskAiAboutProblem } from '@/components/ai/ask-ai-about-problem'
+import { SolutionHintsPanel } from '@/components/solution-hints-panel'
 import { DimensiSainsVideos } from '@/components/dimensi-sains-videos'
 import { PhysicsTags } from '@/components/halliday-tags'
 import { SimilarProblems } from '@/components/similar-problems'
@@ -15,6 +16,7 @@ export function ProblemExtras({
 }) {
   return (
     <div className="space-y-4">
+      <SolutionHintsPanel problem={problem} />
       <DimensiSainsVideos problemId={problem.id} />
       <PhysicsTags problemId={problem.id} />
       <SimilarProblems problemId={problem.id} onSelect={onSelectSimilar} />

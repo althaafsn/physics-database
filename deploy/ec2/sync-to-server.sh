@@ -64,6 +64,7 @@ rsync -avz --delete \
   --exclude 'demo/output' \
   --exclude 'deploy/**/.terraform' \
   --exclude '**/.terraform' \
+  --exclude '.ec2-bootstrap.env' \
   --exclude '*.tfstate*' \
   --exclude '*.tfvars' \
   "$ROOT/" "${TARGET}:/opt/physics-database/"

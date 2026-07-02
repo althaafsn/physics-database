@@ -1,0 +1,49 @@
+{"problem_id": "OSK-2012-v1-01", "solved_concepts": ["newtons-laws"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v1-02", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v1-03", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v1-04", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v1-05", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v1-06", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v1-07", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v1-08", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-01", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-02", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.1, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-03", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-04", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-05", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-06", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-07", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v2-08", "solved_concepts": ["newtons-laws"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v3-01", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v3-03", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v3-04", "solved_concepts": ["newtons-laws"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v3-05", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v3-06", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v3-07", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2012-v3-08", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-01", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-02", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-03", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-04", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-05", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-06", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-07", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2013-08", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2014-01", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2014-02", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2014-03", "solved_concepts": ["newtons-laws"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2014-04", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2014-05", "solved_concepts": ["newtons-laws"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2014-06", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2014-07", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2015-01", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2015-02", "solved_concepts": ["newtons-laws", "uniform-circular-motion-dynamics"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2015-03", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2015-04", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2015-05", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2015-06", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSK-2015-07", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSN-2013-01", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSN-2013-02", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSN-2013-03", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}
+{"problem_id": "OSN-2013-04", "solved_concepts": ["newtons-laws", "friction"], "confidence": 0.85, "method": "llm_solution", "model": "qwen2.5:3b"}

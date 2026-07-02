@@ -11,6 +11,7 @@ import {
 } from '@/lib/halliday'
 import { catalogFetcher } from '@/lib/api'
 import { catalogDataUrl } from '@/lib/data-source'
+import { SolutionAvailableBadge } from '@/components/solution-available-badge'
 import { PageHeader } from '@/components/page-header'
 import { ProblemPreview } from '@/components/problem-preview'
 import { ProblemExtras } from '@/components/problem-extras'
@@ -151,7 +152,12 @@ export function TopicsView() {
                       selected?.id === p.id ? 'bg-primary/5' : 'hover:bg-muted/40',
                     )}
                   >
-                    <p className="font-mono text-[10px] text-muted-foreground">{p.id}</p>
+                    <p className="font-mono text-[10px] text-muted-foreground">
+                      <span className="inline-flex items-center gap-1">
+                        {p.id}
+                        <SolutionAvailableBadge problemId={p.id} />
+                      </span>
+                    </p>
                     <p className="line-clamp-2 text-sm text-foreground">{p.title}</p>
                   </button>
                 </li>

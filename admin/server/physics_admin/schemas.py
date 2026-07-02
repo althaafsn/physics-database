@@ -140,3 +140,11 @@ class TutorChatRequest(BaseModel):
 
 class TutorChatResponse(BaseModel):
     reply: str
+
+
+class SolutionHintsResponse(BaseModel):
+    problem_id: str
+    available: bool = True
+    total_hints: int
+    hints: list[str] = Field(default_factory=list)
+    full_markdown: str | None = None

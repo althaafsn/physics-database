@@ -114,6 +114,24 @@ export async function createRecordingContext(browser, { clearStorage = true, vid
   return { context, page }
 }
 
+/** Wait until the AI tutor has streamed a substantive reply. */
+export async function waitForTutorReply(page, timeoutMs = 90000) {
+  await page.locator('[data-tutor-messages]').waitFor({ state: 'visible', timeout: 15000 })
+  await page
+    .getByText('Thinking…')
+    .waitFor({ state: 'visible', timeout: 8000 })
+    .catch(() => {})
+  await page.waitForFunction(
+    () => {
+      const el = document.querySelector('[data-tutor-messages]')
+      const text = el?.textContent?.trim() ?? ''
+      return text.length > 40 && !/^Thinking/i.test(text)
+    },
+    { timeout: timeoutMs },
+  )
+  await sleep(2000)
+}
+
 export function finalizeWebm(outputName, videoDir = OUT_DIR) {
   const webmFiles = fs
     .readdirSync(videoDir)

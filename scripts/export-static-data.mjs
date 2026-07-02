@@ -185,6 +185,35 @@ async function main() {
     JSON.stringify({ sets: starterSets() }),
   )
 
+  const solutionsPath = path.join(root, 'parsed', 'solutions', 'solutions.jsonl')
+  const solutionIds = []
+  if (fs.existsSync(solutionsPath)) {
+    const lines = fs.readFileSync(solutionsPath, 'utf8').split('\n')
+    const byProblem = new Map()
+    for (const line of lines) {
+      if (!line.trim()) continue
+      try {
+        const rec = JSON.parse(line)
+        if (!rec.problem_id || rec.errors?.length) continue
+        if (rec.flags?.includes('alignment_review_required')) continue
+        const prev = byProblem.get(rec.problem_id)
+        const score = Number(rec.alignment_confidence ?? 0) - (rec.errors?.length ?? 0)
+        const prevScore = prev
+          ? Number(prev.alignment_confidence ?? 0) - (prev.errors?.length ?? 0)
+          : -1
+        if (!prev || score > prevScore) byProblem.set(rec.problem_id, rec)
+      } catch {
+        // skip bad line
+      }
+    }
+    solutionIds.push(...byProblem.keys())
+    solutionIds.sort()
+  }
+  fs.writeFileSync(
+    path.join(dataDir, 'solutions-index.json'),
+    JSON.stringify({ ids: solutionIds }),
+  )
+
   if (fs.existsSync(assetsSrc)) {
     fs.mkdirSync(path.dirname(assetsDest), { recursive: true })
     fs.cpSync(assetsSrc, assetsDest, { recursive: true })

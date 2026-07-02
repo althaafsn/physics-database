@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import useSWR from 'swr'
 import { Plus, Check, Search, FileQuestion } from 'lucide-react'
+import { SolutionAvailableBadge } from '@/components/solution-available-badge'
 import { toast } from 'sonner'
 import { problemsFetcher } from '@/lib/api'
 import { problemsSwrKey } from '@/lib/data-source'
@@ -220,7 +221,10 @@ export function LibraryView() {
                       )}
                     >
                       <td className="px-4 py-2.5 font-mono text-xs whitespace-nowrap text-muted-foreground">
-                        {p.id}
+                        <span className="inline-flex items-center gap-1.5">
+                          {p.id}
+                          <SolutionAvailableBadge problemId={p.id} />
+                        </span>
                       </td>
                       {locale === 'en' ? (
                         <td className="px-2 py-2.5 text-center">

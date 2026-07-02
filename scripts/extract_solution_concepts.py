@@ -18,19 +18,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 
-def load_local_env() -> None:
-    env_path = ROOT / "local.env"
-    if not env_path.is_file():
-        return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        os.environ.setdefault(key.strip(), value.strip())
+from src.env_loader import load_local_env
 
-
-load_local_env()
+load_local_env(ROOT)
 
 from src.halliday.solution_concepts import extract_solution_concepts
 from src.llm_client import _llm_provider
