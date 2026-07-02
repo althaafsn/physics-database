@@ -53,7 +53,7 @@ if [[ -f "$SERVER_DIR/.env" ]]; then
 fi
 LLM_PROVIDER_VAL="${LLM_PROVIDER_SAVED:-openrouter}"
 OPENROUTER_KEY_VAL="${OPENROUTER_KEY_SAVED:-}"
-TUTOR_MODEL_VAL="${TUTOR_MODEL_SAVED:-google/gemini-2.5-flash-preview}"
+TUTOR_MODEL_VAL="${TUTOR_MODEL_SAVED:-nvidia/nemotron-3-ultra-550b-a55b:free}"
 
 log "Writing admin/server/.env"
 cat >"$SERVER_DIR/.env" <<EOF

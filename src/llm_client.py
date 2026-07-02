@@ -13,7 +13,7 @@ from src.repair_log import LogFn
 DEFAULT_BASE_URL = "https://api.netraruntime.com/v1"
 DEFAULT_OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 DEFAULT_LOCAL_BASE_URL = "http://127.0.0.1:11434/v1"
-DEFAULT_OPENROUTER_MODEL = "google/gemini-2.5-flash-preview"
+DEFAULT_OPENROUTER_MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free"
 DEFAULT_MODEL = "qwen3.6-35b"
 DEFAULT_LOCAL_MODEL = "qwen2.5:3b"
 DEFAULT_MAX_RETRIES = 3
@@ -125,11 +125,18 @@ def get_client(*, timeout_s: float | None = None) -> OpenAI:
                 "OPENROUTER_API_KEY environment variable is not set "
                 "(set LLM_PROVIDER=openrouter in admin/server/.env)"
             )
+        # OpenRouter asks for site attribution headers (optional but improves routing).
+        site = os.environ.get("OPENROUTER_SITE_URL", "https://labfisika.com").strip()
+        title = os.environ.get("OPENROUTER_APP_NAME", "Bank Soal Fisika AI Tutor").strip()
         return OpenAI(
             base_url=os.environ.get("OPENROUTER_BASE_URL", DEFAULT_OPENROUTER_BASE_URL),
             api_key=api_key,
             timeout=timeout_s,
             max_retries=0,
+            default_headers={
+                "HTTP-Referer": site,
+                "X-Title": title,
+            },
         )
     api_key = os.environ.get("NETRA_API_KEY")
     if not api_key:
