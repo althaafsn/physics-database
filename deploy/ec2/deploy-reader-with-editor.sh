@@ -21,6 +21,8 @@ fi
 
 export NEXT_PUBLIC_ENABLE_ADMIN=true
 export NEXT_PUBLIC_ADMIN_API_URL="$API_URL"
+# Public (no login) AI tutor endpoint, served by the same backend.
+export NEXT_PUBLIC_AI_TUTOR_ENDPOINT="${NEXT_PUBLIC_AI_TUTOR_ENDPOINT:-${API_URL}/api/tutor/chat}"
 
 log() { printf '==> %s\n' "$*"; }
 

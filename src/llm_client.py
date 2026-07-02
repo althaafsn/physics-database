@@ -11,7 +11,9 @@ from openai import OpenAI
 from src.repair_log import LogFn
 
 DEFAULT_BASE_URL = "https://api.netraruntime.com/v1"
+DEFAULT_OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 DEFAULT_LOCAL_BASE_URL = "http://127.0.0.1:11434/v1"
+DEFAULT_OPENROUTER_MODEL = "google/gemini-2.5-flash-preview"
 DEFAULT_MODEL = "qwen3.6-35b"
 DEFAULT_LOCAL_MODEL = "qwen2.5:3b"
 DEFAULT_MAX_RETRIES = 3
@@ -90,8 +92,12 @@ def _llm_provider() -> str:
     explicit = os.environ.get("LLM_PROVIDER", "").strip().lower()
     if explicit in {"local", "ollama"}:
         return "local"
+    if explicit == "openrouter":
+        return "openrouter"
     if explicit == "netra":
         return "netra"
+    if os.environ.get("OPENROUTER_API_KEY", "").strip():
+        return "openrouter"
     if os.environ.get("LOCAL_LLM_BASE_URL", "").strip():
         return "local"
     return "netra"
@@ -104,10 +110,24 @@ def _local_base_url() -> str:
 def get_client(*, timeout_s: float | None = None) -> OpenAI:
     if timeout_s is None:
         timeout_s = _env_float("NETRA_TIMEOUT_S", DEFAULT_TIMEOUT_S)
-    if _llm_provider() == "local":
+    provider = _llm_provider()
+    if provider == "local":
         return OpenAI(
             base_url=_local_base_url(),
             api_key=os.environ.get("LOCAL_LLM_API_KEY", "ollama"),
+            timeout=timeout_s,
+            max_retries=0,
+        )
+    if provider == "openrouter":
+        api_key = os.environ.get("OPENROUTER_API_KEY", "").strip()
+        if not api_key:
+            raise RuntimeError(
+                "OPENROUTER_API_KEY environment variable is not set "
+                "(set LLM_PROVIDER=openrouter in admin/server/.env)"
+            )
+        return OpenAI(
+            base_url=os.environ.get("OPENROUTER_BASE_URL", DEFAULT_OPENROUTER_BASE_URL),
+            api_key=api_key,
             timeout=timeout_s,
             max_retries=0,
         )
@@ -115,7 +135,7 @@ def get_client(*, timeout_s: float | None = None) -> OpenAI:
     if not api_key:
         raise RuntimeError(
             "NETRA_API_KEY environment variable is not set "
-            "(or set LLM_PROVIDER=local for Ollama)"
+            "(or set LLM_PROVIDER=openrouter / LLM_PROVIDER=local)"
         )
     return OpenAI(
         base_url=os.environ.get("NETRA_BASE_URL", DEFAULT_BASE_URL),
@@ -126,8 +146,14 @@ def get_client(*, timeout_s: float | None = None) -> OpenAI:
 
 
 def provider_info() -> dict[str, str]:
-    if _llm_provider() == "local":
+    provider = _llm_provider()
+    if provider == "local":
         return {"provider": "local", "base_url": _local_base_url()}
+    if provider == "openrouter":
+        return {
+            "provider": "openrouter",
+            "base_url": os.environ.get("OPENROUTER_BASE_URL", DEFAULT_OPENROUTER_BASE_URL),
+        }
     return {
         "provider": "netra",
         "base_url": os.environ.get("NETRA_BASE_URL", DEFAULT_BASE_URL),

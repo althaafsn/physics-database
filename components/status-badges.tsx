@@ -51,6 +51,34 @@ export function QualityBadge({
   )
 }
 
+export function SolutionStatusBadge({
+  status,
+  className,
+}: {
+  status: 'verified' | 'needs_review' | null
+  className?: string
+}) {
+  if (!status) {
+    return (
+      <Badge variant="outline" className={cn('text-muted-foreground', className)}>
+        no solution
+      </Badge>
+    )
+  }
+  return (
+    <Badge
+      className={cn(
+        status === 'verified'
+          ? 'bg-quality-clean text-quality-clean-foreground'
+          : 'bg-quality-error text-quality-error-foreground',
+        className,
+      )}
+    >
+      {status === 'verified' ? 'solution verified' : 'needs review'}
+    </Badge>
+  )
+}
+
 export function LevelBadge({
   level,
   className,

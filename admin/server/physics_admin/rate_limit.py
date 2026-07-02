@@ -61,6 +61,18 @@ auth_limiter = SlidingWindowLimiter(max_requests=10, window_seconds=300)
 # Looser global limiter so a single IP cannot flood the single-process API.
 global_limiter = SlidingWindowLimiter(max_requests=120, window_seconds=60)
 
+# Strict limiter for the public, unauthenticated AI tutor endpoint - each
+# request triggers a real (costed) LLM call, so this is tighter than the
+# general API limiter. Threshold is configurable via TUTOR_RATE_LIMIT_PER_HOUR.
+def _build_tutor_limiter() -> SlidingWindowLimiter:
+    from physics_admin.config import get_settings
+
+    settings = get_settings()
+    return SlidingWindowLimiter(max_requests=settings.tutor_rate_limit_per_hour, window_seconds=3600)
+
+
+tutor_limiter = _build_tutor_limiter()
+
 
 def enforce_auth_rate_limit(request: Request) -> None:
     ip = client_ip(request)
@@ -70,5 +82,17 @@ def enforce_auth_rate_limit(request: Request) -> None:
         raise HTTPException(
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
             detail="Too many attempts. Please wait and try again.",
+            headers={"Retry-After": str(int(retry_after) + 1)},
+        )
+
+
+def enforce_tutor_rate_limit(request: Request) -> None:
+    ip = client_ip(request)
+    allowed, retry_after = tutor_limiter.hit(f"tutor:{ip}")
+    tutor_limiter.sweep()
+    if not allowed:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail="You've reached the AI tutor's hourly question limit. Please try again later.",
             headers={"Retry-After": str(int(retry_after) + 1)},
         )

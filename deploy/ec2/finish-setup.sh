@@ -42,6 +42,19 @@ if [[ -z "$CORS" ]]; then
   CORS="http://localhost:3000"
 fi
 
+# Preserve LLM secrets across re-runs of finish-setup (sync does not copy .env).
+LLM_PROVIDER_SAVED=""
+OPENROUTER_KEY_SAVED=""
+TUTOR_MODEL_SAVED=""
+if [[ -f "$SERVER_DIR/.env" ]]; then
+  LLM_PROVIDER_SAVED="$(grep -E '^LLM_PROVIDER=' "$SERVER_DIR/.env" 2>/dev/null | cut -d= -f2- || true)"
+  OPENROUTER_KEY_SAVED="$(grep -E '^OPENROUTER_API_KEY=' "$SERVER_DIR/.env" 2>/dev/null | cut -d= -f2- || true)"
+  TUTOR_MODEL_SAVED="$(grep -E '^TUTOR_MODEL=' "$SERVER_DIR/.env" 2>/dev/null | cut -d= -f2- || true)"
+fi
+LLM_PROVIDER_VAL="${LLM_PROVIDER_SAVED:-openrouter}"
+OPENROUTER_KEY_VAL="${OPENROUTER_KEY_SAVED:-}"
+TUTOR_MODEL_VAL="${TUTOR_MODEL_SAVED:-google/gemini-2.5-flash-preview}"
+
 log "Writing admin/server/.env"
 cat >"$SERVER_DIR/.env" <<EOF
 APP_ENV=production
@@ -50,6 +63,15 @@ ADMIN_ALLOWED_EMAILS=${ADMIN_EMAIL}
 ALLOW_MOCK_BILLING=false
 ALLOW_PUBLIC_REGISTRATION=false
 CORS_ORIGINS=${CORS}
+
+# AI tutor — add OPENROUTER_API_KEY below (https://openrouter.ai/keys), then:
+#   sudo systemctl restart physics-admin
+LLM_PROVIDER=${LLM_PROVIDER_VAL}
+OPENROUTER_API_KEY=${OPENROUTER_KEY_VAL}
+TUTOR_MODEL=${TUTOR_MODEL_VAL}
+TUTOR_RATE_LIMIT_PER_HOUR=20
+TUTOR_DAILY_TOKEN_BUDGET=400000
+TUTOR_DAILY_REQUEST_BUDGET=600
 EOF
 chown ec2-user:ec2-user "$SERVER_DIR/.env"
 chmod 600 "$SERVER_DIR/.env"

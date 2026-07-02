@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.llm_client import ChatCompletionFailure, ChatCompletionResult, LLMCallMetrics, chat_completion_json
+from src.llm_client import ChatCompletionFailure, ChatCompletionResult, LLMCallMetrics, _llm_provider, chat_completion_json
 from src.llm_progress import RepairProgressStore
 
 
@@ -69,6 +69,13 @@ def test_chat_completion_json_returns_metrics(mock_get_client):
     assert result.metrics.total_tokens == 200
     assert result.metrics.completion_tokens_per_s is not None
     assert result.metrics.completion_tokens_per_s > 0
+
+
+def test_llm_provider_openrouter_when_key_set(monkeypatch):
+    monkeypatch.delenv("LLM_PROVIDER", raising=False)
+    monkeypatch.setenv("OPENROUTER_API_KEY", "sk-or-test")
+    monkeypatch.delenv("LOCAL_LLM_BASE_URL", raising=False)
+    assert _llm_provider() == "openrouter"
 
 
 def test_repair_progress_store(tmp_path: Path):

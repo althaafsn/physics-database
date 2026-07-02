@@ -162,12 +162,14 @@ def problems_list(
     q: str | None = None,
     level: str | None = None,
     errors_only: bool = False,
+    solution_status: str | None = Query(default=None, pattern="^(none|needs_review|verified)$"),
     limit: int = Query(default=100, le=500),
     offset: int = Query(default=0, ge=0),
 ) -> ProblemListResponse:
     records, total = problem_service.list_problems(
-        q=q, level=level, errors_only=errors_only, limit=limit, offset=offset
+        q=q, level=level, errors_only=errors_only, solution_status=solution_status, limit=limit, offset=offset
     )
+    statuses = problem_service.solution_statuses()
     return ProblemListResponse(
         total=total,
         problems=[
@@ -181,6 +183,7 @@ def problems_list(
                 error_count=len(rec.errors),
                 catalog_eligible=is_catalog_eligible(rec),
                 llm_repaired=rec.llm_repaired,
+                solution_status=statuses.get(rec.id),
             )
             for rec in records
         ],

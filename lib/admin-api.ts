@@ -9,6 +9,8 @@ export interface AdminUser {
   has_active_subscription: boolean
 }
 
+export type SolutionStatus = 'verified' | 'needs_review' | null
+
 export interface AdminProblemSummary {
   id: string
   title: string
@@ -19,6 +21,7 @@ export interface AdminProblemSummary {
   error_count: number
   catalog_eligible: boolean
   llm_repaired: boolean
+  solution_status: SolutionStatus
 }
 
 export interface AdminProblemDetail {
@@ -84,12 +87,18 @@ export async function adminSubscribe(token: string, plan: 'monthly' | 'yearly' =
 
 export async function adminListProblems(
   token: string,
-  params: { q?: string; level?: string; errors_only?: boolean } = {},
+  params: {
+    q?: string
+    level?: string
+    errors_only?: boolean
+    solution_status?: 'none' | 'needs_review' | 'verified'
+  } = {},
 ) {
   const sp = new URLSearchParams()
   if (params.q) sp.set('q', params.q)
   if (params.level) sp.set('level', params.level)
   if (params.errors_only) sp.set('errors_only', 'true')
+  if (params.solution_status) sp.set('solution_status', params.solution_status)
   const res = await fetch(`${ADMIN_API_URL}/api/problems?${sp}`, { headers: authHeaders(token) })
   if (!res.ok) throw new Error(await parseError(res))
   return res.json() as Promise<{ total: number; problems: AdminProblemSummary[] }>

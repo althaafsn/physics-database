@@ -33,6 +33,10 @@ tsconfig.tsbuildinfo
 public/data/
 public/assets/
 
+# Solution ingestion intermediates (backend-only, not shipped to reader)
+output_solutions/
+parsed/solutions/
+
 # Demo recordings (regenerate with npm run demo:record)
 demo/output/
 

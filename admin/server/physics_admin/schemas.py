@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 
 class RegisterRequest(BaseModel):
@@ -60,6 +60,9 @@ class ProblemSummary(BaseModel):
     error_count: int
     catalog_eligible: bool
     llm_repaired: bool
+    # "verified" | "needs_review" | None (no ingested solution yet) - backend-only
+    # editor signal, never exposed on the public reader site.
+    solution_status: str | None = None
 
 
 class ProblemDetail(BaseModel):
@@ -104,3 +107,36 @@ class PublishResponse(BaseModel):
     catalog_total: int
     exported: bool
     message: str
+
+
+class TutorProblemContext(BaseModel):
+    """Matches lib/ai-tutor.ts's TutorProblemContext exactly. `title`/`body`/
+    `parts` are accepted for forward-compatibility but never trusted for
+    grounding - the backend re-resolves the real record from `id` server-side
+    (see physics_admin/tutor_context.py)."""
+
+    id: str = Field(max_length=64)
+    title: str | None = Field(default=None, max_length=500)
+    body: str | None = Field(default=None, max_length=20_000)
+    parts: list[dict] | None = None
+
+
+class TutorMessage(BaseModel):
+    role: str
+    content: str = Field(min_length=1, max_length=4000)
+
+    @field_validator("role")
+    @classmethod
+    def validate_role(cls, value: str) -> str:
+        if value not in {"user", "assistant"}:
+            raise ValueError("role must be 'user' or 'assistant'")
+        return value
+
+
+class TutorChatRequest(BaseModel):
+    messages: list[TutorMessage] = Field(min_length=1, max_length=60)
+    problem: TutorProblemContext | None = None
+
+
+class TutorChatResponse(BaseModel):
+    reply: str

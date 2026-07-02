@@ -27,6 +27,7 @@ fi
 
 export NEXT_PUBLIC_ENABLE_ADMIN="${NEXT_PUBLIC_ENABLE_ADMIN:-true}"
 export NEXT_PUBLIC_ADMIN_API_URL="${NEXT_PUBLIC_ADMIN_API_URL:-http://localhost:8000}"
+export NEXT_PUBLIC_AI_TUTOR_ENDPOINT="${NEXT_PUBLIC_AI_TUTOR_ENDPOINT:-${NEXT_PUBLIC_ADMIN_API_URL}/api/tutor/chat}"
 
 API_PID=""
 WEB_PID=""
@@ -42,6 +43,7 @@ echo "    Corpus: $DB_ROOT"
 echo "    Reader: http://localhost:3000"
 echo "    Editor: http://localhost:3000/admin/problems"
 echo "    API:    http://localhost:8000"
+echo "    AI:     http://localhost:3000/ai"
 echo ""
 echo "    Sign in at /admin/login (mock subscribe on /admin/subscribe when needed)."
 echo ""

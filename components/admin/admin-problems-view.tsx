@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 import { adminListProblems, adminPublish, type AdminProblemSummary } from '@/lib/admin-api'
 import { getAdminToken } from '@/lib/admin-auth'
 import { useRequireAdminAuth } from '@/components/admin/use-admin-auth'
-import { LevelBadge, QualityBadge } from '@/components/status-badges'
+import { LevelBadge, QualityBadge, SolutionStatusBadge } from '@/components/status-badges'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -34,6 +34,7 @@ export function AdminProblemsView() {
   const [q, setQ] = useState('')
   const [level, setLevel] = useState('all')
   const [errorsOnly, setErrorsOnly] = useState(false)
+  const [solutionStatus, setSolutionStatus] = useState<'all' | 'none' | 'needs_review' | 'verified'>('all')
   const [fetching, setFetching] = useState(false)
 
   const load = useCallback(async () => {
@@ -45,6 +46,7 @@ export function AdminProblemsView() {
         q: q || undefined,
         level: level !== 'all' ? level : undefined,
         errors_only: errorsOnly,
+        solution_status: solutionStatus !== 'all' ? solutionStatus : undefined,
       })
       setProblems(data.problems)
       setTotal(data.total)
@@ -53,7 +55,7 @@ export function AdminProblemsView() {
     } finally {
       setFetching(false)
     }
-  }, [q, level, errorsOnly])
+  }, [q, level, errorsOnly, solutionStatus])
 
   useEffect(() => {
     if (!loading) load()
@@ -113,6 +115,17 @@ export function AdminProblemsView() {
           <input type="checkbox" checked={errorsOnly} onChange={(e) => setErrorsOnly(e.target.checked)} />
           Errors only
         </label>
+        <Select value={solutionStatus} onValueChange={(v) => v && setSolutionStatus(v as typeof solutionStatus)}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Solution status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All solutions</SelectItem>
+            <SelectItem value="needs_review">Needs review</SelectItem>
+            <SelectItem value="verified">Verified</SelectItem>
+            <SelectItem value="none">No solution yet</SelectItem>
+          </SelectContent>
+        </Select>
         <Button variant="outline" onClick={load} disabled={fetching}>
           {fetching ? 'Loading…' : 'Search'}
         </Button>
@@ -126,6 +139,7 @@ export function AdminProblemsView() {
               <TableHead>Title</TableHead>
               <TableHead>Topic</TableHead>
               <TableHead>Status</TableHead>
+              <TableHead>Solution</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -153,6 +167,9 @@ export function AdminProblemsView() {
                   ) : (
                     <QualityBadge quality="repaired" />
                   )}
+                </TableCell>
+                <TableCell>
+                  <SolutionStatusBadge status={p.solution_status} />
                 </TableCell>
               </TableRow>
             ))}

@@ -28,6 +28,14 @@ class Settings(BaseSettings):
     allow_mock_billing: bool = True
     allow_public_registration: bool = True
 
+    # AI tutor (public, unauthenticated endpoint) cost/abuse controls.
+    tutor_model: str = ""
+    tutor_max_reply_tokens: int = 700
+    tutor_max_turns: int = 16
+    tutor_rate_limit_per_hour: int = 20
+    tutor_daily_token_budget: int = 400_000
+    tutor_daily_request_budget: int = 600
+
     @field_validator("app_env")
     @classmethod
     def normalize_env(cls, value: str) -> str:

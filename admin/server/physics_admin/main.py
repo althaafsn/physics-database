@@ -10,6 +10,7 @@ from physics_admin.config import get_settings
 from physics_admin.database import init_db
 from physics_admin.rate_limit import client_ip, global_limiter
 from physics_admin.routes import router
+from physics_admin.routes_tutor import router as tutor_router
 
 settings = get_settings()
 
@@ -22,6 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(router, prefix="/api")
+app.include_router(tutor_router, prefix="/api")
 
 
 @app.middleware("http")

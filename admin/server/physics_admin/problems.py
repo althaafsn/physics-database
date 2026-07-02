@@ -9,6 +9,7 @@ from src.catalog import is_catalog_eligible, sync_catalog
 from src.paths import PipelinePaths
 from src.record_store import load_jsonl, save_jsonl
 from src.schema import ProblemRecord, SubPart
+from src.solutions.store import load_solutions, solution_status_by_problem_id, solutions_jsonl_path
 from src.validate import apply_validation
 
 
@@ -17,11 +18,20 @@ def _paths() -> PipelinePaths:
     return PipelinePaths.resolve(settings.physics_db_root)
 
 
+def solution_statuses() -> dict[str, str]:
+    """problem_id -> "verified" | "needs_review", for problems with at least
+    one ingested worked-solution segment. Used by the editor's solutions
+    status filter/badge - never exposed to the public reader."""
+    path = solutions_jsonl_path(_paths().parsed_dir)
+    return solution_status_by_problem_id(load_solutions(path))
+
+
 def list_problems(
     *,
     q: str | None = None,
     level: str | None = None,
     errors_only: bool = False,
+    solution_status: str | None = None,
     limit: int = 200,
     offset: int = 0,
 ) -> tuple[list[ProblemRecord], int]:
@@ -39,6 +49,12 @@ def list_problems(
         records = [r for r in records if r.level == level]
     if errors_only:
         records = [r for r in records if r.errors]
+    if solution_status:
+        statuses = solution_statuses()
+        if solution_status == "none":
+            records = [r for r in records if r.id not in statuses]
+        else:
+            records = [r for r in records if statuses.get(r.id) == solution_status]
     total = len(records)
     return records[offset : offset + limit], total
 

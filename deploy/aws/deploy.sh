@@ -47,9 +47,15 @@ main() {
   log "Building static site…"
   if [[ -n "$api_url" ]]; then
     log "Editor enabled → ${api_url}"
-    NEXT_PUBLIC_ENABLE_ADMIN=true NEXT_PUBLIC_ADMIN_API_URL="$api_url" npm run build:static
+    # The AI tutor endpoint is public (no login) and served by the same
+    # backend, so wire it up whenever the API is reachable, independent of
+    # whether the admin editor itself is enabled.
+    NEXT_PUBLIC_ENABLE_ADMIN=true \
+    NEXT_PUBLIC_ADMIN_API_URL="$api_url" \
+    NEXT_PUBLIC_AI_TUTOR_ENDPOINT="${NEXT_PUBLIC_AI_TUTOR_ENDPOINT:-${api_url}/api/tutor/chat}" \
+      npm run build:static
   else
-    NEXT_PUBLIC_ENABLE_ADMIN=false NEXT_PUBLIC_ADMIN_API_URL= npm run build:static
+    NEXT_PUBLIC_ENABLE_ADMIN=false NEXT_PUBLIC_ADMIN_API_URL= NEXT_PUBLIC_AI_TUTOR_ENDPOINT= npm run build:static
   fi
 
   log "Creating/updating S3 bucket + CloudFront…"

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-from sqlalchemy import DateTime, String
+from sqlalchemy import DateTime, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from physics_admin.database import Base
@@ -30,3 +30,15 @@ class User(Base):
         if expires.tzinfo is None:
             expires = expires.replace(tzinfo=UTC)
         return expires > datetime.now(UTC)
+
+
+class TutorUsageDay(Base):
+    """Global daily spend/token counter for the public AI tutor endpoint - a
+    hard stop against runaway cost regardless of how per-IP rate limiting is
+    routed around (see physics_admin/tutor_budget.py)."""
+
+    __tablename__ = "tutor_usage_days"
+
+    date: Mapped[str] = mapped_column(String(10), primary_key=True)  # UTC "YYYY-MM-DD"
+    request_count: Mapped[int] = mapped_column(Integer, default=0)
+    total_tokens: Mapped[int] = mapped_column(Integer, default=0)
