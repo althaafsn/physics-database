@@ -15,8 +15,14 @@ import type { Problem } from '@/lib/types'
  *     "messages": [{ "role": "user" | "assistant", "content": string }, ...],
  *     "problem":  { "id", "title", "body", "parts" } | null
  *   }
- * Expected response (application/json):
+ * Expected response (application/json, non-streaming fallback):
  *   { "reply": string }   // markdown + $$LaTeX$$ is supported by the UI
+ *
+ * Streaming (preferred): POST to `{endpoint}/stream` with the same body.
+ * Server-Sent Events, one JSON object per `data:` line:
+ *   { "delta": string }   token chunks as they arrive
+ *   { "done": true }      stream finished
+ *   { "error": string }   optional provider failure
  *
  * Until the endpoint is configured, the UI runs in an honest "preview" mode:
  * the full chat experience works, but sends return a clearly-labeled notice
@@ -43,6 +49,42 @@ export function isAiTutorConfigured(): boolean {
   return AI_TUTOR_ENDPOINT.length > 0
 }
 
+export function tutorStreamEndpoint(): string {
+  const base = AI_TUTOR_ENDPOINT.replace(/\/$/, '')
+  return `${base}/stream`
+}
+
+type TutorStreamEvent =
+  | { delta?: string; done?: boolean; error?: string }
+  | Record<string, unknown>
+
+async function* readSseJson(
+  reader: ReadableStreamDefaultReader<Uint8Array>,
+): AsyncGenerator<TutorStreamEvent> {
+  const decoder = new TextDecoder()
+  let buffer = ''
+
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+
+    const frames = buffer.split('\n\n')
+    buffer = frames.pop() ?? ''
+
+    for (const frame of frames) {
+      for (const line of frame.split('\n')) {
+        if (!line.startsWith('data: ')) continue
+        try {
+          yield JSON.parse(line.slice(6)) as TutorStreamEvent
+        } catch {
+          // ignore malformed frames
+        }
+      }
+    }
+  }
+}
+
 export class AiTutorNotConfiguredError extends Error {
   constructor() {
     super('AI tutor endpoint is not configured')
@@ -60,6 +102,74 @@ export function toTutorContext(problem: Problem | null | undefined): TutorProble
   }
 }
 
+function tutorRequestBody(opts: {
+  messages: TutorMessage[]
+  problem?: TutorProblemContext | null
+}) {
+  return JSON.stringify({
+    messages: opts.messages,
+    problem: opts.problem ?? null,
+  })
+}
+
+/** Stream tokens as they arrive; returns the full assembled reply. */
+export async function askTutorStream(opts: {
+  messages: TutorMessage[]
+  problem?: TutorProblemContext | null
+  signal?: AbortSignal
+  onDelta?: (chunk: string, fullText: string) => void
+}): Promise<string> {
+  if (!isAiTutorConfigured()) {
+    throw new AiTutorNotConfiguredError()
+  }
+
+  const res = await fetch(tutorStreamEndpoint(), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'text/event-stream',
+    },
+    body: tutorRequestBody(opts),
+    signal: opts.signal,
+  })
+
+  if (!res.ok) {
+    throw new Error(`AI request failed (${res.status})`)
+  }
+
+  const reader = res.body?.getReader()
+  if (!reader) {
+    throw new Error('The AI service returned an unexpected response.')
+  }
+
+  let fullText = ''
+  let sawDone = false
+
+  try {
+    for await (const event of readSseJson(reader)) {
+      if (typeof event.error === 'string' && event.error.trim()) {
+        throw new Error(event.error)
+      }
+      if (typeof event.delta === 'string' && event.delta.length > 0) {
+        fullText += event.delta
+        opts.onDelta?.(event.delta, fullText)
+      }
+      if (event.done === true) {
+        sawDone = true
+        break
+      }
+    }
+  } finally {
+    reader.releaseLock()
+  }
+
+  if (!sawDone || fullText.trim().length === 0) {
+    throw new Error('The AI service returned an unexpected response.')
+  }
+  return fullText
+}
+
+/** Non-streaming fallback (used by verify scripts and legacy callers). */
 export async function askTutor(opts: {
   messages: TutorMessage[]
   problem?: TutorProblemContext | null
@@ -72,10 +182,7 @@ export async function askTutor(opts: {
   const res = await fetch(AI_TUTOR_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      messages: opts.messages,
-      problem: opts.problem ?? null,
-    }),
+    body: tutorRequestBody(opts),
     signal: opts.signal,
   })
 

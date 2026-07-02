@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Send, Sparkles, RotateCcw, Loader2 } from 'lucide-react'
-import { ProblemBody } from '@/components/problem-body'
+import { AiTutorMessage } from '@/components/ai/ai-tutor-message'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
-  askTutor,
+  askTutorStream,
   isAiTutorConfigured,
   previewReply,
   suggestedPrompts,
@@ -77,17 +77,33 @@ export function AiTutorChat({
     }
 
     setPending(true)
+    setMessages((prev) => [...prev, { role: 'assistant', content: '' }])
     const controller = new AbortController()
     abortRef.current = controller
     try {
-      const reply = await askTutor({
+      await askTutorStream({
         messages: nextMessages,
         problem: toTutorContext(problem),
         signal: controller.signal,
+        onDelta: (_chunk, fullText) => {
+          setMessages((prev) => {
+            const copy = [...prev]
+            const last = copy[copy.length - 1]
+            if (last?.role !== 'assistant') return prev
+            copy[copy.length - 1] = { role: 'assistant', content: fullText }
+            return copy
+          })
+        },
       })
-      setMessages((prev) => [...prev, { role: 'assistant', content: reply }])
     } catch (err) {
       if ((err as Error)?.name === 'AbortError') return
+      setMessages((prev) => {
+        const last = prev[prev.length - 1]
+        if (last?.role === 'assistant' && !last.content.trim()) {
+          return prev.slice(0, -1)
+        }
+        return prev
+      })
       setError(
         err instanceof Error
           ? err.message
@@ -157,11 +173,22 @@ export function AiTutorChat({
           </div>
         ) : (
           messages.map((message, index) => (
-            <ChatBubble key={index} message={message} />
+            <ChatBubble
+              key={index}
+              message={message}
+              streaming={
+                pending &&
+                index === messages.length - 1 &&
+                message.role === 'assistant'
+              }
+            />
           ))
         )}
 
-        {pending ? (
+        {pending &&
+        (messages.length === 0 ||
+          messages[messages.length - 1]?.role !== 'assistant' ||
+          !messages[messages.length - 1]?.content) ? (
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Loader2 className="size-3.5 animate-spin" />
             Thinking…
@@ -236,13 +263,19 @@ export function AiTutorChat({
   )
 }
 
-function ChatBubble({ message }: { message: TutorMessage }) {
+function ChatBubble({
+  message,
+  streaming = false,
+}: {
+  message: TutorMessage
+  streaming?: boolean
+}) {
   const isUser = message.role === 'user'
   return (
     <div className={cn('flex', isUser ? 'justify-end' : 'justify-start')}>
       <div
         className={cn(
-          'max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed',
+          'max-w-[min(85%,42rem)] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed',
           isUser
             ? 'rounded-br-sm bg-primary text-primary-foreground'
             : 'rounded-bl-sm border border-border/70 bg-card text-foreground/90',
@@ -251,9 +284,7 @@ function ChatBubble({ message }: { message: TutorMessage }) {
         {isUser ? (
           <p className="whitespace-pre-wrap">{message.content}</p>
         ) : (
-          <div className="prose-sm max-w-none [&_.katex]:text-foreground">
-            <ProblemBody text={message.content} />
-          </div>
+          <AiTutorMessage content={message.content} streaming={streaming} />
         )}
       </div>
     </div>
