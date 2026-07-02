@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Sparkles, ChevronDown } from 'lucide-react'
+import { Sparkles, ChevronDown, MessageCircle } from 'lucide-react'
 import { AiTutorChat } from '@/components/ai/ai-tutor-chat'
 import { isAiTutorConfigured } from '@/lib/ai-tutor'
 import { cn } from '@/lib/utils'
@@ -21,37 +21,54 @@ export function AskAiAboutProblem({ problem }: { problem: Problem }) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center gap-2.5 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2.5 text-left transition-colors hover:bg-primary/10"
+        className={cn(
+          'flex w-full items-center gap-3 rounded-xl border px-3 py-3 text-left transition-all sm:px-4',
+          open
+            ? 'border-primary/30 bg-primary/8 shadow-sm'
+            : 'border-primary/20 bg-primary/5 hover:border-primary/30 hover:bg-primary/10',
+        )}
       >
-        <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
-          <Sparkles className="size-4" />
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+          {open ? (
+            <MessageCircle className="size-4" />
+          ) : (
+            <Sparkles className="size-4" />
+          )}
         </span>
         <span className="min-w-0 flex-1">
-          <span className="flex items-center gap-2 text-sm font-medium text-foreground">
+          <span className="flex flex-wrap items-center gap-2 text-sm font-semibold text-foreground">
             Ask AI about this problem
             {!configured ? (
-              <span className="rounded-full bg-muted px-1.5 py-0.5 text-[9px] font-semibold tracking-wide text-muted-foreground uppercase">
+              <span className="rounded-full bg-muted px-2 py-0.5 text-[9px] font-semibold tracking-wide text-muted-foreground uppercase">
                 Preview
               </span>
             ) : null}
           </span>
-          <span className="block text-[11px] text-muted-foreground">
-            Hints, concepts, and step-by-step guidance
+          <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
+            Hints and step-by-step guidance grounded in{' '}
+            <span className="font-mono text-[11px]">{problem.id}</span>
           </span>
         </span>
         <ChevronDown
           className={cn(
-            'size-4 shrink-0 text-muted-foreground transition-transform',
+            'size-4 shrink-0 text-muted-foreground transition-transform duration-200',
             open && 'rotate-180',
           )}
         />
       </button>
 
-      {open ? (
-        <div className="mt-3 flex h-[32rem] flex-col overflow-hidden rounded-xl border border-border/70 bg-background/60">
-          <AiTutorChat problem={problem} />
+      <div
+        className={cn(
+          'grid transition-[grid-template-rows] duration-300 ease-out',
+          open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="mt-3 flex h-[34rem] flex-col overflow-hidden rounded-xl border border-border/70 bg-background shadow-sm ring-1 ring-border/40">
+            <AiTutorChat problem={problem} />
+          </div>
         </div>
-      ) : null}
+      </div>
     </section>
   )
 }
