@@ -51,7 +51,7 @@ interface SetBuilderState {
   has: (id: string) => boolean
   replaceAll: (problems: Problem[], ownerSetId?: string | null) => void
   clear: () => void
-  createNewSet: () => void
+  createNewSet: () => Promise<void>
   loadSavedSet: (id: string) => Promise<void>
   deleteSavedSet: (id: string) => Promise<void>
 }
@@ -278,7 +278,7 @@ export function SetBuilderProvider({
     skipNextAutosave.current = true
   }, [bumpSaveEpoch, writeSetToStorage])
 
-  const createNewSet = useCallback(() => {
+  const createNewSet = useCallback((): Promise<void> => {
     const run = async () => {
       bumpSaveEpoch()
       flushPendingSave()
@@ -308,7 +308,7 @@ export function SetBuilderProvider({
     }
 
     switchChainRef.current = switchChainRef.current.then(run, run)
-    void switchChainRef.current
+    return switchChainRef.current
   }, [bumpSaveEpoch, flushPendingSave, refreshSavedSets])
 
   const deleteSavedSet = useCallback(

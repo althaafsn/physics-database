@@ -11,7 +11,7 @@ npx playwright install chromium
 
 Optional: `ffmpeg` for MP4 export.
 
-## Record (desktop)
+## Record (desktop — full tour)
 
 ```bash
 npm run demo:record
@@ -21,6 +21,32 @@ Outputs:
 
 - `demo/output/physics-db-demo.webm` (1920×1080)
 - `demo/output/physics-db-demo.mp4` (if ffmpeg is installed)
+
+## Record (set builder focus)
+
+```bash
+DEMO_BASE_URL=https://labfisika.com npm run demo:record:sets
+```
+
+Outputs: `demo/output/physics-db-demo-sets.webm` (+ `.mp4`)
+
+## Record (AI tutor focus)
+
+Requires a live AI endpoint (use production URL):
+
+```bash
+DEMO_BASE_URL=https://labfisika.com npm run demo:record:ai-tutor
+```
+
+Outputs: `demo/output/physics-db-demo-ai-tutor.webm` (+ `.mp4`)
+
+## Verify features (smoke test)
+
+```bash
+DEMO_BASE_URL=https://labfisika.com npm run demo:verify
+```
+
+Checks API health, tutor chat, navigation, library, set builder, and AI tutor UI.
 
 ## Record (mobile)
 

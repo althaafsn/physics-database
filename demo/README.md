@@ -4,7 +4,10 @@ Videos are written to `output/` by `npm run demo:record` (that folder is gitigno
 
 ```bash
 npx playwright install chromium   # first time only
-npm run demo:record
+npm run demo:verify               # smoke-test live site
+npm run demo:record               # full tour
+DEMO_BASE_URL=https://labfisika.com npm run demo:record:sets
+DEMO_BASE_URL=https://labfisika.com npm run demo:record:ai-tutor
 npm run demo:enhance              # optional 4K upscale (ffmpeg)
 ```
 

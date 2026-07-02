@@ -63,6 +63,7 @@ export function SetBuilderView() {
     replaceAll,
     clear,
     isReady,
+    createNewSet,
   } = useSetBuilder()
   const { locale } = useLocale()
   const router = useRouter()
@@ -96,8 +97,7 @@ export function SetBuilderView() {
 
   const generateRandom = async () => {
     if (!hasActiveSet) {
-      toast.error('Click New set before generating a draft')
-      return
+      await createNewSet()
     }
     setGenerating(true)
     try {
@@ -296,10 +296,9 @@ export function SetBuilderView() {
                     size="icon-sm"
                     aria-label={`Add ${p.id}`}
                     disabled={has(p.id)}
-                    onClick={() => {
+                    onClick={async () => {
                       if (!hasActiveSet) {
-                        toast.error('Click New set before adding problems')
-                        return
+                        await createNewSet()
                       }
                       add(p)
                       toast.success(`Added ${p.id}`)

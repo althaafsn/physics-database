@@ -104,7 +104,7 @@ async function runScenario(page) {
   )
 
   await spotlightEl(page, page.locator('aside').first(), {
-    caption: 'Navigate between Dashboard, Problem Library, and Set Builder.',
+    caption: 'Dashboard, Library, AI Tutor, Set Builder, and Topics.',
     padding: 6,
     holdMs: 2800,
   })
@@ -154,6 +154,14 @@ async function runScenario(page) {
   await page.getByRole('link', { name: 'Set Builder' }).click()
   await page.waitForURL(/\/sets\/?$/)
   await sleep(1200)
+
+  // Ensure a draft exists (production may not auto-create on first add yet).
+  const newSetBtn = page.getByRole('button', { name: 'New set' })
+  if (!(await page.locator('ol.divide-y li').first().isVisible().catch(() => false))) {
+    await newSetBtn.click()
+    await sleep(600)
+  }
+
   await page.locator('ol.divide-y li').first().waitFor({ state: 'visible', timeout: 15000 })
 
   await spotlightEl(page, page.getByRole('button', { name: 'New set' }), {
