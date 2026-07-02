@@ -60,24 +60,27 @@ export function AiTutorView() {
               />
             </div>
             {selected ? (
-              <div className="flex items-center gap-2 rounded-xl border border-primary/25 bg-primary/8 px-3 py-2">
-                <Sparkles className="size-4 shrink-0 text-primary" />
-                <div className="min-w-0 flex-1">
-                  <p className="text-[10px] font-medium text-primary uppercase">
-                    Active problem
-                  </p>
-                  <p className="truncate font-mono text-xs text-foreground">
-                    {selected.id}
-                  </p>
+              <div className="space-y-1 rounded-xl border border-primary/25 bg-primary/8 px-3 py-2.5">
+                <div className="flex items-start gap-2">
+                  <Sparkles className="mt-0.5 size-4 shrink-0 text-primary" />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-medium text-primary uppercase">
+                      Active problem
+                    </p>
+                    <p className="font-mono text-xs text-foreground">{selected.id}</p>
+                    <p className="mt-1 line-clamp-2 text-xs leading-snug text-foreground/90">
+                      {selected.title}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelected(null)}
+                    aria-label="Clear focused problem"
+                    className="shrink-0 rounded-md p-1 text-muted-foreground transition-colors hover:bg-background/80 hover:text-foreground"
+                  >
+                    <X className="size-4" />
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setSelected(null)}
-                  aria-label="Clear focused problem"
-                  className="shrink-0 rounded-md p-1 text-muted-foreground transition-colors hover:bg-background/80 hover:text-foreground"
-                >
-                  <X className="size-4" />
-                </button>
               </div>
             ) : (
               <p className="text-[11px] leading-relaxed text-muted-foreground text-pretty">

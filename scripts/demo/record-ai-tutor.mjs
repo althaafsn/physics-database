@@ -45,7 +45,7 @@ async function runScenario(page) {
   }
 
   await spotlightEl(page, page.getByPlaceholder(/Search by ID, title, or topic/i), {
-    caption: 'Pick a problem to pin the statement above the chat.',
+    caption: 'Pick a problem — the chat stays full height; open the statement on demand.',
     padding: 8,
     holdMs: 2400,
   })
@@ -55,11 +55,22 @@ async function runScenario(page) {
   await firstProblem.click()
   await sleep(800)
 
-  await spotlightEl(page, page.getByText('Problem statement').first(), {
-    caption: 'Full problem body stays visible while you ask for hints.',
-    padding: 10,
-    holdMs: 2800,
+  const viewProblem = page.getByRole('button', { name: 'View problem' })
+  await spotlightEl(page, viewProblem, {
+    caption: 'Read the full statement in a slide-over — no competing scroll with chat.',
+    padding: 8,
+    holdMs: 2200,
   })
+  await viewProblem.click()
+  await sleep(500)
+
+  await spotlightEl(page, page.getByText('Problem statement').first(), {
+    caption: 'Diagrams, sub-parts, and LaTeX — dismiss to focus on the conversation.',
+    padding: 10,
+    holdMs: 2400,
+  })
+  await page.getByLabel('Close problem statement').click()
+  await sleep(400)
 
   const chip = page.getByRole('button', { name: /Give me a hint to get started/i })
   if (await chip.isVisible()) {
